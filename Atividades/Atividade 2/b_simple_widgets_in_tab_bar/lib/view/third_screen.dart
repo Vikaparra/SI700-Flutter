@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyThirdScreen extends StatelessWidget {
+  const MyThirdScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return presentationScreen();
@@ -61,10 +63,8 @@ Widget content() {
       child: Text(
         "O aplicativo visa o acompanhamento de idosos por parte de seus cuidadores (familiar ou contratado). Haverá a supervisão de remédios, calendário de consultas, informações de alergias, doenças e outras condições médicas.",
         textAlign: TextAlign.justify,
-          style: TextStyle(
-              fontSize: 20, 
-              color: Colors.black, 
-              fontFamily: 'Roboto'),
+        style:
+            TextStyle(fontSize: 20, color: Colors.black, fontFamily: 'Roboto'),
       ),
     ),
     padding: const EdgeInsets.all(10),

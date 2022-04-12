@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MySecondScreen extends StatelessWidget {
+  const MySecondScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container( //container tela inteira
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
       color: Color.fromARGB(158, 147, 190, 255),
     ),
       width: double.infinity,  

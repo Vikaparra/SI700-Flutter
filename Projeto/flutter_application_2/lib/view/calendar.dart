@@ -59,18 +59,19 @@ class Calendar extends StatelessWidget {
           color: kSecondColor,
         ),
         child: Column(children: [
+          title(),
           // ignore: prefer_const_constructors
-          DefaultTextStyle(
-            style: const TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.normal,
-                color: Colors.black,
-                fontFamily: "Comfortaa"),
-            child: const Text(
-              'ATIVIDADES DIÁRIAS',
-              textAlign: TextAlign.right,
-            ),
-          ),
+          // DefaultTextStyle(
+          //   style: const TextStyle(
+          //       fontSize: 25,
+          //       fontWeight: FontWeight.normal,
+          //       color: Colors.black,
+          //       fontFamily: "Comfortaa"),
+          //   child: const Text(
+          //     'ATIVIDADES DIÁRIAS',
+          //     textAlign: TextAlign.right,
+          //   ),
+          // ),
           const DefaultTextStyle(
             style: TextStyle(
                 fontSize: 19,
@@ -133,4 +134,23 @@ class Calendar extends StatelessWidget {
         ]));
     // const Text('AGENDA DIÁRIA'),
   }
+}
+
+Widget title() {
+  return Container(
+      margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
+      child: const SizedBox(
+        width: double.infinity,
+          child: DefaultTextStyle(
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+                fontFamily: "Comfortaa"),
+            child: Text(
+              'ATIVIDADES DIÁRIAS',
+              textAlign: TextAlign.start,
+            ),
+          )),
+      );
 }

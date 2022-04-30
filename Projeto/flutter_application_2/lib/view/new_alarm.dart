@@ -25,16 +25,10 @@ class _NewActState extends State<NewAct> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Text(
-                'NOVA ATIVIDADE',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 23, color: Colors.black, fontFamily: "Comfortaa"),
-              ),
+            title(),
             Container(
                 padding: const EdgeInsets.only(
                     left: 10.0, top: 0, right: 10.0, bottom: 00),
-                height: MediaQuery.of(context).size.height * 0.8,
                 width: MediaQuery.of(context).size.height * 1,
                 decoration: const BoxDecoration(
                     color: kWhiteColor,
@@ -65,7 +59,6 @@ class _NewActState extends State<NewAct> {
                         text: 'CONSULTA',
                         textColor: kWhiteColor,
                         color: kPinkColor,
-                        
                         press: () {
                 Navigator.push(
                   context,
@@ -113,4 +106,23 @@ class _NewActState extends State<NewAct> {
     ])
     );
   }
+}
+
+Widget title() {
+  return Container(
+      margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
+      child: const SizedBox(
+        width: double.infinity,
+          child: DefaultTextStyle(
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+                fontFamily: "Comfortaa"),
+            child: Text(
+              'NOVA ATIVIDADE',
+              textAlign: TextAlign.start,
+            ),
+          )),
+      );
 }

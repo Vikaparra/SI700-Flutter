@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/constants.dart';
 
-class NewRemed extends StatelessWidget {
-  const NewRemed({ Key? key }) : super(key: key);
+class NewAExec extends StatelessWidget {
+  const NewAExec({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ScreenAlarm extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         decoration: const BoxDecoration(
-          color: kOrangeColor,
+          color: kSecondColor,
         ),
         
         child: Column(
@@ -88,7 +88,7 @@ Widget formAct(BuildContext context) {
           RoundedButton(
             text: "CADASTRAR",
             textColor: kWhiteColor,
-            color: kOrangeColor, press: (){})
+            color: kSecondColor, press: (){})
         ],
       )
   );

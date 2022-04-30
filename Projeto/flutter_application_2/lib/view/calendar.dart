@@ -17,7 +17,6 @@ class _PrincipalState extends State<Principal> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: IndexedStack(
         index: _currentScreen,
         children: const [
@@ -28,9 +27,12 @@ class _PrincipalState extends State<Principal> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.more_time_outlined ), label: "Nova Atividade", ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_month_outlined ), label: "Atividades"),
+            icon: Icon(Icons.more_time_outlined),
+            label: "Nova Atividade",
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined), label: "Atividades"),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_box_outlined), label: "Perfil"),
         ],
@@ -40,7 +42,6 @@ class _PrincipalState extends State<Principal> {
             _currentScreen = novoItem;
           });
         },
-        
         fixedColor: Colors.black,
       ),
     );

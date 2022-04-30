@@ -60,18 +60,6 @@ class Calendar extends StatelessWidget {
         ),
         child: Column(children: [
           title(),
-          // ignore: prefer_const_constructors
-          // DefaultTextStyle(
-          //   style: const TextStyle(
-          //       fontSize: 25,
-          //       fontWeight: FontWeight.normal,
-          //       color: Colors.black,
-          //       fontFamily: "Comfortaa"),
-          //   child: const Text(
-          //     'ATIVIDADES DIÁRIAS',
-          //     textAlign: TextAlign.right,
-          //   ),
-          // ),
           const DefaultTextStyle(
             style: TextStyle(
                 fontSize: 19,

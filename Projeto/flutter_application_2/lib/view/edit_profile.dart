@@ -49,17 +49,6 @@ class Profile extends StatelessWidget {
                             height: MediaQuery.of(context).size.height * 0.55,
                             child: const PerfilInfo(),
                           )),
-                      // RoundedButton(
-                      //   text: 'SAIR',
-                      //   textColor: kWhiteColor,
-                      //   color: kSecondColor,
-                      //   press: () {
-                      //     Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(builder: (context) => Login()),
-                      //     );
-                      //   },
-                      // ),
                     ])),
           ],
         ));
@@ -198,78 +187,4 @@ class PerfilInfo extends StatelessWidget {
       ],
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return ListView(
-  //     children: [
-  //       const Text(
-  //         'Antonio Zambon',
-  //         textAlign: TextAlign.center,
-  //         style: TextStyle(
-  //             fontSize: 25, color: Colors.black, fontFamily: "Comfortaa"),
-  //       ),
-  //       const Text(
-  //         'Familiar',
-  //         textAlign: TextAlign.center,
-  //         style: TextStyle(
-  //             fontSize: 22, color: Colors.black, fontFamily: "Comfortaa"),
-  //       ),
-  //       Padding(
-  //         padding:
-  //             EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-  //         child: ListTile(
-  //             title: const Text(
-  //               'Nascimento: 05/07/1800',
-  //               style: TextStyle(
-  //                   fontSize: 16, color: Colors.black, fontFamily: "Comfortaa"),
-  //             ),
-  //             trailing: GestureDetector(
-  //               child: const Icon(Icons.edit),
-  //               onTap: () {},
-  //             )),
-  //       ),
-  //       ListTile(
-  //           title: const Text(
-  //             'CPF: 496.262.254.64',
-  //             style: TextStyle(
-  //                 fontSize: 16, color: Colors.black, fontFamily: "Comfortaa"),
-  //           ),
-  //           trailing: GestureDetector(
-  //             child: const Icon(Icons.edit),
-  //             onTap: () {},
-  //           )),
-  //       ListTile(
-  //           title: const Text(
-  //             'Email: zambas@gmail.com',
-  //             style: TextStyle(
-  //                 fontSize: 16, color: Colors.black, fontFamily: "Comfortaa"),
-  //           ),
-  //           trailing: GestureDetector(
-  //             child: const Icon(Icons.edit),
-  //             onTap: () {},
-  //           )),
-  //       ListTile(
-  //           title: const Text(
-  //             'Telefone: 19 9 88754563',
-  //             style: TextStyle(
-  //                 fontSize: 16, color: Colors.black, fontFamily: "Comfortaa"),
-  //           ),
-  //           trailing: GestureDetector(
-  //             child: const Icon(Icons.edit),
-  //             onTap: () {},
-  //           )),
-  //       ListTile(
-  //           title: const Text(
-  //             'Senha: xxxxxxxxxx',
-  //             style: TextStyle(
-  //                 fontSize: 16, color: Colors.black, fontFamily: "Comfortaa"),
-  //           ),
-  //           trailing: GestureDetector(
-  //             child: const Icon(Icons.edit),
-  //             onTap: () {},
-  //           )),
-  //     ],
-  //   );
-  // }
 }

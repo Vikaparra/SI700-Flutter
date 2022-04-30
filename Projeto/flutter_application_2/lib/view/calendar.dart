@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/edit_profile.dart';
-import 'package:flutter_application_2/view/login_screen.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
 
 class Principal extends StatefulWidget {

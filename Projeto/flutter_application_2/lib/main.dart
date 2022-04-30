@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/view/1calendar.dart';
-import 'package:flutter_application_2/view/calendar.dart';
 import 'package:flutter_application_2/view/constants.dart';
-import 'package:flutter_application_2/view/edit_profile.dart';
-import 'package:flutter_application_2/view/signup_screen.dart';
 import 'package:flutter_application_2/view/welcome_screen.dart';
 
 void main() {
@@ -22,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primaryColor: const Color.fromRGBO(18, 53, 143, 1),
           backgroundColor: kPrimaryColor),
-      home: EditProfile(),
+      home: Welcome(),
     );
   }
 }

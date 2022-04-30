@@ -1,12 +1,50 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/view/constants.dart';
+import 'package:flutter_application_2/view/edit_profile.dart';
+import 'package:flutter_application_2/view/login_screen.dart';
+import 'package:flutter_application_2/view/new_alarm.dart';
 
-class Principal extends StatelessWidget {
+class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);
 
   @override
+  State<Principal> createState() => _PrincipalState();
+}
+
+class _PrincipalState extends State<Principal> {
+  var _currentScreen = 0;
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(appBar: null, body: Calendar());
+    return Scaffold(
+      appBar: AppBar(),
+      body: IndexedStack(
+        index: _currentScreen,
+        children: const [
+          NewAct(),
+          Calendar(),
+          EditProfile(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.more_time_outlined ), label: "Nova Atividade", ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.calendar_month_outlined ), label: "Atividades"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_box_outlined), label: "Perfil"),
+        ],
+        currentIndex: _currentScreen,
+        onTap: (int novoItem) {
+          setState(() {
+            _currentScreen = novoItem;
+          });
+        },
+        
+        fixedColor: Colors.black,
+      ),
+    );
   }
 }
 

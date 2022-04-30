@@ -31,7 +31,7 @@ class Profile extends StatelessWidget {
                     top: 0,
                     right: MediaQuery.of(context).size.height * 0.01,
                     bottom: 00),
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.5,
                 decoration: const BoxDecoration(
                     color: kWhiteColor,
                     borderRadius: BorderRadius.only(
@@ -70,16 +70,16 @@ Widget profileImage(context) {
   return Container(
     margin: EdgeInsets.only(
         left: MediaQuery.of(context).size.height * 0.05,
-        top: MediaQuery.of(context).size.height * 0.04,
+        top: MediaQuery.of(context).size.height * 0.05,
         right: MediaQuery.of(context).size.height * 0.05,
-        bottom: MediaQuery.of(context).size.height * 0.04),
+        bottom: MediaQuery.of(context).size.height * 0.05),
     decoration: const BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(20)),
       color: Colors.black,
     ),
     child: SizedBox(
-      width: MediaQuery.of(context).size.height * 0.20,
-      height: MediaQuery.of(context).size.height * 0.20,
+      width: MediaQuery.of(context).size.height * 0.15,
+      height: MediaQuery.of(context).size.height * 0.15,
     ),
   );
 }
@@ -90,7 +90,7 @@ class PerfilInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      clipBehavior: Clip.hardEdge,
+      clipBehavior: Clip.none,
       slivers: <Widget>[
         SliverToBoxAdapter(
           child: Column(
@@ -100,13 +100,13 @@ class PerfilInfo extends StatelessWidget {
                 'Antonio Zambon',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 24, color: Colors.black, fontFamily: "Comfortaa"),
+                    fontSize: 25, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               const Text(
                 'Familiar',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 21, color: Colors.black, fontFamily: "Comfortaa"),
+                    fontSize: 22, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               Padding(
                 padding: EdgeInsets.only(
@@ -115,7 +115,7 @@ class PerfilInfo extends StatelessWidget {
                     title: const Text(
                       'Nascimento: 05/07/1800',
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           color: Colors.black,
                           fontFamily: "Comfortaa"),
                     ),
@@ -128,7 +128,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'CPF: 496.262.254.64',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
@@ -140,7 +140,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'Email: zambas@gmail.com',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
@@ -152,7 +152,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'Telefone: 19 9 88754563',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
@@ -164,7 +164,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'Senha: xxxxxxxxxx',
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),

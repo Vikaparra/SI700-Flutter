@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
+import 'package:flutter_application_2/view/calendar.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/model/login.dart';
-import 'package:flutter_application_2/view/home.dart';
-import 'package:flutter_application_2/view/welcome_screen.dart';
 
 class Login extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -37,15 +36,10 @@ class Login extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const TelaInicialCuidador();
+                      return const Principal();
                     },
                   ),
                 );
-                // if (formKey.currentState!.validate()) {
-                //   formKey.currentState!.save();
-                //   loginData.doSomething();
-
-                // }
               },
             )
           ],
@@ -57,17 +51,6 @@ class Login extends StatelessWidget {
   Widget usernameFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      // validator: (String? inValue) {
-      //   if (inValue != null) {
-      //     if (inValue.isEmpty) {
-      //       return "Insira um nome de usuário";
-      //     }
-      //   }
-      //   return null;
-      // },
-      // onSaved: (String? inValue) {
-      //   loginData.username = inValue ?? "";
-      // },
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: "USUÁRIO",
@@ -78,17 +61,6 @@ class Login extends StatelessWidget {
   Widget passwordFormField() {
     return TextFormField(
       obscureText: true,
-      // validator: (String? inValue) {
-      //   if (inValue != null) {
-      //     if (inValue.length < 6) {
-      //       return "Senha muito pequena! Insira 6 caractéres";
-      //     }
-      //   }
-      //   return null;
-      // },
-      // onSaved: (String? inValue) {
-      //   loginData.password = inValue ?? "";
-      // },
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         labelText: "SENHA",

@@ -31,7 +31,7 @@ class Profile extends StatelessWidget {
                     top: 0,
                     right: MediaQuery.of(context).size.height * 0.01,
                     bottom: 00),
-                height: MediaQuery.of(context).size.height * 0.5,
+                height: MediaQuery.of(context).size.height * 0.55,
                 decoration: const BoxDecoration(
                     color: kWhiteColor,
                     borderRadius: BorderRadius.only(
@@ -46,7 +46,7 @@ class Profile extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.only(top: 0.0),
                           child: SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.5,
+                            height: MediaQuery.of(context).size.height * 0.55,
                             child: const PerfilInfo(),
                           )),
                       // RoundedButton(
@@ -69,17 +69,17 @@ class Profile extends StatelessWidget {
 Widget profileImage(context) {
   return Container(
     margin: EdgeInsets.only(
-        left: MediaQuery.of(context).size.height * 0.05,
-        top: MediaQuery.of(context).size.height * 0.05,
-        right: MediaQuery.of(context).size.height * 0.05,
-        bottom: MediaQuery.of(context).size.height * 0.05),
+        left: MediaQuery.of(context).size.height * 0.04,
+        top: MediaQuery.of(context).size.height * 0.04,
+        right: MediaQuery.of(context).size.height * 0.04,
+        bottom: MediaQuery.of(context).size.height * 0.04),
     decoration: const BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(20)),
       color: Colors.black,
     ),
     child: SizedBox(
-      width: MediaQuery.of(context).size.height * 0.15,
-      height: MediaQuery.of(context).size.height * 0.15,
+      width: MediaQuery.of(context).size.height * 0.17,
+      height: MediaQuery.of(context).size.height * 0.17,
     ),
   );
 }
@@ -100,22 +100,22 @@ class PerfilInfo extends StatelessWidget {
                 'Antonio Zambon',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 25, color: Colors.black, fontFamily: "Comfortaa"),
+                    fontSize: 23, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               const Text(
                 'Familiar',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 22, color: Colors.black, fontFamily: "Comfortaa"),
+                    fontSize: 21, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.05),
+                    top: MediaQuery.of(context).size.height * 0.02),
                 child: ListTile(
                     title: const Text(
                       'Nascimento: 05/07/1800',
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.black,
                           fontFamily: "Comfortaa"),
                     ),
@@ -128,7 +128,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'CPF: 496.262.254.64',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
@@ -140,7 +140,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'Email: zambas@gmail.com',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
@@ -152,7 +152,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'Telefone: 19 9 88754563',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
@@ -164,7 +164,7 @@ class PerfilInfo extends StatelessWidget {
                   title: const Text(
                     'Senha: xxxxxxxxxx',
                     style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),

@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // Application name
-      title: 'Flutter Stateful Clicker Counter',
+      title: 'Atividade 2',
       theme: ThemeData(
         // Application theme data, you can set the colors for the application as
         // you want
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       home: DefaultTabController(
           child: Scaffold(
               appBar: AppBar(
-                  bottom: const TabBar(tabs: [
+                bottom: const TabBar(tabs: [
                   Tab(icon: Icon(Icons.touch_app_outlined)),
                   Tab(icon: Icon(Icons.touch_app)),
                   Tab(icon: Icon(Icons.elderly_rounded)),
@@ -29,9 +29,8 @@ class MyApp extends StatelessWidget {
                 // the App.build method, and use it to set our appbar title.
                 title: const Text("Atividade 2"),
               ),
-              body: TabBarView(children: [
-                const MyFirstScreen(
-                    title: 'Flutter Demo Clicker Counter Home Page'),
+              body: const TabBarView(children: [
+                MyFirstScreen(title: 'Vitória Parra e Myrelle Lopes'),
                 MySecondScreen(),
                 MyThirdScreen()
               ])),

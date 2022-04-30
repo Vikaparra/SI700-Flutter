@@ -59,14 +59,10 @@ Widget containerComFirula() {
       gradient: const LinearGradient(
           colors: [Colors.blue, Colors.red, Colors.yellow, Colors.green]),
     ),
-    // child: const SizedBox(
-    //   width: double.infinity,
-    //   height: 70,
     child: ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.asset(
         'assets/images/vika.jpg',
-        // ),
       ),
     ),
     padding: const EdgeInsets.all(15),

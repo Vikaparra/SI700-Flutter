@@ -28,10 +28,10 @@ class Profile extends StatelessWidget {
             Container(
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.height * 0.01,
-                    top: 0,
+                    top: MediaQuery.of(context).size.height * 0.01,
                     right: MediaQuery.of(context).size.height * 0.01,
                     bottom: 00),
-                height: MediaQuery.of(context).size.height * 0.55,
+                height: MediaQuery.of(context).size.height * 0.6,
                 decoration: const BoxDecoration(
                     color: kWhiteColor,
                     borderRadius: BorderRadius.only(

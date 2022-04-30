@@ -1,107 +1,81 @@
-
-   
-// import 'package:date_picker_example/widget/button_widget.dart';
-// import 'package:date_picker_example/widget/date_picker_widget.dart';
-// import 'package:date_picker_example/widget/date_range_picker_widget.dart';
-// import 'package:date_picker_example/widget/datetime_picker_widget.dart';
-// import 'package:date_picker_example/widget/time_picker_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_application_2/view/constants.dart';
+import 'package:flutter_application_2/components/rounded_button.dart';
+import 'package:flutter_application_2/view/login_screen.dart';
+import 'package:flutter_application_2/view/signup_screen.dart';
 
-Future main() async {
+import 'package:flutter/services.dart';
+// class Welcome extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         backgroundColor: kPrimaryColor,
+//         body: Center(
+//           child: Column(
+//             mainAxisAlignment: MainAxisAlignment.center,
+//             children: [
+//               Image.asset(
+//                 'assets/images/logo.png',
+//                 width: 300,
+//               ),
+//               // ignore: prefer_const_constructors
+//             ],
+//           ),
+//         ));
+//   }
+// }
+
+
+Future mainCalend() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(MyApp());
+  runApp(const TimePicker());
 }
 
-class MyApp extends StatelessWidget {
-  static final String title = 'Date (Range) & Time';
+
+class TimePicker extends StatefulWidget {
+  const TimePicker({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: title,
-        theme: ThemeData(
-          primaryColor: Colors.black,
-        ),
-        home: MainPage(),
-      );
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  int index = 0;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        bottomNavigationBar: buildBottomBar(),
-        body: buildPages(),
-      );
-
-  Widget buildBottomBar() {
-    final style = TextStyle(color: Colors.white);
-
-    return BottomNavigationBar(
-      backgroundColor: Theme.of(context).primaryColor,
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Colors.white70,
-      currentIndex: index,
-      items: [
-        BottomNavigationBarItem(
-          icon: Text('DatePicker', style: style),
-          title: Text('Basic'),
-        ),
-        BottomNavigationBarItem(
-          icon: Text('DatePicker', style: style),
-          title: Text('Advanced'),
-        ),
-      ],
-      onTap: (int index) => setState(() => this.index = index),
-    );
+  State<StatefulWidget> createState() {
+    return TimePickerState();
   }
+}
 
-  Widget buildPages() {
-    switch (index) {
-      case 0:
-        return Scaffold(
-          backgroundColor: Colors.lightBlue,
-          body: Padding(
-            padding: EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DatePickerWidget(),
-                const SizedBox(height: 24),
-                TimePickerWidget(),
-                const SizedBox(height: 24),
-                DateRangePickerWidget(),
-              ],
-            ),
-          ),
-        );
-      case 1:
-        return Scaffold(
-          backgroundColor: Colors.lightBlue,
-          body: Padding(
-            padding: EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DatetimePickerWidget(),
-              ],
-            ),
-          ),
-        );
-      default:
-        return Container();
+class TimePickerState extends State<TimePicker> {
+  TimeOfDay? time;
+  
+  String getText() {
+    if (time == null) {
+      return 'Select Time';
+    } else {
+      final hours = time?.hour.toString().padLeft(2, '0');
+      final minutes = time?.minute.toString().padLeft(2, '0');
+
+      return '$hours:$minutes';
     }
   }
+
+  @override
+  Widget build(BuildContext context) => RoundedButton(
+        text: getText(),
+        press: () => pickTime(context),
+      );
+
+  Future pickTime(BuildContext context) async {
+    const initialTime = TimeOfDay(hour: 9, minute: 0);
+    final newTime = await showTimePicker(
+      context: context,
+      initialTime: time ?? initialTime,
+    );
+
+    if (newTime == null) return;
+
+    setState(() => time = newTime);
+  }
+  
 }

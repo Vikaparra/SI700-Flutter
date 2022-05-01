@@ -1,103 +1,112 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
-import 'package:flutter/services.dart';
 
-//------------- TIMEPICKER -----------
+// As seguintes funções foram retiradas e adaptadas da seguinte fonte:
+// https://github.com/JohannesMilke/date_picker_example/
+//---------------------- TIMEPICKER ------------------------
+//----------------------------------------------------------
 
-// Future mainCalend() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await SystemChrome.setPreferredOrientations([
-//     DeviceOrientation.portraitUp,
-//     DeviceOrientation.portraitDown,
-//   ]);
-
-//   runApp(const TimePicker());
-// }
-
-// class TimePicker extends StatefulWidget {
-//   const TimePicker({Key? key}) : super(key: key);
-
-//   @override
-//   State<StatefulWidget> createState() {
-//     return TimePickerState();
-//   }
-// }
-
-// class TimePickerState extends State<TimePicker> {
-//   TimeOfDay? time;
-
-//   String getText() {
-//     if (time == null) {
-//       return 'Selecione o horário';
-//     } else {
-//       final hours = time?.hour.toString().padLeft(2, '0');
-//       final minutes = time?.minute.toString().padLeft(2, '0');
-
-//       return '$hours:$minutes';
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) => RoundedButton(
-//         text: getText(),
-//         press: () => pickTime(context),
-//       );
-
-//   Future pickTime(BuildContext context) async {
-//     const initialTime = TimeOfDay(hour: 9, minute: 0);
-//     final newTime = await showTimePicker(
-//       context: context,
-//       initialTime: time ?? initialTime,
-//     );
-
-//     if (newTime == null) return;
-
-//     setState(() => time = newTime);
-//   }
-// }
-
-//--------------------------------------------------------------
-//------------------------- TIMEPICKER -------------------------
-
-class DatePickerWidget extends StatefulWidget {
-  const DatePickerWidget({Key? key}) : super(key: key);
+class TimePicker extends StatefulWidget {
+  const TimePicker({Key? key}) : super(key: key);
 
   @override
-  _DatePickerWidgetState createState() {
-    return _DatePickerWidgetState();
+  State<StatefulWidget> createState() {
+    return TimePickerState();
   }
 }
 
-class _DatePickerWidgetState extends State<DatePickerWidget> {
-  DateTime? date;
+class TimePickerState extends State<TimePicker> {
+  TimeOfDay? alarmTime;
 
   String getText() {
-    if (date == null) {
-      return 'Selecione a data do evento';
+    if (alarmTime == null) {
+      //caso ainda não tenha nenhum horario definido o texto vai ser:
+      return 'Selecione o horário';
     } else {
-      return '${date?.day}/${date?.month}/${date?.year}';
+      //caso ja tenha, ele converte para string para mostrar na tela
+      final hours = alarmTime?.hour.toString().padLeft(2, '0');
+      final minutes = alarmTime?.minute.toString().padLeft(2, '0');
+
+      return '$hours:$minutes';
     }
   }
 
   @override
   Widget build(BuildContext context) => RoundedButton(
-        text: getText(),
+        text: getText(), //função para pegar o texto que aparece no botao
+        press: () => selectTime(context),
+      );
+
+  Future selectTime(BuildContext context) async {
+    const defaultTime = TimeOfDay(
+        hour: 12, minute: 0); //horario padrão que irá aparecer no botão
+    final selectedTime = await showTimePicker(
+      //showTimePicker é uma função ja existente de TimePicker
+      context: context,
+      initialTime: alarmTime ?? defaultTime,
+      //caso ja exista um horario definido, o time picker abre nele
+    );
+
+    if (selectedTime == null) {
+      return;
+    } //caso a pessoa abra o timepicker e aperte pra cancelar
+
+    setState(() {
+      alarmTime = selectedTime;
+    });
+  }
+}
+
+//--------------------------------------------------------------
+//------------------------- DATEPICKER -------------------------
+
+class DatePicker extends StatefulWidget {
+  const DatePicker({Key? key}) : super(key: key);
+
+  @override
+  DatePickerState createState() {
+    return DatePickerState();
+  }
+}
+
+class DatePickerState extends State<DatePicker> {
+  DateTime? alarmDate; //horario do alarme
+
+  String getText() {
+    if (alarmDate == null) {
+      //caso ainda não tenha horario definido o texto do botao vai ser:
+      return 'Selecione a data do evento';
+    } else {
+      //caso tenha ele retorna no formato dd/mm/aaaa
+      return '${alarmDate?.day}/${alarmDate?.month}/${alarmDate?.year}';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => RoundedButton(
+        text: getText(), //função para pegar texto que aparece no botao
         press: () => pickDate(context),
       );
 
   Future pickDate(BuildContext context) async {
-    final initialDate = DateTime.now();
-    final newDate = await showDatePicker(
+    final defaultDate =
+        DateTime.now(); //data padrão que aparece quando abre o DatePicker
+    final selectedDate = await showDatePicker(
+      //showDatePicker é uma função ja existente, a partir dela o usuario seleciona a data
       context: context,
-      initialDate: date ?? initialDate,
-      firstDate: DateTime(DateTime.now().year - 5),
+      initialDate: alarmDate ?? defaultDate,
+      firstDate: DateTime(
+          DateTime.now().year - 5), //desde onde até onde vai o calendario
       lastDate: DateTime(DateTime.now().year + 5),
     );
 
-    if (newDate == null) return;
+    if (selectedDate == null) {
+      //caso o usuario aperte cancel antes de selecionar uma data
+      return;
+    }
 
     setState(() {
-      date = newDate;
+      alarmDate = selectedDate;
     });
   }
 }

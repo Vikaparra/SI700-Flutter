@@ -73,8 +73,7 @@ class FormularioCad extends StatefulWidget {
 }
 
 class FormularioState extends State<FormularioCad> {
-  bool parente = false;
-  bool profissional = false;
+  int parenteCuidador = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -123,7 +122,7 @@ class FormularioState extends State<FormularioCad> {
                     enableSuggestions: false,
                     autocorrect: false,
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                     const Text(
                       "Profissional",
                       style: TextStyle(
@@ -132,15 +131,18 @@ class FormularioState extends State<FormularioCad> {
                           fontWeight: FontWeight.normal,
                           fontFamily: "Comfortaa"),
                     ),
-                    Checkbox(
-                        value: profissional,
-                        onChanged: (bool? inValue) {
+                    Radio(
+                        value: 1,
+                        groupValue: parenteCuidador,
+                        onChanged: (int? inValue) {
                           if (inValue != null) {
                             setState(() {
-                              profissional = inValue;
+                              parenteCuidador = inValue;
                             });
                           }
                         }),
+                  ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                     const Text(
                       "Parente",
                       style: TextStyle(
@@ -149,12 +151,13 @@ class FormularioState extends State<FormularioCad> {
                           fontWeight: FontWeight.normal,
                           fontFamily: "Comfortaa"),
                     ),
-                    Checkbox(
-                        value: parente,
-                        onChanged: (bool? inValue) {
+                    Radio(
+                        value: 2,
+                        groupValue: parenteCuidador,
+                        onChanged: (int? inValue) {
                           if (inValue != null) {
                             setState(() {
-                              parente = inValue;
+                              parenteCuidador = inValue;
                             });
                           }
                         })

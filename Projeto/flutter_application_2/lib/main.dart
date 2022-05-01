@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/view/calendar.dart';
 import 'package:flutter_application_2/view/constants.dart';
-import 'package:flutter_application_2/view/new_alarm_remedio.dart';
 import 'package:flutter_application_2/view/welcome_screen.dart';
-import 'package:flutter_application_2/view/testeCalendario.dart';
 
 void main() {
   runApp(const MyApp());

@@ -88,6 +88,8 @@ class DatePickerState extends State<DatePicker> {
 
   @override
   Widget build(BuildContext context) => RoundedButton(
+        textColor: kWhiteColor,
+        color: kSecondColor,
         text: getText(), //função para pegar texto que aparece no botao
         press: () => pickDate(context),
       );

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/constants.dart';
+import 'package:flutter_application_2/view/date_time_picker.dart';
 
 class NewRemed extends StatelessWidget {
   const NewRemed({ Key? key }) : super(key: key);
@@ -86,7 +87,7 @@ Widget formAct(BuildContext context) {
               decoration: InputDecoration(labelText: 'Descrição'),
               keyboardType: TextInputType.number,
             ),
-          ), 
+          ),TimePicker(), 
           RoundedButton(
             text: "CADASTRAR",
             textColor: kWhiteColor,

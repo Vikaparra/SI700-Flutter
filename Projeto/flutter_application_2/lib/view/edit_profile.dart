@@ -79,7 +79,7 @@ class PerfilInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      clipBehavior: Clip.none,
+      clipBehavior: Clip.hardEdge,
       slivers: <Widget>[
         SliverToBoxAdapter(
           child: Column(

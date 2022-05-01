@@ -29,6 +29,7 @@ class TelaCadastroCuidador extends StatelessWidget {
         children: [
           tituloPaginaCadastro(context),
           Container(
+              margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
               height: MediaQuery.of(context).size.height * 0.82,
               decoration: const BoxDecoration(
                   color: kWhiteColor,
@@ -77,7 +78,7 @@ class FormularioState extends State<FormularioCad> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(40),
+        padding: const EdgeInsets.all(20),
         decoration: const BoxDecoration(
             color: Color(0xffffffff),
             borderRadius: BorderRadius.only(

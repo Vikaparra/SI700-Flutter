@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/constants.dart';
+import 'package:flutter_application_2/view/date_time_picker.dart';
 
 class NewLazer extends StatelessWidget {
-  const NewLazer({ Key? key }) : super(key: key);
+  const NewLazer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +24,12 @@ class ScreenAlarm extends StatelessWidget {
         decoration: const BoxDecoration(
           color: kGreenColor,
         ),
-        
         child: Column(
           children: [
-            title(), 
+            title(),
             Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [formAct(context)]
-            )
+                children: [formAct(context)])
           ],
         ),
       ),
@@ -40,21 +39,21 @@ class ScreenAlarm extends StatelessWidget {
 
 Widget title() {
   return Container(
-      margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
-      child: const SizedBox(
+    margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
+    child: const SizedBox(
         width: double.infinity,
-          child: DefaultTextStyle(
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.normal,
-                color: Colors.black,
-                fontFamily: "Comfortaa"),
-            child: Text(
-              'NOVA ATIVIDADE',
-              textAlign: TextAlign.start,
-            ),
-          )),
-      );
+        child: DefaultTextStyle(
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.normal,
+              color: Colors.black,
+              fontFamily: "Comfortaa"),
+          child: Text(
+            'NOVA ATIVIDADE',
+            textAlign: TextAlign.start,
+          ),
+        )),
+  );
 }
 
 Widget formAct(BuildContext context) {
@@ -84,19 +83,21 @@ Widget formAct(BuildContext context) {
               decoration: InputDecoration(labelText: 'Descrição'),
               keyboardType: TextInputType.number,
             ),
-          ), 
+          ),
+          DatePicker(),
+          TimePicker(),
           RoundedButton(
-            text: "CADASTRAR",
-            textColor: kWhiteColor,
-            color: kGreenColor, press: (){
-              
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                backgroundColor: kGreenColor,
-                duration: const Duration(seconds: 1),
-                content: const Text("ATIVIDADE SALVA", style: TextStyle(fontWeight: FontWeight.bold)),
-              ));
-            })
+              text: "CADASTRAR",
+              textColor: kWhiteColor,
+              color: kGreenColor,
+              press: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  backgroundColor: kGreenColor,
+                  duration: const Duration(seconds: 1),
+                  content: const Text("ATIVIDADE SALVA",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ));
+              })
         ],
-      )
-  );
+      ));
 }

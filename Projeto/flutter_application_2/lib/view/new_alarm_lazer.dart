@@ -88,7 +88,14 @@ Widget formAct(BuildContext context) {
           RoundedButton(
             text: "CADASTRAR",
             textColor: kWhiteColor,
-            color: kGreenColor, press: (){})
+            color: kGreenColor, press: (){
+              
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: kGreenColor,
+                duration: const Duration(seconds: 1),
+                content: const Text("ATIVIDADE SALVA", style: TextStyle(fontWeight: FontWeight.bold)),
+              ));
+            })
         ],
       )
   );

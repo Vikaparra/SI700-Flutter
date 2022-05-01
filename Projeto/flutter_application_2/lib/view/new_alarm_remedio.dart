@@ -58,6 +58,7 @@ Widget title() {
 }
 
 Widget formAct(BuildContext context) {
+  SnackBar snackBar;
   return Container(
       height: MediaQuery.of(context).size.height * 1,
       padding: const EdgeInsets.all(40),
@@ -71,6 +72,7 @@ Widget formAct(BuildContext context) {
           )),
       child: Column(
         children: <Widget>[
+          
           Padding(
             padding: EdgeInsets.only(bottom: 20.0),
             child: TextField(
@@ -88,7 +90,14 @@ Widget formAct(BuildContext context) {
           RoundedButton(
             text: "CADASTRAR",
             textColor: kWhiteColor,
-            color: kOrangeColor, press: (){})
+            color: kOrangeColor,
+            press: (){
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: kOrangeColor,
+                duration: const Duration(seconds: 1),
+                content: const Text("ATIVIDADE SALVA", style: TextStyle(fontWeight: FontWeight.bold)),
+              ));
+            })
         ],
       )
   );

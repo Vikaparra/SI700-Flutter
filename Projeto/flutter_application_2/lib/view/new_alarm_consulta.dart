@@ -20,7 +20,7 @@ class ScreenAlarm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
+      child: Container( //Background com color da atividade:  Rosa
         decoration: const BoxDecoration(
           color: kPinkColor,
         ),
@@ -58,7 +58,7 @@ Widget title() {
       );
 }
 
-Widget formAct(BuildContext context) {
+Widget formAct(BuildContext context) {  //Form de cadastro
   return Container(
       height: MediaQuery.of(context).size.height * 1,
       padding: const EdgeInsets.all(40),
@@ -92,7 +92,7 @@ Widget formAct(BuildContext context) {
             text: "CADASTRAR",
             textColor: kWhiteColor,
             color: kPinkColor, press: (){              
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(  //Adicionando snackbar ao cadastrar
                 backgroundColor: kPinkColor,
                 duration: const Duration(seconds: 1),
                 content: const Text("ATIVIDADE SALVA", style: TextStyle(fontWeight: FontWeight.bold)),

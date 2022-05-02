@@ -25,7 +25,7 @@ class _PrincipalState extends State<Principal> {
           EditProfile(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar( //Barra de navegação inferior
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.more_time_outlined),
@@ -73,7 +73,7 @@ class Calendar extends StatelessWidget {
           ),
           SizedBox(
             height: 400,
-            child: (ListView(
+            child: (ListView( //List para apresentação dos dados de atividades cadastradas
               children: [
                 Card(
                   color: kGreenColor,
@@ -120,11 +120,10 @@ class Calendar extends StatelessWidget {
             )),
           )
         ]));
-    // const Text('AGENDA DIÁRIA'),
   }
 }
 
-Widget title() {
+Widget title() {  //Formatação visual do titulo da tela
   return Container(
       margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
       child: const SizedBox(

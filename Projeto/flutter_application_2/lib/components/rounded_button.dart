@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-class RoundedButton extends StatelessWidget {
+
+//Adicionando padronização de botão para ser utilizada nas telas.
+class RoundedButton extends StatelessWidget { 
   final String text;
   final void Function()? press;
   final Color color, textColor;
@@ -16,7 +18,7 @@ class RoundedButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  //Visual do botão: tamanho, borda, text...
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.all(10),
@@ -27,7 +29,6 @@ class RoundedButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(29),
 
         child: FlatButton(
-          // padding: const EdgeInsets.symmetric(vertical: 10),
           color: color,
           onPressed: press,          
           child: Text(

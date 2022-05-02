@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/calendar.dart';
 import 'package:flutter_application_2/view/constants.dart';
-import 'package:flutter_application_2/model/login.dart';
 
 class Login extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final LoginData loginData = LoginData(username: "", password: "");
-
+  
   Login({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {  //Visual da tela de login
     return Scaffold(
       backgroundColor: kWhiteColor,
       body: Center(
@@ -32,7 +30,7 @@ class Login extends StatelessWidget {
               textColor: kWhiteColor,
               color: kSecondColor,
               press: () {
-                Navigator.push(
+                Navigator.push( //Resposta ao clicar em botão de entrar
                   context,
                   MaterialPageRoute(
                     builder: (context) {
@@ -48,7 +46,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget usernameFormField() {
+  Widget usernameFormField() { //Form para adicionar usuário
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
@@ -58,7 +56,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget passwordFormField() {
+  Widget passwordFormField() { //Form para adicionar senha
     return TextFormField(
       obscureText: true,
       decoration: const InputDecoration(

@@ -174,6 +174,13 @@ class FormularioState extends State<FormularioCad> {
                   textColor: kWhiteColor,
                   color: kSecondColor,
                   press: () {
+                                  
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                backgroundColor: kSecondColor,
+                duration: Duration(seconds: 2),
+                content: Text("NOVO CADASTRO ADICIONADO!", style: TextStyle(fontWeight: FontWeight.bold)),
+              ));
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Login()),

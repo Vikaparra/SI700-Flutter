@@ -16,14 +16,14 @@ class Welcome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(            
-            'assets/images/logo.png',
+            'assets/images/logo.png', //Imagem de plano de fundo com logo
             width: 300,
           ),
           // ignore: prefer_const_constructors
-          RoundedButton(
+          RoundedButton(  
             text: "ENTRAR",
             press: () {
-              Navigator.push(
+              Navigator.push( //Navegação do buttom, seguir para página de Login
                 context,
                 MaterialPageRoute(
                   builder: (context) {
@@ -38,7 +38,7 @@ class Welcome extends StatelessWidget {
             textColor: kWhiteColor,
             color: kPrimaryColor,
             press: () {
-              Navigator.push(
+              Navigator.push( //Navegação do buttom, seguir para página de Entrada
                 context,
                 MaterialPageRoute(
                   builder: (context) {

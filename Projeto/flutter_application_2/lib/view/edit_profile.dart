@@ -18,14 +18,14 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(
+        decoration: const BoxDecoration( //base com plano de fundo azul
           color: Color(0xff6a9cfd),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            profileImage(context),
-            Container(
+            profileImage(context), //imagem ou icone de perfil
+            Container( // container branco com bordas arredondadas, com as infos do perfil dentro
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.height * 0.01,
                     top: MediaQuery.of(context).size.height * 0.01,
@@ -40,12 +40,12 @@ class Profile extends StatelessWidget {
                       bottomLeft: Radius.circular(0),
                       bottomRight: Radius.circular(0),
                     )),
-                child: Column(
+                child: Column( // column contendo infos do perfil
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Padding(
                           padding: const EdgeInsets.only(top: 0.0),
-                          child: SizedBox(
+                          child: SizedBox( // sizedBox para conter a customScrollView
                             height: MediaQuery.of(context).size.height * 0.55,
                             child: const PerfilInfo(),
                           )),
@@ -78,7 +78,7 @@ class PerfilInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
+    return CustomScrollView( //informações do perfil
       clipBehavior: Clip.hardEdge,
       slivers: <Widget>[
         SliverToBoxAdapter(

@@ -16,17 +16,17 @@ class NewAct extends StatefulWidget {
 class _NewActState extends State<NewAct> {
   @override
   Widget build(BuildContext context) {
-      return Container(
+      return Container( // base com background azul
         
         width: MediaQuery.of(context).size.height * 1,
         decoration: const BoxDecoration(
           color: Color(0xff6a9cfd),
         ),
-        child: Column(
+        child: Column( // estarão alinhadas verticalmente
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            title(),
-            Container(
+            title(), // titulo fora do container branco
+            Container( // container branco com bordas arredondadas, dentro dele estarão as categorias de alarmes
                 padding: const EdgeInsets.only(
                     left: 10.0, top: 0, right: 10.0, bottom: 00),
                 width: MediaQuery.of(context).size.height * 1,
@@ -40,7 +40,7 @@ class _NewActState extends State<NewAct> {
                     )),
               child: Column(children: [
                 const Padding(padding: EdgeInsets.all(15),),
-                RoundedButton(
+                RoundedButton( // botão para adicionar alarme de lazer
                         text: 'LAZER',
                         textColor: kWhiteColor,
                         color: kGreenColor,
@@ -55,7 +55,7 @@ class _NewActState extends State<NewAct> {
                 );
                         },
                       ),
-                RoundedButton(
+                RoundedButton( // botão para adicionar alarme de consulta
                         text: 'CONSULTA',
                         textColor: kWhiteColor,
                         color: kPinkColor,
@@ -70,7 +70,7 @@ class _NewActState extends State<NewAct> {
                 );
               },
             ),
-                RoundedButton(
+                RoundedButton( // botão para adicionar alarme de remedio
                         text: 'REMÉDIO',
                         textColor: kWhiteColor,
                         color: kOrangeColor,
@@ -85,7 +85,7 @@ class _NewActState extends State<NewAct> {
                 );
                         },
                       ),
-                RoundedButton(
+                RoundedButton( // botão para adicionar alarme de exercicio
                         text: 'EXERCÍCIO',
                         textColor: kWhiteColor,
                         color: kSecondColor,
@@ -98,7 +98,7 @@ class _NewActState extends State<NewAct> {
                   ),
                 );},
                       ),
-                Image.asset(            
+                Image.asset(      // imagem decorativa       
             'assets/images/senhor.png',
             width: 230,
           ),]),

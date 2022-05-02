@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
-import 'package:flutter_application_2/view/date_time_picker.dart';
 import 'package:flutter_application_2/view/login_screen.dart';
-
 import 'constants.dart';
 
 class Signup extends StatelessWidget {
@@ -19,16 +17,16 @@ class TelaCadastroCuidador extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Container( // base com o plano de fundo azul
       height: MediaQuery.of(context).size.height * 1,
       decoration: const BoxDecoration(
         color: Color(0xff6a9cfd),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.end, // para o container branco ficar na parte de baixo
         children: [
-          tituloPaginaCadastro(context),
-          Container(
+          tituloPaginaCadastro(context), // titulo fica fora do container branco
+          Container( // container branco com bordas arredondadas e formulario
               margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
               height: MediaQuery.of(context).size.height * 0.82,
               decoration: const BoxDecoration(
@@ -64,7 +62,7 @@ Cuidador""",
       ));
 }
 
-class FormularioCad extends StatefulWidget {
+class FormularioCad extends StatefulWidget { // formulario de cadastro
   const FormularioCad({Key? key}) : super(key: key);
 
   @override
@@ -74,7 +72,7 @@ class FormularioCad extends StatefulWidget {
 }
 
 class FormularioState extends State<FormularioCad> {
-  int parenteCuidador = 1;
+  int parenteCuidador = 1; // variavel radioButton, profissional = 1, parente = 2
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -87,7 +85,7 @@ class FormularioState extends State<FormularioCad> {
               bottomLeft: Radius.circular(0),
               bottomRight: Radius.circular(0),
             )),
-        child: CustomScrollView(clipBehavior: Clip.hardEdge, slivers: [
+        child: CustomScrollView(clipBehavior: Clip.hardEdge, slivers: [ // tela scrollavel para passar pelo formulario
           SliverToBoxAdapter(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -111,14 +109,14 @@ class FormularioState extends State<FormularioCad> {
                   ),
                   const TextField(
                     decoration: InputDecoration(labelText: 'Senha'),
-                    keyboardType: TextInputType.none,
+                    keyboardType: TextInputType.text,
                     obscureText: true,
                     enableSuggestions: false,
                     autocorrect: false,
                   ),
                   const TextField(
                     decoration: InputDecoration(labelText: 'Confirmar Senha'),
-                    keyboardType: TextInputType.none,
+                    keyboardType: TextInputType.text,
                     obscureText: true,
                     enableSuggestions: false,
                     autocorrect: false,

@@ -18,14 +18,16 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration( //base com plano de fundo azul
+        decoration: const BoxDecoration(
+          //base com plano de fundo azul
           color: Color(0xff6a9cfd),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             profileImage(context), //imagem ou icone de perfil
-            Container( // container branco com bordas arredondadas, com as infos do perfil dentro
+            Container(
+                // container branco com bordas arredondadas, com as infos do perfil dentro
                 padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.height * 0.01,
                     top: MediaQuery.of(context).size.height * 0.01,
@@ -40,12 +42,14 @@ class Profile extends StatelessWidget {
                       bottomLeft: Radius.circular(0),
                       bottomRight: Radius.circular(0),
                     )),
-                child: Column( // column contendo infos do perfil
+                child: Column(
+                    // column contendo infos do perfil
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Padding(
                           padding: const EdgeInsets.only(top: 0.0),
-                          child: SizedBox( // sizedBox para conter a customScrollView
+                          child: SizedBox(
+                            // sizedBox para conter a customScrollView
                             height: MediaQuery.of(context).size.height * 0.55,
                             child: const PerfilInfo(),
                           )),
@@ -78,7 +82,8 @@ class PerfilInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView( //informações do perfil
+    return CustomScrollView(
+      //informações do perfil
       clipBehavior: Clip.hardEdge,
       slivers: <Widget>[
         SliverToBoxAdapter(
@@ -102,7 +107,14 @@ class PerfilInfo extends StatelessWidget {
                     top: MediaQuery.of(context).size.height * 0.02),
                 child: ListTile(
                     title: const Text(
-                      'Nascimento: 05/07/1800',
+                      'Nascimento',
+                      style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontFamily: "Comfortaa"),
+                    ),
+                    subtitle: const Text(
+                      '05/07/1800',
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -115,7 +127,14 @@ class PerfilInfo extends StatelessWidget {
               ),
               ListTile(
                   title: const Text(
-                    'CPF: 496.262.254.64',
+                    'CPF',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  subtitle: const Text(
+                    '456.987.258.41',
                     style: TextStyle(
                         fontSize: 14,
                         color: Colors.black,
@@ -127,7 +146,14 @@ class PerfilInfo extends StatelessWidget {
                   )),
               ListTile(
                   title: const Text(
-                    'Email: zambas@gmail.com',
+                    'Email',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  subtitle: const Text(
+                    'zambas@gmail.com',
                     style: TextStyle(
                         fontSize: 14,
                         color: Colors.black,
@@ -139,7 +165,14 @@ class PerfilInfo extends StatelessWidget {
                   )),
               ListTile(
                   title: const Text(
-                    'Telefone: 19 9 88754563',
+                    'Telefone: ',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  subtitle: const Text(
+                    '19 9 88754563',
                     style: TextStyle(
                         fontSize: 14,
                         color: Colors.black,
@@ -151,7 +184,14 @@ class PerfilInfo extends StatelessWidget {
                   )),
               ListTile(
                   title: const Text(
-                    'Senha: xxxxxxxxxx',
+                    'Senha',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  subtitle: const Text(
+                    'xxxxxxxxxx',
                     style: TextStyle(
                         fontSize: 14,
                         color: Colors.black,

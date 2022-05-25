@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/auth/auth_event.dart';
 import 'constants.dart';
 
 import '../bloc/manage_bloc.dart';
+import '../bloc/auth/auth_bloc.dart';
 import '../bloc/manage_event.dart';
 import '../bloc/manage_state.dart';
 import '/model/profile.dart';
@@ -14,9 +16,9 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (_) => ManageBloc(),
-        child: const Scaffold(appBar: null, body: TelaCadastroCuidador()));
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => ManageBloc()),
+    ], child: const Scaffold(appBar: null, body: TelaCadastroCuidador()));
   }
 }
 
@@ -239,6 +241,10 @@ class FormularioState extends State<FormularioCad> {
                         BlocProvider.of<ManageBloc>(
                                 context) //Utilizando o BLOC para adicionar na base de dados
                             .add(SubmitEvent(profile: profile));
+                        BlocProvider.of<AuthBloc>(context).add(RegisterUser(
+                            username: profile.email,
+                            password: profile.password));
+
                         formKey.currentState!.reset();
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(

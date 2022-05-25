@@ -10,7 +10,7 @@ class RestServer {
   RestServer._createInstance();
 
   final Dio _dio = Dio();
-  String prefixUrl = "https://si700s195397-default-rtdb.firebaseio.com/";
+  String prefixUrl = "https://si7001s242265-default-rtdb.firebaseio.com/";
   String suffixUrl = "/.json";
 
   Future<Profile> getProfile(profileId) async {

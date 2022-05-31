@@ -244,7 +244,12 @@ class FormularioState extends StatelessWidget {
                       ));
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Login()),
+                         MaterialPageRoute(
+                          builder: (_) => MultiBlocProvider(providers: [
+                                BlocProvider<AuthBloc>.value(
+                                    value: BlocProvider.of<AuthBloc>(context),
+                                    child: const Signup()),
+                              ], child: Login()))
                       );
                     },
                   ),

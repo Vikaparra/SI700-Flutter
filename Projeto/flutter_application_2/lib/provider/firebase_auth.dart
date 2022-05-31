@@ -6,9 +6,10 @@ class FirebaseAuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Stream<UserModel?> get user {
-    return _firebaseAuth.authStateChanges().map(
-          (event) => _userFromFirebaseUser(event),
-        );
+    return _firebaseAuth.authStateChanges().map((event) {
+      print(event?.email);
+      return _userFromFirebaseUser(event);
+    });
   }
 
   UserModel? _userFromFirebaseUser(User? user) {

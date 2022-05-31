@@ -3,6 +3,7 @@ import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth/auth_event.dart';
+import 'calendar.dart';
 import 'constants.dart';
 
 import '../bloc/manage_bloc.dart';
@@ -249,7 +250,7 @@ class FormularioState extends StatelessWidget {
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: const Signup()),
-                              ], child: Login()))
+                              ], child: const Principal()))
                       );
                     },
                   ),

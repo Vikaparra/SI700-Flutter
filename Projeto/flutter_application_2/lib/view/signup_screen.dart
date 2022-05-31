@@ -53,7 +53,7 @@ class TelaCadastroCuidador extends StatelessWidget {
                   bottomLeft: Radius.circular(0),
                   bottomRight: Radius.circular(0),
                 )),
-            child:FormularioState(),
+            child: const FormularioCad(),
           )
         ],
       ),
@@ -79,16 +79,22 @@ Cuidador""",
       ));
 }
 
-class FormularioState extends StatelessWidget {
+class FormularioCad extends StatefulWidget {
+  // formulario de cadastro
+  const FormularioCad({Key? key}) : super(key: key);
+ @override
+  State<StatefulWidget> createState() {
+    return FormularioState();
+  }
+}
 
+class FormularioState extends State<FormularioCad> {
   final GlobalKey<FormState> formKey = GlobalKey();
   final Profile profile = Profile();
   int parenteCuidador =
       0; // variavel radioButton, profissional = 1, parente = 2
   String username = "";
   String password = "";
-
-  FormularioState({Key? key}) : super(key: key);    
 
   @override
   Widget build(BuildContext context) {
@@ -188,10 +194,10 @@ class FormularioState extends StatelessWidget {
                           groupValue: parenteCuidador,
                           onChanged: (int? inValue) {
                             if (inValue != null) {
-                              // setState(() {
-                              //   parenteCuidador = inValue;
-                              //   profile.cuidador = inValue;
-                              // });
+                              setState(() {
+                                parenteCuidador = inValue;
+                                profile.cuidador = inValue;
+                              });
                             }
                           }),
                     ]),
@@ -209,10 +215,10 @@ class FormularioState extends StatelessWidget {
                           groupValue: parenteCuidador,
                           onChanged: (int? inValue) {
                             if (inValue != null) {
-                              // setState(() {
-                              //   parenteCuidador = inValue;
-                              //   profile.cuidador = inValue;
-                              // });
+                              setState(() {
+                                parenteCuidador = inValue;
+                                profile.cuidador = inValue;
+                              });
                             }
                           })
                     ]),

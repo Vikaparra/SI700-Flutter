@@ -223,7 +223,9 @@ class PerfilInfo extends StatelessWidget {
                   BlocProvider.of<AuthBloc>(context).add(Logout());
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Wrapper()),
+                    MaterialPageRoute( builder: (_) => BlocProvider<AuthBloc>.value(
+                            value: BlocProvider.of<AuthBloc>(context),
+                            child: const Wrapper())),
                   );
                 },
               ),

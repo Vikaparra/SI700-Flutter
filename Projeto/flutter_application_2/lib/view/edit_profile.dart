@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
-import '../main.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -223,9 +222,7 @@ class PerfilInfo extends StatelessWidget {
                   BlocProvider.of<AuthBloc>(context).add(Logout());
                   Navigator.push(
                     context,
-                    MaterialPageRoute( builder: (_) => BlocProvider<AuthBloc>.value(
-                            value: BlocProvider.of<AuthBloc>(context),
-                            child: const Wrapper())),
+                    MaterialPageRoute(builder: (context) => Wrapper()),
                   );
                 },
               ),

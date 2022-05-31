@@ -25,8 +25,7 @@ class _PrincipalState extends State<Principal> {
           EditProfile(),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        //Barra de navegação inferior
+      bottomNavigationBar: BottomNavigationBar( //Barra de navegação inferior
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.more_time_outlined),
@@ -74,8 +73,7 @@ class Calendar extends StatelessWidget {
           ),
           SizedBox(
             height: 400,
-            child: (ListView(
-              //List para apresentação dos dados de atividades cadastradas
+            child: (ListView( //List para apresentação dos dados de atividades cadastradas
               children: [
                 Card(
                   color: kGreenColor,
@@ -125,22 +123,21 @@ class Calendar extends StatelessWidget {
   }
 }
 
-Widget title() {
-  //Formatação visual do titulo da tela
+Widget title() {  //Formatação visual do titulo da tela
   return Container(
-    margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
-    child: const SizedBox(
+      margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
+      child: const SizedBox(
         width: double.infinity,
-        child: DefaultTextStyle(
-          style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-              fontFamily: "Comfortaa"),
-          child: Text(
-            'ATIVIDADES DIÁRIAS',
-            textAlign: TextAlign.start,
-          ),
-        )),
-  );
+          child: DefaultTextStyle(
+            style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.normal,
+                color: Colors.black,
+                fontFamily: "Comfortaa"),
+            child: Text(
+              'ATIVIDADES DIÁRIAS',
+              textAlign: TextAlign.start,
+            ),
+          )),
+      );
 }

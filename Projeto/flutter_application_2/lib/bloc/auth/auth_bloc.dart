@@ -14,9 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       add(AuthServerEvent(event));
     });
 
-    on<AuthServerEvent>((event, emit) async {
-      print("Event:");
-      print(event.userModel?.uid);
+    on<AuthServerEvent>((event, emit) {
       if (event.userModel == null) {
         emit(Unauthenticated());
       } else {

@@ -29,14 +29,14 @@ class Welcome extends StatelessWidget {
                 text: "ENTRAR",
                 press: () {
                   Navigator.push(
-                      //Navegação do buttom, seguir para página de Login
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => MultiBlocProvider(providers: [
-                                BlocProvider<AuthBloc>.value(
-                                    value: BlocProvider.of<AuthBloc>(context),
-                                    child: const Signup()),
-                              ], child: Login())));
+                    //Navegação do buttom, seguir para página de Login
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Login();
+                      },
+                    ),
+                  );
                 },
               ),
               RoundedButton(
@@ -48,9 +48,10 @@ class Welcome extends StatelessWidget {
                     //Navegação do buttom, seguir para página de Entrada
                     context,
                     MaterialPageRoute(
-                        builder: (_) => BlocProvider<AuthBloc>.value(
-                            value: BlocProvider.of<AuthBloc>(context),
-                            child: const Signup())),
+                      builder: (context) {
+                        return const Signup();
+                      },
+                    ),
                   );
                 },
               ),

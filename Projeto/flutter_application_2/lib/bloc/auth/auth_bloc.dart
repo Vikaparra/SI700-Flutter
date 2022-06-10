@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../provider/firebase_auth.dart';
+import '../../provider/firebase_firestore.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
@@ -18,6 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event.userModel == null) {
         emit(Unauthenticated());
       } else {
+        FirestoreServer.helper.uid = event.userModel!.uid;
         emit(Authenticated(userModel: event.userModel!));
       }
     });

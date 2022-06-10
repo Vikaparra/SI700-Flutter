@@ -20,6 +20,7 @@ class ManageBloc extends Bloc<ManageEvent, ManageState> {
         print("---------- INSERINDO NOTA AQUI ----------");
         //ToDo: Inserir uma chamada de insert
         FirestoreServer.helper.insertNote(event.userInfo);
+        print("--------nota inserida----------");
       } else if (state is UpdateState) {
         //ToDo: Inserir uma chamada de Update
         FirestoreServer.helper

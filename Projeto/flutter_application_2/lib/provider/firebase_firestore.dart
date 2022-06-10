@@ -21,7 +21,7 @@ class FirestoreServer {
     //print(uid);
     // DocumentSnapshot doc =
     //     await userInfo.doc(uid).collection("user_information").doc(userId).get();
-     //------------------------------------------
+    //------------------------------------------
     print("------___________________-------");
     print(uid);
     var query = userInfo.doc(uid).collection("user_information");
@@ -31,12 +31,13 @@ class FirestoreServer {
                 print("------------------oi-----------")
               })
         });
-        //------------------------------------------
+    //------------------------------------------
     // UserInfo note = UserInfo.fromMap(doc.data());
     // return note;
   }
 
   Future<int> insertNote(UserInfo note) async {
+    print(uid);
     await userInfo.doc(uid).collection("user_information").add({
       "Nome": note.name,
       "Telefone": note.tel,

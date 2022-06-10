@@ -5,22 +5,22 @@ import 'monitor_event.dart';
 import 'monitor_state.dart';
 
 class MonitorBloc extends Bloc<MonitorEvent, MonitorState> {
-  NoteCollection noteCollection = NoteCollection();
+  UserInfos userInfos = UserInfos();
 
-  MonitorBloc() : super(MonitorState(noteCollection: NoteCollection())) {
+  MonitorBloc() : super(MonitorState(userInfos: UserInfos())) {
     // Leitura da Stream:
     FirestoreServer.helper.stream.listen((event) {
-      noteCollection = event;
+      userInfos = event;
       add(UpdateList());
     });
 
     on<AskNewList>((event, emit) async {
-      noteCollection = await FirestoreServer.helper.getNoteList();
-      emit(MonitorState(noteCollection: noteCollection));
+      userInfos = await FirestoreServer.helper.getNoteList();
+      emit(MonitorState(userInfos: userInfos));
     });
 
     on<UpdateList>((event, emit) {
-      emit(MonitorState(noteCollection: noteCollection));
+      emit(MonitorState(userInfos: userInfos));
     });
 
     add(AskNewList());

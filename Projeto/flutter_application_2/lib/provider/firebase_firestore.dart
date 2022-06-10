@@ -13,11 +13,13 @@ class FirestoreServer {
   String? uid;
 
   // Ponto de acesso com o servidor
-  final CollectionReference noteCollection =
+  final CollectionReference userInfo =
       FirebaseFirestore.instance.collection("information");
 
   Future<UserInfo> getNote(noteId) async {
-    DocumentSnapshot doc = await noteCollection
+    print("UID DENTRO FUNC");
+    print(uid);
+    DocumentSnapshot doc = await userInfo
         .doc(uid)
         .collection("user_information")
         .doc(noteId)
@@ -27,7 +29,7 @@ class FirestoreServer {
   }
 
   Future<int> insertNote(UserInfo note) async {
-    await noteCollection.doc(uid).collection("user_information").add({
+    await userInfo.doc(uid).collection("user_information").add({
       "Nome": note.name,
       "Telefone": note.tel,
       "Nascimento": note.birthDate,
@@ -40,11 +42,7 @@ class FirestoreServer {
   }
 
   Future<int> updateNote(noteId, UserInfo note) async {
-    await noteCollection
-        .doc(uid)
-        .collection("user_information")
-        .doc(noteId)
-        .update({
+    await userInfo.doc(uid).collection("user_information").doc(noteId).update({
       "Nome": note.name,
       "Telefone": note.tel,
       "Nascimento": note.birthDate,
@@ -57,32 +55,28 @@ class FirestoreServer {
   }
 
   Future<int> deleteNote(noteId) async {
-    await noteCollection
-        .doc(uid)
-        .collection("user_information")
-        .doc(noteId)
-        .delete();
+    await userInfo.doc(uid).collection("user_information").doc(noteId).delete();
     return 42;
   }
 
-  NoteCollection _noteListFromSnapshot(QuerySnapshot snapshot) {
-    NoteCollection noteCollection = NoteCollection();
+  UserInfos _noteListFromSnapshot(QuerySnapshot snapshot) {
+    UserInfos userInfos = UserInfos();
     for (var doc in snapshot.docs) {
-      UserInfo note = UserInfo.fromMap(doc.data());
-      noteCollection.insertUserInfoOfId(doc.id, note);
+      UserInfo userInfo = UserInfo.fromMap(doc.data());
+      userInfos.insertUserInfoOfId(doc.id, userInfo);
     }
-    return noteCollection;
+    return userInfos;
   }
 
-  Future<NoteCollection> getNoteList() async {
+  Future<UserInfos> getNoteList() async {
     QuerySnapshot snapshot =
-        await noteCollection.doc(uid).collection("user_information").get();
+        await userInfo.doc(uid).collection("user_information").get();
 
     return _noteListFromSnapshot(snapshot);
   }
 
   Stream get stream {
-    return noteCollection
+    return userInfo
         .doc(uid)
         .collection("user_information")
         .snapshots()

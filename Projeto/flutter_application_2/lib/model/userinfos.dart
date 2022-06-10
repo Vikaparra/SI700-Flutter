@@ -1,10 +1,10 @@
 import 'userinfo.dart';
 
-class NoteCollection {
+class UserInfos {
   List<String> idList = [];
   List<UserInfo> noteList = [];
 
-  NoteCollection() {
+  UserInfos() {
     idList = [];
     noteList = [];
   }
@@ -30,7 +30,7 @@ class NoteCollection {
     return -1;
   }
 
-  updateOrInsertNoteOfId(String id, UserInfo note) {
+  updateOrInsertUserInfoOfId(String id, UserInfo note) {
     int index = getIndexOfId(id);
     if (index != -1) {
       noteList[index] = note;

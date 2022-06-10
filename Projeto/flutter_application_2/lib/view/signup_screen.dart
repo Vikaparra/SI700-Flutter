@@ -6,9 +6,10 @@ import '../bloc/manage_bloc.dart';
 import '../bloc/manage_event.dart';
 import '../bloc/monitor_bloc.dart';
 import '../model/userinfo.dart';
+import '../provider/firebase_firestore.dart';
 import 'calendar.dart';
 import 'constants.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '/model/profile.dart';
 
@@ -248,6 +249,12 @@ class FormularioState extends State<FormularioCad> {
                           username: profile.email, password: profile.password));
                       BlocProvider.of<ManageBloc>(context)
                           .add(SubmitEvent(userInfo: profile));
+
+                      var teste = FirestoreServer.helper.uid;
+                      print("uid");
+                      print(teste);
+                      print('--------------');
+
                       formKey.currentState!.reset();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: kSecondColor,

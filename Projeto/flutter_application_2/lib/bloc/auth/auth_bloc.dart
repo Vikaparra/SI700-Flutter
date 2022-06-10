@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../provider/firebase_auth.dart';
-import '../../model/user_model.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 

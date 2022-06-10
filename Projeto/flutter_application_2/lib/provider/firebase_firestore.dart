@@ -16,14 +16,11 @@ class FirestoreServer {
   final CollectionReference userInfo =
       FirebaseFirestore.instance.collection("information");
 
-  Future<UserInfo> getNote(noteId) async {
+  Future<UserInfo> getNote() async {
     print("UID DENTRO FUNC");
     print(uid);
-    DocumentSnapshot doc = await userInfo
-        .doc(uid)
-        .collection("user_information")
-        .doc(noteId)
-        .get();
+    DocumentSnapshot doc =
+        await userInfo.doc(uid).collection("user_information").doc().get();
     UserInfo note = UserInfo.fromMap(doc.data());
     return note;
   }

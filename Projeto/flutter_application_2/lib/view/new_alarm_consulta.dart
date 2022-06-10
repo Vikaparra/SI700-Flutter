@@ -95,10 +95,10 @@ Widget formAct(BuildContext context) {
               text: "CADASTRAR",
               textColor: kWhiteColor,
               color: kPinkColor,
-              press: () {
+              press: () async {
                 var teste = FirestoreServer.helper.uid;
                 print("uid");
-                var uid = FirestoreServer.helper.getNote('1');
+                var uid = await FirestoreServer.helper.getNote();
                 print(uid);
                 print('--------------');
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(

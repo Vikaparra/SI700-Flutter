@@ -1,6 +1,6 @@
-import '../model/profile.dart';
+import '../model/userinfos.dart';
 
 class MonitorState {
-  Profile profile;
-  MonitorState({required this.profile});
+  NoteCollection noteCollection;
+  MonitorState({required this.noteCollection});
 }

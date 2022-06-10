@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
-import 'package:flutter_application_2/view/login_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth/auth_event.dart';
+import '../bloc/manage_bloc.dart';
+import '../bloc/manage_event.dart';
+import '../bloc/monitor_bloc.dart';
+import '../model/userinfo.dart';
 import 'calendar.dart';
 import 'constants.dart';
 
-import '../bloc/manage_bloc.dart';
 import '../bloc/auth/auth_bloc.dart';
-import '../bloc/manage_event.dart';
-import '../bloc/manage_state.dart';
 import '/model/profile.dart';
 
 class Signup extends StatelessWidget {
@@ -20,7 +20,7 @@ class Signup extends StatelessWidget {
     // return MultiBlocProvider(providers: [
     //   BlocProvider(create: (_) => ManageBloc()),
     // ], child: const Scaffold(appBar: null, body: TelaCadastroCuidador()));
-    return const Scaffold(appBar: null, body:TelaCadastroCuidador());
+    return const Scaffold(appBar: null, body: TelaCadastroCuidador());
   }
 }
 
@@ -82,7 +82,7 @@ Cuidador""",
 class FormularioCad extends StatefulWidget {
   // formulario de cadastro
   const FormularioCad({Key? key}) : super(key: key);
- @override
+  @override
   State<StatefulWidget> createState() {
     return FormularioState();
   }
@@ -90,15 +90,14 @@ class FormularioCad extends StatefulWidget {
 
 class FormularioState extends State<FormularioCad> {
   final GlobalKey<FormState> formKey = GlobalKey();
-  final Profile profile = Profile();
+  UserInfo profile = UserInfo();
   int parenteCuidador =
-      0; // variavel radioButton, profissional = 1, parente = 2
+      -1; // variavel radioButton, profissional = 1, parente = 2
   String username = "";
   String password = "";
 
   @override
   Widget build(BuildContext context) {
-    Profile profile = Profile();
     //return BlocBuilder<ManageBloc, ManageState>(builder: (context, state) {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -196,7 +195,9 @@ class FormularioState extends State<FormularioCad> {
                             if (inValue != null) {
                               setState(() {
                                 parenteCuidador = inValue;
-                                profile.cuidador = inValue;
+                                profile.cuidador = 1;
+                                print("inValue Cuidador:");
+                                print(profile.cuidador);
                               });
                             }
                           }),
@@ -217,7 +218,9 @@ class FormularioState extends State<FormularioCad> {
                             if (inValue != null) {
                               setState(() {
                                 parenteCuidador = inValue;
-                                profile.cuidador = inValue;
+                                profile.cuidador = 0;
+                                print("inValue Parente:");
+                                print(profile.cuidador);
                               });
                             }
                           })
@@ -239,9 +242,12 @@ class FormularioState extends State<FormularioCad> {
                       // BlocProvider.of<ManageBloc>(
                       //         context) //Utilizando o BLOC para adicionar na base de dados
                       //     .add(SubmitEvent(profile: profile));
+                      print("Profile parente/cuidador:");
+                      print(profile.cuidador);
                       BlocProvider.of<AuthBloc>(context).add(RegisterUser(
                           username: profile.email, password: profile.password));
-
+                      BlocProvider.of<ManageBloc>(context)
+                          .add(SubmitEvent(userInfo: profile));
                       formKey.currentState!.reset();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         backgroundColor: kSecondColor,
@@ -250,14 +256,22 @@ class FormularioState extends State<FormularioCad> {
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ));
                       Navigator.push(
-                        context,
-                         MaterialPageRoute(
-                          builder: (_) => MultiBlocProvider(providers: [
-                                BlocProvider<AuthBloc>.value(
-                                    value: BlocProvider.of<AuthBloc>(context),
-                                    child: const Signup()),
-                              ], child: const Principal()))
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => MultiBlocProvider(providers: [
+                                    BlocProvider<AuthBloc>.value(
+                                        value:
+                                            BlocProvider.of<AuthBloc>(context),
+                                        child: const Signup()),
+                                    BlocProvider<ManageBloc>.value(
+                                        value: BlocProvider.of<ManageBloc>(
+                                            context),
+                                        child: const Signup()),
+                                    BlocProvider<MonitorBloc>.value(
+                                        value: BlocProvider.of<MonitorBloc>(
+                                            context),
+                                        child: const Signup()),
+                                  ], child: const Principal())));
                     },
                   ),
                 ],

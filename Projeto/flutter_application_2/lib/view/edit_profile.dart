@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/constants.dart';
-import 'package:flutter_application_2/view/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/auth/auth_bloc.dart';

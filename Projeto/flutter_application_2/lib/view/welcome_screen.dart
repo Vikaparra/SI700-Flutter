@@ -9,6 +9,8 @@ import '../bloc/auth/auth_bloc.dart';
 
 import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
+import '../bloc/manage_bloc.dart';
+import '../bloc/monitor_bloc.dart';
 import 'calendar.dart';
 
 class Welcome extends StatelessWidget {
@@ -36,6 +38,13 @@ class Welcome extends StatelessWidget {
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: const Signup()),
+                                BlocProvider<ManageBloc>.value(
+                                    value: BlocProvider.of<ManageBloc>(context),
+                                    child: const Signup()),
+                                BlocProvider<MonitorBloc>.value(
+                                    value:
+                                        BlocProvider.of<MonitorBloc>(context),
+                                    child: const Signup()),
                               ], child: Login())));
                 },
               ),
@@ -45,13 +54,21 @@ class Welcome extends StatelessWidget {
                 color: kPrimaryColor,
                 press: () {
                   Navigator.push(
-                    //Navegação do buttom, seguir para página de Entrada
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => BlocProvider<AuthBloc>.value(
-                            value: BlocProvider.of<AuthBloc>(context),
-                            child: const Signup())),
-                  );
+                      //Navegação do buttom, seguir para página de Entrada
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => MultiBlocProvider(providers: [
+                                BlocProvider<AuthBloc>.value(
+                                    value: BlocProvider.of<AuthBloc>(context),
+                                    child: const Signup()),
+                                BlocProvider<ManageBloc>.value(
+                                    value: BlocProvider.of<ManageBloc>(context),
+                                    child: const Signup()),
+                                BlocProvider<MonitorBloc>.value(
+                                    value:
+                                        BlocProvider.of<MonitorBloc>(context),
+                                    child: const Signup()),
+                              ], child: const Signup())));
                 },
               ),
             ],

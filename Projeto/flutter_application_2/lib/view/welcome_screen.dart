@@ -37,14 +37,14 @@ class Welcome extends StatelessWidget {
                           builder: (_) => MultiBlocProvider(providers: [
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
-                                    child: const Signup()),
+                                    child: Login()),
                                 BlocProvider<ManageBloc>.value(
                                     value: BlocProvider.of<ManageBloc>(context),
-                                    child: const Signup()),
-                                BlocProvider<MonitorBloc>.value(
-                                    value:
-                                        BlocProvider.of<MonitorBloc>(context),
-                                    child: const Signup()),
+                                    child: Login()),
+                                // BlocProvider<MonitorBloc>.value(
+                                //     value:
+                                //         BlocProvider.of<MonitorBloc>(context),
+                                //     child: const Signup()),
                               ], child: Login())));
                 },
               ),
@@ -64,10 +64,10 @@ class Welcome extends StatelessWidget {
                                 BlocProvider<ManageBloc>.value(
                                     value: BlocProvider.of<ManageBloc>(context),
                                     child: const Signup()),
-                                BlocProvider<MonitorBloc>.value(
-                                    value:
-                                        BlocProvider.of<MonitorBloc>(context),
-                                    child: const Signup()),
+                                // BlocProvider<MonitorBloc>.value(
+                                //     value:
+                                //         BlocProvider.of<MonitorBloc>(context),
+                                //     child: const Signup()),
                               ], child: const Signup())));
                 },
               ),

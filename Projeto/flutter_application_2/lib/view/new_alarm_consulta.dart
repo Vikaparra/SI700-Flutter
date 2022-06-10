@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
+import 'package:flutter_application_2/model/userinfo.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/date_time_picker.dart';
 
@@ -96,10 +97,11 @@ Widget formAct(BuildContext context) {
               textColor: kWhiteColor,
               color: kPinkColor,
               press: () async {
-                var teste = FirestoreServer.helper.uid;
-                print("uid");
-                var uid = await FirestoreServer.helper.getNote();
-                print(uid);
+                
+                //var teste = FirestoreServer.helper.uid;
+                // print("uid");
+               await FirestoreServer.helper.getNote();
+                //print(user);
                 print('--------------');
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   //Adicionando snackbar ao cadastrar

@@ -17,6 +17,7 @@ class ManageBloc extends Bloc<ManageEvent, ManageState> {
 
     on<SubmitEvent>((event, emit) {
       if (state is InsertState) {
+        print("---------- INSERINDO NOTA AQUI ----------");
         //ToDo: Inserir uma chamada de insert
         FirestoreServer.helper.insertNote(event.userInfo);
       } else if (state is UpdateState) {

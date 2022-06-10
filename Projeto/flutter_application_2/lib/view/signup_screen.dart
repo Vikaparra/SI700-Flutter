@@ -12,6 +12,7 @@ import 'constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../bloc/auth/auth_bloc.dart';
 import '/model/profile.dart';
+import 'dart:io';
 
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
@@ -197,8 +198,6 @@ class FormularioState extends State<FormularioCad> {
                               setState(() {
                                 parenteCuidador = inValue;
                                 profile.cuidador = 1;
-                                print("inValue Cuidador:");
-                                print(profile.cuidador);
                               });
                             }
                           }),
@@ -220,8 +219,6 @@ class FormularioState extends State<FormularioCad> {
                               setState(() {
                                 parenteCuidador = inValue;
                                 profile.cuidador = 0;
-                                print("inValue Parente:");
-                                print(profile.cuidador);
                               });
                             }
                           })
@@ -238,15 +235,23 @@ class FormularioState extends State<FormularioCad> {
                     text: 'CADASTRAR',
                     textColor: kWhiteColor,
                     color: kSecondColor,
-                    press: () {
+                    press: () async {
                       formKey.currentState!.save();
+                      print("USER INFO");
+                      print(profile.birthDate);
+                      print(profile.cpf);
+                      print(profile.cuidador);
+                      print(profile.email);
+                      print(profile.name);
+                      print(profile.password);
+                      print(profile.birthDate);
                       // BlocProvider.of<ManageBloc>(
                       //         context) //Utilizando o BLOC para adicionar na base de dados
                       //     .add(SubmitEvent(profile: profile));
-                      print("Profile parente/cuidador:");
-                      print(profile.cuidador);
-                      BlocProvider.of<AuthBloc>(context).add(RegisterUser(
+                          BlocProvider.of<AuthBloc>(context).add(RegisterUser(
                           username: profile.email, password: profile.password));
+                      sleep(Duration(seconds:1));
+                      print("-----------register2------------");
                       BlocProvider.of<ManageBloc>(context)
                           .add(SubmitEvent(userInfo: profile));
 
@@ -269,15 +274,15 @@ class FormularioState extends State<FormularioCad> {
                                     BlocProvider<AuthBloc>.value(
                                         value:
                                             BlocProvider.of<AuthBloc>(context),
-                                        child: const Signup()),
+                                        child: const Principal()),
                                     BlocProvider<ManageBloc>.value(
                                         value: BlocProvider.of<ManageBloc>(
                                             context),
-                                        child: const Signup()),
-                                    BlocProvider<MonitorBloc>.value(
-                                        value: BlocProvider.of<MonitorBloc>(
-                                            context),
-                                        child: const Signup()),
+                                        child: const Principal()),
+                                    // BlocProvider<MonitorBloc>.value(
+                                    //     value: BlocProvider.of<MonitorBloc>(
+                                    //         context),
+                                    // child: const Signup()),
                                   ], child: const Principal())));
                     },
                   ),
@@ -288,4 +293,5 @@ class FormularioState extends State<FormularioCad> {
     );
     //});
   }
+
 }

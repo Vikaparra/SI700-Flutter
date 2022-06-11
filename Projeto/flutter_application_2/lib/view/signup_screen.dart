@@ -4,14 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/manage_bloc.dart';
 import '../bloc/manage_event.dart';
-import '../bloc/monitor_bloc.dart';
 import '../model/userinfo.dart';
 import '../provider/firebase_firestore.dart';
 import 'calendar.dart';
 import 'constants.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../bloc/auth/auth_bloc.dart';
-import '/model/profile.dart';
 import 'dart:io';
 
 class Signup extends StatelessWidget {
@@ -248,17 +245,23 @@ class FormularioState extends State<FormularioCad> {
                       // BlocProvider.of<ManageBloc>(
                       //         context) //Utilizando o BLOC para adicionar na base de dados
                       //     .add(SubmitEvent(profile: profile));
-                          BlocProvider.of<AuthBloc>(context).add(RegisterUser(
-                          username: profile.email, password: profile.password));
-                      sleep(Duration(seconds:1));
+
+                      BlocProvider.of<AuthBloc>(context).add(RegisterUser(
+                          username: profile.email, password: profile.password, userInfo: profile));
+                      // sleep(Duration(seconds:1));
+
                       print("-----------register2------------");
-                      BlocProvider.of<ManageBloc>(context)
-                          .add(SubmitEvent(userInfo: profile));
 
                       var teste = FirestoreServer.helper.uid;
                       print("uid");
                       print(teste);
                       print('--------------');
+
+                      // while (teste == null) {
+                      //   sleep(Duration(seconds:1));
+                      // }
+
+                      // BlocProvider.of<ManageBloc>(context).add(SubmitEvent());
 
                       formKey.currentState!.reset();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -293,5 +296,4 @@ class FormularioState extends State<FormularioCad> {
     );
     //});
   }
-
 }

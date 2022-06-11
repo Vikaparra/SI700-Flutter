@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../provider/firebase_firestore.dart';
+import 'auth/auth_bloc.dart';
 import 'manage_event.dart';
 import 'manage_state.dart';
 
@@ -15,19 +16,24 @@ class ManageBloc extends Bloc<ManageEvent, ManageState> {
       emit(InsertState());
     });
 
-    on<SubmitEvent>((event, emit) {
-      if (state is InsertState) {
-        print("---------- INSERINDO NOTA AQUI ----------");
-        //ToDo: Inserir uma chamada de insert
-        FirestoreServer.helper.insertNote(event.userInfo);
-        print("--------nota inserida----------");
-      } else if (state is UpdateState) {
-        //ToDo: Inserir uma chamada de Update
-        FirestoreServer.helper
-            .updateNote((state as UpdateState).noteId, event.userInfo);
-        emit(InsertState());
-      }
-    });
+    // on<SubmitEvent>((event, emit) {
+    //   if (state is InsertState) {
+    //     print("---------- INSERINDO NOTA AQUI ----------");
+    //     //ToDo: Inserir uma chamada de insert
+        
+
+    //     FirestoreServer.helper.insertNote(event.userInfo);
+
+
+        
+    //     print("--------nota inserida----------");
+    //   } else if (state is UpdateState) {
+    //     //ToDo: Inserir uma chamada de Update
+    //     FirestoreServer.helper
+    //         .updateNote((state as UpdateState).noteId, event.userInfo);
+    //     emit(InsertState());
+    //   }
+    // });
     on<DeleteEvent>((event, emit) {
       // ToDo: Inserir uma chamada de Delete
 

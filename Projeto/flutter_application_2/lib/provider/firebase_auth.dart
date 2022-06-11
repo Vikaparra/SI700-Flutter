@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_2/model/userinfo.dart';
 
 import '../model/user_model.dart';
 
@@ -26,7 +27,7 @@ class FirebaseAuthenticationService {
   }
 
   Future<UserModel?> createUserWithEmailAndPassword(
-      String email, String password) async {
+      String email, String password, userInfo) async {
     print("--------------create 1----------------");
     UserCredential userCredential = await _firebaseAuth
         .createUserWithEmailAndPassword(email: email, password: password);

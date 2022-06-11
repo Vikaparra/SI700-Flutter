@@ -2,10 +2,10 @@ import '../model/userinfo.dart';
 
 abstract class ManageEvent {}
 
-class SubmitEvent extends ManageEvent {
-  UserInfo userInfo;
-  SubmitEvent({required this.userInfo});
-}
+// class SubmitEvent extends ManageEvent {
+//   UserInfo userInfo;
+//   SubmitEvent({required this.userInfo});
+// }
 
 class DeleteEvent extends ManageEvent {
   String userInfoId;

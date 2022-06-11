@@ -7,10 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/auth/auth_bloc.dart';
 
-import '../bloc/auth/auth_event.dart';
 import '../bloc/auth/auth_state.dart';
 import '../bloc/manage_bloc.dart';
-import '../bloc/monitor_bloc.dart';
 import 'calendar.dart';
 
 class Welcome extends StatelessWidget {
@@ -39,7 +37,7 @@ class Welcome extends StatelessWidget {
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: Login()),
                                 BlocProvider<ManageBloc>.value(
-                                    value: BlocProvider.of<ManageBloc>(context),
+                                    value: BlocProvider.of<ManageBloc>(context), 
                                     child: Login()),
                                 // BlocProvider<MonitorBloc>.value(
                                 //     value:

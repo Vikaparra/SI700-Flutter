@@ -19,12 +19,12 @@ class FirestoreServer {
   Future<void> getNote() async {
     //print("UID DENTRO FUNC");
     //print(uid);
-    // DocumentSnapshot doc =
-    //     await userInfo.doc(uid).collection("user_information").doc(userId).get();
+    // DocumentSnapshot doc = await userInfo.doc(uid).collection("user_information").doc(userId).get();
     //------------------------------------------
     print("------___________________-------");
     print(uid);
     var query = userInfo.doc(uid).collection("user_information");
+    print(query);
     query.get().then((QuerySnapshot querySnapshot) => {
           querySnapshot.docs.map((DocumentSnapshot documentSnapshot) => {
                 //print(documentSnapshot.id);

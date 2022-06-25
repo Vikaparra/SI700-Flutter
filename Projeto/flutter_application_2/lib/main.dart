@@ -4,7 +4,6 @@ import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/welcome_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/auth/auth_bloc.dart';
-import 'bloc/manage_bloc.dart';
 import 'bloc/monitor_bloc.dart';
 
 void main() async {
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: kPrimaryColor),
         home: MultiBlocProvider(providers: [
           BlocProvider(create: (context) => AuthBloc()),
-          BlocProvider(create: (_) => ManageBloc()),
+          // BlocProvider(create: (_) => ManageBloc()),
           BlocProvider(create: (_) => MonitorBloc()),
         ], child: const Wrapper()));
   }

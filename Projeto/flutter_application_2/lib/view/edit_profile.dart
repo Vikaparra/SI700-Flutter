@@ -110,10 +110,10 @@ class PerfilInfo extends StatelessWidget {
               ElevatedButton(
                   onPressed: () => {FirestoreServer.helper.getNote()},
                   child: const Text('oi')),
-              Text(
-                buildNome.name,
+              const Text(
+                'buildNome.name,',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 23, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               const Text(

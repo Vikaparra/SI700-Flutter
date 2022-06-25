@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
-import 'package:flutter_application_2/model/userinfo.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/date_time_picker.dart';
 

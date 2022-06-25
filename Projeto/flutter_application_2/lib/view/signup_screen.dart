@@ -3,8 +3,6 @@ import 'package:flutter_application_2/bloc/monitor_event.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth/auth_event.dart';
-import '../bloc/manage_bloc.dart';
-import '../bloc/manage_event.dart';
 import '../bloc/monitor_bloc.dart';
 import '../model/userinfo.dart';
 import '../provider/firebase_firestore.dart';
@@ -281,10 +279,10 @@ class FormularioState extends State<FormularioCad> {
                                         value: BlocProvider.of<MonitorBloc>(
                                             context),
                                         child: const Principal()),
-                                    BlocProvider<ManageBloc>.value(
-                                        value: BlocProvider.of<ManageBloc>(
-                                            context),
-                                        child: const Principal()),
+                                    // BlocProvider<ManageBloc>.value(
+                                    //     value: BlocProvider.of<ManageBloc>(
+                                    //         context),
+                                    //     child: const Principal()),
                                   ], child: const Principal())));
                     },
                   ),

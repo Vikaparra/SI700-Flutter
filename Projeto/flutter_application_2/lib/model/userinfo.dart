@@ -35,10 +35,10 @@ class UserInfo {
   }
 
   UserInfo.fromMap(map) {
-    _name = map["name"];
-    _tel = map["tel"];
-    _birthDate = map["birthDate"];
-    _cpf = map["cpf"];
+    _name = map["Nome"];
+    _tel = map["Telefone"];
+    _birthDate = map["Nascimento"];
+    _cpf = map["CPF"];
     _email = map["email"];
     _password = map["password"];
     _cuidador = map["cuidador"];
@@ -94,7 +94,7 @@ class UserInfo {
     }
   }
 
-  toMap() {
+  toMap(UserInfo value) {
     var map = Map<String, dynamic>();
     map["name"] = _name;
     map["tel"] = _tel;

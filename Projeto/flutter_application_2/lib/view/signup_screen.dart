@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/monitor_event.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../bloc/manage_bloc.dart';
 import '../bloc/manage_event.dart';
+import '../bloc/monitor_bloc.dart';
 import '../model/userinfo.dart';
 import '../provider/firebase_firestore.dart';
 import 'calendar.dart';
@@ -32,14 +34,14 @@ class TelaCadastroCuidador extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        // base com o plano de fundo azul
-        height: MediaQuery.of(context).size.height * 1,
-        decoration: const BoxDecoration(
-          color: Color(0xff6a9cfd),
-        ),
-        child: SingleChildScrollView(
-          reverse: true,
+    return SingleChildScrollView(
+        reverse: true,
+        child: Container(
+          // base com o plano de fundo azul
+          height: MediaQuery.of(context).size.height * 1,
+          decoration: const BoxDecoration(
+            color: Color(0xff6a9cfd),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment
                 .end, // para o container branco ficar na parte de baixo
@@ -274,6 +276,10 @@ class FormularioState extends State<FormularioCad> {
                                     BlocProvider<AuthBloc>.value(
                                         value:
                                             BlocProvider.of<AuthBloc>(context),
+                                        child: const Principal()),
+                                    BlocProvider<MonitorBloc>.value(
+                                        value: BlocProvider.of<MonitorBloc>(
+                                            context),
                                         child: const Principal()),
                                     BlocProvider<ManageBloc>.value(
                                         value: BlocProvider.of<ManageBloc>(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/constants.dart';
@@ -5,10 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/auth/auth_bloc.dart';
 import '../bloc/auth/auth_event.dart';
+import '../bloc/monitor_bloc.dart';
+import '../bloc/monitor_state.dart';
+import '../provider/firebase_firestore.dart';
+import 'package:flutter_application_2/model/userinfo.dart' as prefix;
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(appBar: null, body: Profile());
@@ -54,7 +58,7 @@ class Profile extends StatelessWidget {
                           child: SizedBox(
                             // sizedBox para conter a customScrollView
                             height: MediaQuery.of(context).size.height * 0.55,
-                            child: const PerfilInfo(),
+                            child: PerfilInfo(),
                           )),
                     ])),
           ],
@@ -81,7 +85,17 @@ Widget profileImage(context) {
 }
 
 class PerfilInfo extends StatelessWidget {
-  const PerfilInfo({Key? key}) : super(key: key);
+  PerfilInfo({Key? key}) : super(key: key);
+
+  prefix.UserInfo userInfo = prefix.UserInfo();
+
+  Future<prefix.UserInfo> buildNome() async {
+    await FirestoreServer.helper
+        .getNote()
+        .then((value) => userInfo.toMap(value));
+
+    return userInfo;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +107,13 @@ class PerfilInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                'Antonio Zambon',
+              ElevatedButton(
+                  onPressed: () => {FirestoreServer.helper.getNote()},
+                  child: const Text('oi')),
+              Text(
+                buildNome.name,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 23, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               const Text(

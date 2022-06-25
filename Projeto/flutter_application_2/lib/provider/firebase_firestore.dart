@@ -16,29 +16,28 @@ class FirestoreServer {
   final CollectionReference userInfo =
       FirebaseFirestore.instance.collection("information");
 
-  Future<void> getNote() async {
-    //print("UID DENTRO FUNC");
-    //print(uid);
-    // DocumentSnapshot doc = await userInfo.doc(uid).collection("user_information").doc(userId).get();
-    //------------------------------------------
-    print("------___________________-------");
+  Future<UserInfo> getNote() async {
+    print("UID DENTRO FUNC");
     print(uid);
-    var query = userInfo.doc(uid).collection("user_information");
-    query.get().then((QuerySnapshot querySnapshot) => {
-      print(query)
-          // querySnapshot.docs.map((DocumentSnapshot documentSnapshot) => {
-          //       //print(documentSnapshot.id);
-          //       print("------------------oi-----------")
-          //     })
-        });
+    DocumentSnapshot doc = await userInfo
+        .doc(uid)
+        .collection("user_information")
+        .doc('user')
+        .get();
+    // var query = userInfo.doc(uid).collection("user_information");
+    // query.get().then((QuerySnapshot querySnapshot) =>
+    //     {querySnapshot.docs.map((DocumentSnapshot documentSnapshot) => {})});
     //------------------------------------------
-    // UserInfo note = UserInfo.fromMap(doc.data());
-    // return note;
+    //print(doc.data());
+
+    UserInfo note = UserInfo.fromMap(doc.data());
+    // print(query);
+    return note;
   }
 
   Future<int> insertNote(UserInfo note) async {
     print(uid);
-    await userInfo.doc(uid).collection("user_information").add({
+    await userInfo.doc(uid).collection("user_information").doc('user').set({
       "Nome": note.name,
       "Telefone": note.tel,
       "Nascimento": note.birthDate,

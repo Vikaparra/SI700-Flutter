@@ -1,6 +1,6 @@
-import '../model/userinfos.dart';
+import '../model/userinfo.dart';
 
-// class MonitorState {
-//   UserInfos userInfos;
-//   MonitorState({required this.userInfos});
-// }
+class MonitorState {
+  UserInfo userInfo;
+  MonitorState({required this.userInfo});
+}

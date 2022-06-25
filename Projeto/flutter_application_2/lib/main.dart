@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         home: MultiBlocProvider(providers: [
           BlocProvider(create: (context) => AuthBloc()),
           BlocProvider(create: (_) => ManageBloc()),
-          // BlocProvider(create: (_) => MonitorBloc()),
+          BlocProvider(create: (_) => MonitorBloc()),
         ], child: const Wrapper()));
   }
 }

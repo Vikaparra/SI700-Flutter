@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../provider/firebase_auth.dart';
 import '../../provider/firebase_firestore.dart';
+import '../monitor_bloc.dart';
+import '../monitor_event.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
@@ -20,8 +22,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print("-----------auth------------");
 
         FirestoreServer.helper.uid = event.userModel!.uid;
-
-        
 
         print(event.userModel!.uid);
         print(FirestoreServer.helper.uid);

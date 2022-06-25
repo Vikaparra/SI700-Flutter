@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/auth/auth_bloc.dart';
 
 import '../bloc/auth/auth_state.dart';
-import '../bloc/monitor_bloc.dart';
 import 'calendar.dart';
 
 class Welcome extends StatelessWidget {
@@ -36,13 +35,6 @@ class Welcome extends StatelessWidget {
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: Login()),
-                                // BlocProvider<ManageBloc>.value(
-                                //     value: BlocProvider.of<ManageBloc>(context),
-                                //     child: Login()),
-                                // BlocProvider<MonitorBloc>.value(
-                                //     value:
-                                //         BlocProvider.of<MonitorBloc>(context),
-                                //     child: const Signup()),
                               ], child: Login())));
                 },
               ),
@@ -58,13 +50,6 @@ class Welcome extends StatelessWidget {
                           builder: (_) => MultiBlocProvider(providers: [
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
-                                    child: const Signup()),
-                                // BlocProvider<ManageBloc>.value(
-                                //     value: BlocProvider.of<ManageBloc>(context),
-                                //     child: const Signup()),
-                                BlocProvider<MonitorBloc>.value(
-                                    value:
-                                        BlocProvider.of<MonitorBloc>(context),
                                     child: const Signup()),
                               ], child: const Signup())));
                 },
@@ -103,11 +88,7 @@ class WrapperState extends State<Wrapper> {
       builder: (context, state) {
         if (state is Authenticated) {
           MaterialPageRoute(
-              builder: (_) => MultiBlocProvider(providers: [
-                    BlocProvider<MonitorBloc>.value(
-                        value: BlocProvider.of<MonitorBloc>(context),
-                        child: const Principal()),
-                  ], child: const Principal()));
+              builder: (_) => MultiBlocProvider(providers: [], child: const Principal()));
           return const Principal();
         } else {
           return Welcome(); //LoginScreen()

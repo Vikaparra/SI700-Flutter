@@ -24,12 +24,12 @@ class FirestoreServer {
     print("------___________________-------");
     print(uid);
     var query = userInfo.doc(uid).collection("user_information");
-    print(query);
     query.get().then((QuerySnapshot querySnapshot) => {
-          querySnapshot.docs.map((DocumentSnapshot documentSnapshot) => {
-                //print(documentSnapshot.id);
-                print("------------------oi-----------")
-              })
+      print(query)
+          // querySnapshot.docs.map((DocumentSnapshot documentSnapshot) => {
+          //       //print(documentSnapshot.id);
+          //       print("------------------oi-----------")
+          //     })
         });
     //------------------------------------------
     // UserInfo note = UserInfo.fromMap(doc.data());

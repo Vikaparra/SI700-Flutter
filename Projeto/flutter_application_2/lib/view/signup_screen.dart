@@ -19,7 +19,11 @@ class Signup extends StatelessWidget {
     // return MultiBlocProvider(providers: [
     //   BlocProvider(create: (_) => ManageBloc()),
     // ], child: const Scaffold(appBar: null, body: TelaCadastroCuidador()));
-    return const Scaffold(appBar: null, body: TelaCadastroCuidador());
+    return const Scaffold(
+      appBar: null,
+      body: TelaCadastroCuidador(),
+      //resizeToAvoidBottomInset: false,
+    );
   }
 }
 
@@ -29,34 +33,37 @@ class TelaCadastroCuidador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // base com o plano de fundo azul
-      height: MediaQuery.of(context).size.height * 1,
-      decoration: const BoxDecoration(
-        color: Color(0xff6a9cfd),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment
-            .end, // para o container branco ficar na parte de baixo
-        children: [
-          tituloPaginaCadastro(context), // titulo fica fora do container branco
-          Container(
-            // container branco com bordas arredondadas e formulario
-            margin:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-            height: MediaQuery.of(context).size.height * 0.82,
-            decoration: const BoxDecoration(
-                color: kWhiteColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(0),
-                )),
-            child: const FormularioCad(),
-          )
-        ],
-      ),
-    );
+        // base com o plano de fundo azul
+        height: MediaQuery.of(context).size.height * 1,
+        decoration: const BoxDecoration(
+          color: Color(0xff6a9cfd),
+        ),
+        child: SingleChildScrollView(
+          reverse: true,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment
+                .end, // para o container branco ficar na parte de baixo
+            children: [
+              tituloPaginaCadastro(
+                  context), // titulo fica fora do container branco
+              Container(
+                // container branco com bordas arredondadas e formulario
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.05),
+                height: MediaQuery.of(context).size.height * 0.82,
+                decoration: const BoxDecoration(
+                    color: kWhiteColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    )),
+                child: const FormularioCad(),
+              )
+            ],
+          ),
+        ));
   }
 }
 
@@ -242,26 +249,16 @@ class FormularioState extends State<FormularioCad> {
                       print(profile.name);
                       print(profile.password);
                       print(profile.birthDate);
-                      // BlocProvider.of<ManageBloc>(
-                      //         context) //Utilizando o BLOC para adicionar na base de dados
-                      //     .add(SubmitEvent(profile: profile));
 
                       BlocProvider.of<AuthBloc>(context).add(RegisterUser(
-                          username: profile.email, password: profile.password, userInfo: profile));
-                      // sleep(Duration(seconds:1));
-
-                      print("-----------register2------------");
+                          username: profile.email,
+                          password: profile.password,
+                          userInfo: profile));
 
                       var teste = FirestoreServer.helper.uid;
                       print("uid");
                       print(teste);
                       print('--------------');
-
-                      // while (teste == null) {
-                      //   sleep(Duration(seconds:1));
-                      // }
-
-                      // BlocProvider.of<ManageBloc>(context).add(SubmitEvent());
 
                       formKey.currentState!.reset();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -282,10 +279,6 @@ class FormularioState extends State<FormularioCad> {
                                         value: BlocProvider.of<ManageBloc>(
                                             context),
                                         child: const Principal()),
-                                    // BlocProvider<MonitorBloc>.value(
-                                    //     value: BlocProvider.of<MonitorBloc>(
-                                    //         context),
-                                    // child: const Signup()),
                                   ], child: const Principal())));
                     },
                   ),
@@ -294,6 +287,5 @@ class FormularioState extends State<FormularioCad> {
             )
           ])),
     );
-    //});
   }
 }

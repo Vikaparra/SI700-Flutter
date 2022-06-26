@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/act/act_bloc.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/new_alarm_consulta.dart';
 import 'package:flutter_application_2/view/new_alarm_exercicio.dart';
 import 'package:flutter_application_2/view/new_alarm_lazer.dart';
 import 'package:flutter_application_2/view/new_alarm_remedio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewAct extends StatefulWidget {
+class NewAct extends StatelessWidget {
   const NewAct({Key? key}) : super(key: key);
 
   @override
-  State<NewAct> createState() => _NewActState();
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      appBar: null,
+      body: NewActState(),
+      //resizeToAvoidBottomInset: false,
+    );
+  }
 }
 
-class _NewActState extends State<NewAct> {
+class NewActState extends StatelessWidget {
+  const NewActState({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -72,10 +81,16 @@ class _NewActState extends State<NewAct> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return const NewConsulta();
-                          },
-                        ),
+                            builder: (_) => MultiBlocProvider(providers: [
+                                  BlocProvider<ManageBloc>.value(
+                                      value:
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: const NewConsulta()),
+                                ], child: const NewConsulta())
+                            // builder: (context) {
+                            //   return NewConsulta();
+                            // },
+                            ),
                       );
                     },
                   ),

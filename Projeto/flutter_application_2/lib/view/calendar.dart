@@ -1,9 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/act/act_bloc.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/edit_profile.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/auth/auth_bloc.dart';
+import '../bloc/auth/auth_event.dart';
 
 class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);
@@ -29,8 +34,7 @@ class _PrincipalState extends State<Principal> {
         //Barra de navegação inferior
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.more_time_outlined),
-            label: "Nova Atividade",
+            icon: Icon(Icons.more_time_outlined), label: "Nova Atividade",
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.calendar_month_outlined), label: "Atividades"),
@@ -38,6 +42,7 @@ class _PrincipalState extends State<Principal> {
               icon: Icon(Icons.account_box_outlined), label: "Perfil"),
         ],
         currentIndex: _currentScreen,
+
         onTap: (int novoItem) {
           setState(() {
             _currentScreen = novoItem;

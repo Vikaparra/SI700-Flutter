@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/act/act_bloc.dart';
 import '../bloc/auth/auth_event.dart';
 import '../model/userinfo.dart';
 import '../provider/firebase_firestore.dart';
 import 'calendar.dart';
 import 'constants.dart';
 import '../bloc/auth/auth_bloc.dart';
-import 'dart:io';
 
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // return MultiBlocProvider(providers: [
-    //   BlocProvider(create: (_) => ManageBloc()),
-    // ], child: const Scaffold(appBar: null, body: TelaCadastroCuidador()));
     return const Scaffold(
       appBar: null,
       body: TelaCadastroCuidador(),
-      //resizeToAvoidBottomInset: false,
     );
   }
 }
@@ -134,6 +130,10 @@ class FormularioState extends State<FormularioCad> {
                       },
                       onSaved: (value) {
                         profile.name = value!;
+                        print("o valuuue---------------::");
+                        print(value);
+                        print("object");
+                        print(profile.name);
                       },
                     ),
                     TextFormField(
@@ -277,10 +277,10 @@ class FormularioState extends State<FormularioCad> {
                                     //     value: BlocProvider.of<MonitorBloc>(
                                     //         context),
                                     //     child: const Principal()),
-                                    // BlocProvider<ManageBloc>.value(
-                                    //     value: BlocProvider.of<ManageBloc>(
-                                    //         context),
-                                    //     child: const Principal()),
+                                    BlocProvider<ManageBloc>.value(
+                                        value: BlocProvider.of<ManageBloc>(
+                                            context),
+                                        child: const Principal()),
                                   ], child: const Principal())));
                     },
                   ),

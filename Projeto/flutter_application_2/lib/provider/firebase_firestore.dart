@@ -1,5 +1,9 @@
+import 'package:flutter_application_2/model/appointment.dart';
+
+import '../model/appointments.dart';
 import '../model/userinfo.dart';
 import '../model/userinfos.dart';
+
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -82,6 +86,39 @@ class FirestoreServer {
 
     return _noteListFromSnapshot(snapshot);
   }
+  //coletando appoints
+  final CollectionReference appointCollection = FirebaseFirestore.instance.collection("appoints");
+  
+  Future<Appoint> getAppoint(appointId) async {
+    DocumentSnapshot doc = await appointCollection.doc(uid).collection("appoints").doc(appointId).get();
+    Appoint appoint = Appoint.fromMap(doc.data());
+    return appoint;
+  }
+
+  Future<int> insertAppoint(Appoint appoint) async {
+    await appointCollection.doc(uid).collection("appoints").add({
+      "title": appoint.title,
+      "description": appoint.description,
+      // "date":appoint.date,
+      // "time":appoint.time
+    });
+    return 42;
+  }
+
+  AppointCollection _appointListFromSnapshot(QuerySnapshot snapshot) {
+    AppointCollection appointCollection = AppointCollection();
+    for (var doc in snapshot.docs) {
+      Appoint note = Appoint.fromMap(doc.data());
+      appointCollection.insertAppointOfId(doc.id, note);
+    }
+    return appointCollection;
+  }
+
+  Future<AppointCollection> getAppointList() async {
+    QuerySnapshot snapshot = await appointCollection.doc(uid).collection("my_notes").get();
+
+    return _appointListFromSnapshot(snapshot);
+  }
 
   Stream get stream {
     return userInfo
@@ -89,5 +126,9 @@ class FirestoreServer {
         .collection("user_information")
         .snapshots()
         .map(_noteListFromSnapshot);
+  }
+
+  Stream get stream_appoint {
+    return appointCollection.doc(uid).collection("appoints").snapshots().map(_noteListFromSnapshot);
   }
 }

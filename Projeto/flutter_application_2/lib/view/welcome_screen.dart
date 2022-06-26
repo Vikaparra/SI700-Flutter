@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/act/act_bloc.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/login_screen.dart';
@@ -35,6 +36,11 @@ class Welcome extends StatelessWidget {
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: Login()),
+                                
+                                  BlocProvider<ManageBloc>.value(
+                                      value:
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: Login()),
                               ], child: Login())));
                 },
               ),
@@ -51,6 +57,10 @@ class Welcome extends StatelessWidget {
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: const Signup()),
+                                BlocProvider<ManageBloc>.value(
+                                      value:
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: Signup()),
                               ], child: const Signup())));
                 },
               ),

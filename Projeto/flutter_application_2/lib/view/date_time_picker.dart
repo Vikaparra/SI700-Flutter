@@ -91,7 +91,9 @@ class DatePickerState extends State<DatePicker> {
         textColor: kWhiteColor,
         color: kSecondColor,
         text: getText(), //função para pegar texto que aparece no botao
-        press: () => pickDate(context),
+        press: <DateTime>() {
+          pickDate(context);
+        },
       );
 
   Future pickDate(BuildContext context) async {

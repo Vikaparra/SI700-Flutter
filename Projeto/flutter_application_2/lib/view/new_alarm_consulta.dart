@@ -82,91 +82,94 @@ class FormAct extends State<FormularioCad> {
   //Form de cadastro
   Widget build(BuildContext context) {
     // return BlocBuilder<ManageBloc, ManageState>(builder: (context, state) {
-      // Appoint appointInfo;
-      // appointInfo = Appoint();
-      return Container(
-          // key: formKey,
-          height: MediaQuery.of(context).size.height * 1,
-          padding: const EdgeInsets.all(40),
-          decoration: const BoxDecoration(
-              color: Color(0xffffffff),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(40),
-                topRight: Radius.circular(40),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0),
-              )),
-          child: Form(
-              key: formKey,
-              child: Column(
-                // key: formKey,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(labelText: 'Título'),
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Adicione algum título";
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        appointInfo.title = "myrelle";
-                        print('RECEBENDO AQUI:');
-                        print(appointInfo.title);
-                        print(value is String);
-                      },
-                    ),
+    // Appoint appointInfo;
+    // appointInfo = Appoint();
+    return Container(
+        // key: formKey,
+        height: MediaQuery.of(context).size.height * 1,
+        padding: const EdgeInsets.all(40),
+        decoration: const BoxDecoration(
+            color: Color(0xffffffff),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40),
+              topRight: Radius.circular(40),
+              bottomLeft: Radius.circular(0),
+              bottomRight: Radius.circular(0),
+            )),
+        child: Form(
+            key: formKey,
+            child: Column(
+              // key: formKey,
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(labelText: 'Título'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Adicione algum título";
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      appointInfo.title = value!;
+                      print('RECEBENDO AQUI:');
+                      print(value);
+                    },
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    child: TextFormField(
-                      // initialValue: appointInfo.description,
-                      decoration: InputDecoration(labelText: 'Descrição'),
-                      keyboardType: TextInputType.text,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Adicione alguma descrição";
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        appointInfo.description = value!;
-                      },
-                    ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0),
+                  child: TextFormField(
+                    // initialValue: appointInfo.description,
+                    decoration: InputDecoration(labelText: 'Descrição'),
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Adicione alguma descrição";
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      appointInfo.description = value!;
+                    },
                   ),
-                  DatePicker(),
-                  TimePicker(),
-                  RoundedButton(
-                      text: "CADASTRAR",
-                      textColor: kWhiteColor,
-                      color: kPinkColor,
-                      press: () async {
-                        // if (formKey.currentState!.validate()) {
-                        print("--------USER INFO-------");
-                        print("APPOINT-----------");
-                        print(appointInfo);
-                        print(appointInfo.title);
-                        print(appointInfo.description);
-                        print("-------------------");
-                        formKey.currentState!.save();
-                        BlocProvider.of<ManageBloc>(context)
-                            .add(SubmitEvent(appoint: appointInfo));
-                        formKey.currentState!.reset();
-                        // }
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          //Adicionando snackbar ao cadastrar
-                          backgroundColor: kPinkColor,
-                          duration: const Duration(seconds: 1),
-                          content: const Text("ATIVIDADE SALVA",
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        ));
-                      })
-                ],
-              )));
-    }
-// };
+                ),
+                DatePicker(),
+                // dia(),
+                TimePicker(),
+                RoundedButton(
+                    text: "CADASTRAR",
+                    textColor: kWhiteColor,
+                    color: kPinkColor,
+                    press: () async {
+                      // if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      print("--------USER INFO-------");
+                      print("APPOINT-----------");
+                      print(appointInfo);
+                      print(appointInfo.title);
+                      print(appointInfo.description);
+                      print("-------------------");
+                      BlocProvider.of<ManageBloc>(context)
+                          .add(SubmitEvent(appoint: appointInfo));
+                      formKey.currentState!.reset();
+                      // }
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //Adicionando snackbar ao cadastrar
+                        backgroundColor: kPinkColor,
+                        duration: const Duration(seconds: 1),
+                        content: const Text("ATIVIDADE SALVA",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ));
+                    })
+              ],
+            )));
   }
+}
+
+// dia() {
+//   DateTime dia = DatePicker() as DateTime;
+//   print(dia);
 // }

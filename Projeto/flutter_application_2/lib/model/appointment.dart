@@ -5,8 +5,8 @@ class Appoint {
   // String _time = "";
 
   Appoint() {
-    _title = "";
-    _description = "";
+    String _title = "";
+    String _description = "";
     // _date = "";
     // _time = "";
   }
@@ -25,8 +25,8 @@ class Appoint {
     // _time = map["time"];
   }
 
-  String get title => _title = "";
-  String get description => _description = "";
+  String get title => _title;
+  String get description => _description;
   // String get date => _date = "";
   // String get time => _time = "";
 

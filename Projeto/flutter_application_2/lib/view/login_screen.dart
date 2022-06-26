@@ -29,12 +29,6 @@ class Login extends StatelessWidget {
               );
             });
       }
-      // if (state is Unauthenticated) {
-      //   MaterialPageRoute(
-      //       builder: (_) => BlocProvider<AuthBloc>.value(
-      //           value: BlocProvider.of<AuthBloc>(context),
-      //           child: const Principal()));
-      // }
     }, builder: (context, state) {
       if (state is Authenticated) {
         return const Principal();
@@ -113,43 +107,3 @@ class Login extends StatelessWidget {
     });
   }
 }
-//   Widget usernameFormField(username) {
-//     //Form para adicionar usuário
-//     return TextFormField(
-//       validator: (String? inValue) {
-//         if (inValue!.isEmpty) {
-//           return "Insira algo como username";
-//         }
-//         return null;
-//       },
-//       onSaved: (String? inValue) {
-//         username = inValue!;
-//       },
-//       keyboardType: TextInputType.emailAddress,
-//       decoration: const InputDecoration(
-//         border: OutlineInputBorder(),
-//         labelText: "USUÁRIO",
-//       ),
-//     );
-//   }
-
-//   Widget passwordFormField(password) {
-//     //Form para adicionar senha
-//     return TextFormField(
-//       validator: (String? inValue) {
-//         if (inValue!.length < 4) {
-//           return "Tem que ter ao menos 4 caracters";
-//         }
-//         return null;
-//       },
-//       onSaved: (String? inValue) {
-//         password = inValue!;
-//       },
-//       obscureText: true,
-//       decoration: const InputDecoration(
-//         border: OutlineInputBorder(),
-//         labelText: "SENHA",
-//       ),
-//     );
-//   }
-// }

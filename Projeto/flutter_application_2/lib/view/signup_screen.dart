@@ -9,14 +9,13 @@ import 'constants.dart';
 import '../bloc/auth/auth_bloc.dart';
 import 'dart:io';
 
+import 'login_screen.dart';
+
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // return MultiBlocProvider(providers: [
-    //   BlocProvider(create: (_) => ManageBloc()),
-    // ], child: const Scaffold(appBar: null, body: TelaCadastroCuidador()));
     return const Scaffold(
       appBar: null,
       body: TelaCadastroCuidador(),
@@ -102,7 +101,6 @@ class FormularioState extends State<FormularioCad> {
 
   @override
   Widget build(BuildContext context) {
-    //return BlocBuilder<ManageBloc, ManageState>(builder: (context, state) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
@@ -271,17 +269,8 @@ class FormularioState extends State<FormularioCad> {
                               builder: (_) => MultiBlocProvider(providers: [
                                     BlocProvider<AuthBloc>.value(
                                         value:
-                                            BlocProvider.of<AuthBloc>(context),
-                                        child: const Principal()),
-                                    // BlocProvider<MonitorBloc>.value(
-                                    //     value: BlocProvider.of<MonitorBloc>(
-                                    //         context),
-                                    //     child: const Principal()),
-                                    // BlocProvider<ManageBloc>.value(
-                                    //     value: BlocProvider.of<ManageBloc>(
-                                    //         context),
-                                    //     child: const Principal()),
-                                  ], child: const Principal())));
+                                            BlocProvider.of<AuthBloc>(context))
+                                  ], child: Login())));
                     },
                   ),
                 ],

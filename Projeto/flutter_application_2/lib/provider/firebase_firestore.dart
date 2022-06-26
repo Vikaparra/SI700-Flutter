@@ -17,22 +17,22 @@ class FirestoreServer {
       FirebaseFirestore.instance.collection("information");
 
   Future<UserInfo> getNote() async {
-    print("UID DENTRO FUNC");
-    print(uid);
     DocumentSnapshot doc = await userInfo
         .doc(uid)
         .collection("user_information")
         .doc('user')
         .get();
-    // var query = userInfo.doc(uid).collection("user_information");
-    // query.get().then((QuerySnapshot querySnapshot) =>
-    //     {querySnapshot.docs.map((DocumentSnapshot documentSnapshot) => {})});
-    //------------------------------------------
-    //print(doc.data());
-
-    UserInfo note = UserInfo.fromMap(doc.data());
-    // print(query);
-    return note;
+    if (doc.exists) {
+      print("------------- usuario existe -------------");
+      UserInfo note = UserInfo.fromMap(doc.data());
+      print("Nome do Usuario: "+note.name);
+      // print(query);
+      return note;
+    } else {
+      print("----------- usuario nao existe ------------");
+      UserInfo user = UserInfo();
+      return user;
+    }
   }
 
   Future<int> insertNote(UserInfo note) async {

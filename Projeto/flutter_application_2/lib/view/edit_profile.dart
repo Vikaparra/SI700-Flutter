@@ -12,12 +12,25 @@ class EditProfile extends StatelessWidget {
   const EditProfile({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(appBar: null, body: Profile());
+    return Scaffold(
+        appBar: null,
+        body: FutureBuilder<prefix.UserInfo>(
+            future: FirestoreServer.helper.getNote(),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                final userInfo = snapshot.data;
+                return Profile.withData(userInfo!);
+              } else {
+                return const Text('Algo deu errado!');
+              }
+            })));
   }
 }
 
 class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+  prefix.UserInfo userInfo;
+
+  Profile.withData(this.userInfo, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +68,7 @@ class Profile extends StatelessWidget {
                           child: SizedBox(
                             // sizedBox para conter a customScrollView
                             height: MediaQuery.of(context).size.height * 0.55,
-                            child: PerfilInfo(),
+                            child: PerfilInfo(userInfo),
                           )),
                     ])),
           ],
@@ -82,17 +95,18 @@ Widget profileImage(context) {
 }
 
 class PerfilInfo extends StatelessWidget {
-  PerfilInfo({Key? key}) : super(key: key);
+  PerfilInfo(this.userInfo, {Key? key}) : super(key: key);
 
-  prefix.UserInfo userInfo = prefix.UserInfo();
+  prefix.UserInfo userInfo;
 
-  Future<prefix.UserInfo> buildNome() async {
-    await FirestoreServer.helper
-        .getNote()
-        .then((value) => userInfo.toMap(value));
+  // Future<prefix.UserInfo> buildNome() async {
 
-    return userInfo;
-  }
+  //     await FirestoreServer.helper
+  //         .getNote()
+  //         .then((value) => userInfo.toMap(value));
+
+  //     return userInfo;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -104,19 +118,19 @@ class PerfilInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              ElevatedButton(
-                  onPressed: () => {FirestoreServer.helper.getNote()},
-                  child: const Text('oi')),
-              const Text(
-                'buildNome.name,',
+              // ElevatedButton(
+              //     onPressed: () => {FirestoreServer.helper.getNote()},
+              //     child: const Text('oi')),
+              Text(
+                userInfo.name,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 23, color: Colors.black, fontFamily: "Comfortaa"),
               ),
-              const Text(
-                'Familiar',
+              Text(
+                getCuidador(userInfo),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 21, color: Colors.black, fontFamily: "Comfortaa"),
               ),
               Padding(
@@ -130,9 +144,9 @@ class PerfilInfo extends StatelessWidget {
                           color: Colors.black,
                           fontFamily: "Comfortaa"),
                     ),
-                    subtitle: const Text(
-                      '05/07/1800',
-                      style: TextStyle(
+                    subtitle: Text(
+                      userInfo.birthDate,
+                      style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                           fontFamily: "Comfortaa"),
@@ -150,9 +164,9 @@ class PerfilInfo extends StatelessWidget {
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
-                  subtitle: const Text(
-                    '456.987.258.41',
-                    style: TextStyle(
+                  subtitle: Text(
+                    userInfo.cpf,
+                    style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
@@ -169,9 +183,9 @@ class PerfilInfo extends StatelessWidget {
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
-                  subtitle: const Text(
-                    'zambas@gmail.com',
-                    style: TextStyle(
+                  subtitle: Text(
+                    userInfo.email,
+                    style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
@@ -188,9 +202,9 @@ class PerfilInfo extends StatelessWidget {
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
-                  subtitle: const Text(
-                    '19 9 88754563',
-                    style: TextStyle(
+                  subtitle: Text(
+                    userInfo.tel,
+                    style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
@@ -233,10 +247,6 @@ class PerfilInfo extends StatelessWidget {
                 color: kSecondColor,
                 press: () {
                   BlocProvider.of<AuthBloc>(context).add(Logout());
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => Welcome()),
-                  // );
                 },
               ),
             ],
@@ -245,4 +255,12 @@ class PerfilInfo extends StatelessWidget {
       ],
     );
   }
+}
+
+String getCuidador(userInfo) {
+    if (userInfo.cuidador == 0){
+      return "Familiar";
+    }else{
+      return "Profissional";
+    }
 }

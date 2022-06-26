@@ -9,6 +9,8 @@ import 'calendar.dart';
 import 'constants.dart';
 import '../bloc/auth/auth_bloc.dart';
 
+import 'login_screen.dart';
+
 class Signup extends StatelessWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -98,7 +100,6 @@ class FormularioState extends State<FormularioCad> {
 
   @override
   Widget build(BuildContext context) {
-    //return BlocBuilder<ManageBloc, ManageState>(builder: (context, state) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: const BoxDecoration(

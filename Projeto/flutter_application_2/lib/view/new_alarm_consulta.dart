@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/bloc/act/act_event.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
@@ -9,8 +7,6 @@ import 'package:flutter_application_2/view/date_time_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/act/act_bloc.dart';
-import '../bloc/act/act_state.dart';
-import '../provider/firebase_firestore.dart';
 
 class NewConsulta extends StatelessWidget {
   const NewConsulta({Key? key}) : super(key: key);
@@ -27,22 +23,20 @@ class ScreenAlarm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        //Background com color da atividade:  Rosa
-        decoration: const BoxDecoration(
-          color: kPinkColor,
-        ),
-
-        child: Column(
-          children: [
-            title(),
-            Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [FormularioCad()])
-          ],
-        ),
+        child: Container(
+      //Background com color da atividade:  Rosa
+      decoration: const BoxDecoration(
+        color: kPinkColor,
       ),
-    );
+
+      child: Column(children: [
+        title(),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const [FormularioCad()],
+        ),
+      ]),
+    ));
   }
 }
 
@@ -77,13 +71,11 @@ class FormularioCad extends StatefulWidget {
 class FormAct extends State<FormularioCad> {
   final GlobalKey<FormState> formKey = GlobalKey();
   Appoint appointInfo = Appoint();
+  DateTime dateTime = DateTime(0, 0, 0, 0, 0);
 
   @override
   //Form de cadastro
   Widget build(BuildContext context) {
-    // return BlocBuilder<ManageBloc, ManageState>(builder: (context, state) {
-    // Appoint appointInfo;
-    // appointInfo = Appoint();
     return Container(
         // key: formKey,
         height: MediaQuery.of(context).size.height * 1,
@@ -114,16 +106,14 @@ class FormAct extends State<FormularioCad> {
                     },
                     onSaved: (value) {
                       appointInfo.title = value!;
-                      print('RECEBENDO AQUI:');
-                      print(value);
                     },
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 20.0),
+                  padding: const EdgeInsets.only(bottom: 20.0),
                   child: TextFormField(
                     // initialValue: appointInfo.description,
-                    decoration: InputDecoration(labelText: 'Descrição'),
+                    decoration: const InputDecoration(labelText: 'Descrição'),
                     keyboardType: TextInputType.text,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -136,40 +126,44 @@ class FormAct extends State<FormularioCad> {
                     },
                   ),
                 ),
-                DatePicker(),
-                // dia(),
-                TimePicker(),
+                const DatePicker(),
+                const TimePicker(),
                 RoundedButton(
                     text: "CADASTRAR",
                     textColor: kWhiteColor,
                     color: kPinkColor,
                     press: () async {
-                      // if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      print("--------USER INFO-------");
-                      print("APPOINT-----------");
-                      print(appointInfo);
-                      print(appointInfo.title);
-                      print(appointInfo.description);
-                      print("-------------------");
-                      BlocProvider.of<ManageBloc>(context)
-                          .add(SubmitEvent(appoint: appointInfo));
-                      formKey.currentState!.reset();
-                      // }
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        //Adicionando snackbar ao cadastrar
-                        backgroundColor: kPinkColor,
-                        duration: const Duration(seconds: 1),
-                        content: const Text("ATIVIDADE SALVA",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                      ));
+                      if (alarmDate!.day != 0001) {
+                        DateTime? finalAlarm = DateTime(
+                            alarmDate!.year,
+                            alarmDate!.month,
+                            alarmDate!.day,
+                            alarmTime!.hour,
+                            alarmTime!.minute);
+                        appointInfo.date = finalAlarm;
+                        // print("teste: "+ (alarmDate!.day.toString()));
+                        formKey.currentState!.save();
+                        print("-------- Informacao inserida -------");
+                        print(appointInfo);
+                        print(appointInfo.title);
+                        print(appointInfo.description);
+                        print(appointInfo.date.toString());
+                        print("------------------------------------");
+                        BlocProvider.of<ManageBloc>(context)
+                            .add(SubmitEvent(appoint: appointInfo));
+                        formKey.currentState!.reset();
+                        // }
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          //Adicionando snackbar ao cadastrar
+                          backgroundColor: kPinkColor,
+                          duration: Duration(seconds: 1),
+                          content: Text("ATIVIDADE SALVA",
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ));
+                      }
                     })
               ],
             )));
   }
 }
-
-// dia() {
-//   DateTime dia = DatePicker() as DateTime;
-//   print(dia);
-// }

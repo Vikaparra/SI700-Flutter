@@ -99,8 +99,8 @@ class FirestoreServer {
     await appointCollection.doc(uid).collection("appoints").add({
       "title": appoint.title,
       "description": appoint.description,
-      // "date":appoint.date,
-      // "time":appoint.time
+      "date":appoint.date,
+      //"time":appoint.time
     });
     return 42;
   }

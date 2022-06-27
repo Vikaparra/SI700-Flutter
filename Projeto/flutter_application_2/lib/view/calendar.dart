@@ -1,14 +1,7 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/bloc/act/act_bloc.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/edit_profile.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/auth/auth_bloc.dart';
-import '../bloc/auth/auth_event.dart';
 
 class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);

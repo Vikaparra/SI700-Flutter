@@ -3,6 +3,9 @@ import 'package:flutter_application_2/components/rounded_button.dart';
 
 import 'constants.dart';
 
+DateTime? alarmDate; //data do alarme
+TimeOfDay? alarmTime; //horario do alarme
+
 // As seguintes funções foram retiradas e adaptadas da seguinte fonte:
 // https://github.com/JohannesMilke/date_picker_example/
 //---------------------- TIMEPICKER ------------------------
@@ -18,8 +21,6 @@ class TimePicker extends StatefulWidget {
 }
 
 class TimePickerState extends State<TimePicker> {
-  TimeOfDay? alarmTime;
-
   String getText() {
     if (alarmTime == null) {
       //caso ainda não tenha nenhum horario definido o texto vai ser:
@@ -66,6 +67,7 @@ class TimePickerState extends State<TimePicker> {
 
 class DatePicker extends StatefulWidget {
   const DatePicker({Key? key}) : super(key: key);
+  //DateTime dateTime;
 
   @override
   DatePickerState createState() {
@@ -74,8 +76,8 @@ class DatePicker extends StatefulWidget {
 }
 
 class DatePickerState extends State<DatePicker> {
-  DateTime? alarmDate; //horario do alarme
-
+  //DatePickerState(this.dateTime);
+  //DateTime dateTime;
   String getText() {
     if (alarmDate == null) {
       //caso ainda não tenha horario definido o texto do botao vai ser:
@@ -91,7 +93,7 @@ class DatePickerState extends State<DatePicker> {
         textColor: kWhiteColor,
         color: kSecondColor,
         text: getText(), //função para pegar texto que aparece no botao
-        press: <DateTime>() {
+        press: () {
           pickDate(context);
         },
       );

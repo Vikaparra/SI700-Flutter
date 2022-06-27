@@ -80,9 +80,9 @@ class Calendar extends StatelessWidget {
                 // BlocProvider.of<ManageBloc>(context).add(UpdateRequest(noteId: noteCollection.getIdAtIndex(position), previousNote: noteCollection.getNodeAtIndex(position)));
               },
 
-              if((appointCollection.getNodeAtIndex(position).type) == "exercicio"){
+              // if((appointCollection.getNodeAtIndex(position).type) == "exercicio"){
 
-              }
+              // }
 
               leading: Icon(icons[position % icons.length]),
 

@@ -56,11 +56,11 @@ class _PrincipalState extends State<Principal> {
 class Calendar extends StatelessWidget {
   Calendar({Key? key}) : super(key: key);
 
-  final List colors = [
-    Colors.orange,
-    Colors.red,
-    Colors.yellow
-  ];
+  // final List colors = [
+  //   Colors.orange,
+  //   Colors.red,
+  //   Colors.yellow
+  // ];
   final List icons = [
     Icons.ac_unit_outlined,
     Icons.access_alarm_rounded
@@ -79,12 +79,21 @@ class Calendar extends StatelessWidget {
               onTap: () {
                 // BlocProvider.of<ManageBloc>(context).add(UpdateRequest(noteId: noteCollection.getIdAtIndex(position), previousNote: noteCollection.getNodeAtIndex(position)));
               },
+
+              if((appointCollection.getNodeAtIndex(position).type) == "exercicio"){
+
+              }
+
               leading: Icon(icons[position % icons.length]),
+
               trailing: GestureDetector(
                   onTap: () {},
                   child: const Icon(Icons.delete)),
+
               title: Text(appointCollection.getNodeAtIndex(position).title),
-              subtitle: Text(appointCollection.getNodeAtIndex(position).description),
+              subtitle: Text(appointCollection.getNodeAtIndex(position).description)
+              // trailing: Text(appointCollection.getNodeAtIndex(position).date),
+              
             ));
   }
 
@@ -184,3 +193,104 @@ Widget title() {
         )),
   );
 }
+
+
+class CustomListItem extends StatelessWidget {
+  const CustomListItem({
+    Key? key,
+    required this.title,
+    required this.user,
+    required this.viewCount,
+  }) : super(key: key);
+
+  final String title;
+  final String user;
+  final int viewCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            flex: 3,
+            child: _VideoDescription(
+              title: title,
+              user: user,
+              viewCount: viewCount,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VideoDescription extends StatelessWidget {
+  const _VideoDescription({
+    Key? key,
+    required this.title,
+    required this.user,
+    required this.viewCount,
+  }) : super(key: key);
+
+  final String title;
+  final String user;
+  final int viewCount;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 14.0,
+            ),
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
+          Text(
+            user,
+            style: const TextStyle(fontSize: 10.0),
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
+          Text(
+            '$viewCount views',
+            style: const TextStyle(fontSize: 10.0),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.all(8.0),
+      itemExtent: 106.0,
+      children: const <CustomListItem>[
+        CustomListItem(
+          user: 'Flutter',
+          viewCount: 999000,
+          title: 'The Flutter YouTube Channel',
+        ),
+        CustomListItem(
+          user: 'Dash',
+          viewCount: 884000,
+          title: 'Announcing Flutter 1.0',
+        ),
+      ],
+    );
+  }
+}
+

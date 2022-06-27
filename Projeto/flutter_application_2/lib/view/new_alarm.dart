@@ -65,9 +65,12 @@ class NewActState extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return const NewLazer();
-                          },
+                          builder: (_) => MultiBlocProvider(providers: [
+                                  BlocProvider<ManageBloc>.value(
+                                      value:
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: const NewLazer()),
+                                ], child: const NewLazer())
                         ),
                       );
                     },
@@ -103,9 +106,12 @@ class NewActState extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return const NewRemed();
-                          },
+                          builder: (_) => MultiBlocProvider(providers: [
+                                  BlocProvider<ManageBloc>.value(
+                                      value:
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: const NewRemed()),
+                                ], child: const NewRemed())
                         ),
                       );
                     },
@@ -119,9 +125,12 @@ class NewActState extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return const NewAExec();
-                          },
+                          builder: (_) => MultiBlocProvider(providers: [
+                                  BlocProvider<ManageBloc>.value(
+                                      value:
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: const NewAExec()),
+                                ], child: const NewAExec())
                         ),
                       );
                     },

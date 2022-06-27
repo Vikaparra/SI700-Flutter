@@ -141,6 +141,7 @@ class FormAct extends State<FormularioCad> {
                             alarmTime!.hour,
                             alarmTime!.minute);
                         appointInfo.date = finalAlarm;
+                        appointInfo.type = "consulta";
                         // print("teste: "+ (alarmDate!.day.toString()));
                         formKey.currentState!.save();
                         print("-------- Informacao inserida -------");

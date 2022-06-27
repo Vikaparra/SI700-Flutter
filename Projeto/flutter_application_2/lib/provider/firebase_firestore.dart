@@ -100,6 +100,7 @@ class FirestoreServer {
       "title": appoint.title,
       "description": appoint.description,
       "date":appoint.date,
+      "type":appoint.type,
       //"time":appoint.time
     });
     return 42;

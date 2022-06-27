@@ -14,16 +14,24 @@ class EditProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: null,
-        body: FutureBuilder<prefix.UserInfo>(
-            future: FirestoreServer.helper.getNote(),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                final userInfo = snapshot.data;
-                return Profile.withData(userInfo!);
-              } else {
-                return const Text('Algo deu errado!');
-              }
-            })));
+        body: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width,
+                  minHeight: MediaQuery.of(context).size.height * 0.95,
+                ),
+                child: FutureBuilder<prefix.UserInfo>(
+                  future: FirestoreServer.helper.getNote(),
+                  builder: ((context, snapshot) {
+                    if (snapshot.hasData) {
+                      final userInfo = snapshot.data;
+                      return Profile.withData(userInfo!);
+                    } else {
+                      return const Text('Algo deu errado!');
+                    }
+                  }),
+                ))));
   }
 }
 
@@ -50,7 +58,7 @@ class Profile extends StatelessWidget {
                     top: MediaQuery.of(context).size.height * 0.01,
                     right: MediaQuery.of(context).size.height * 0.01,
                     bottom: 00),
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.65,
                 decoration: const BoxDecoration(
                     color: kWhiteColor,
                     borderRadius: BorderRadius.only(
@@ -67,7 +75,7 @@ class Profile extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 0.0),
                           child: SizedBox(
                             // sizedBox para conter a customScrollView
-                            height: MediaQuery.of(context).size.height * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.60,
                             child: PerfilInfo(userInfo),
                           )),
                     ])),
@@ -117,9 +125,6 @@ class PerfilInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // ElevatedButton(
-              //     onPressed: () => {FirestoreServer.helper.getNote()},
-              //     child: const Text('oi')),
               Text(
                 userInfo.name,
                 textAlign: TextAlign.center,
@@ -137,14 +142,14 @@ class PerfilInfo extends StatelessWidget {
                     top: MediaQuery.of(context).size.height * 0.02),
                 child: ListTile(
                     title: const Text(
-                      'Nascimento',
+                      'Nome',
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                           fontFamily: "Comfortaa"),
                     ),
                     subtitle: Text(
-                      userInfo.birthDate,
+                      userInfo.name,
                       style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -157,6 +162,48 @@ class PerfilInfo extends StatelessWidget {
                       },
                     )),
               ),
+              ListTile(
+                  title: const Text(
+                    'Nascimento',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  subtitle: Text(
+                    userInfo.birthDate,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  trailing: GestureDetector(
+                    child: const Icon(Icons.edit),
+                    onTap: () {
+                      editDialog('Nascimento', context);
+                    },
+                  )),
+              ListTile(
+                  title: const Text(
+                    'Telefone: ',
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  subtitle: Text(
+                    userInfo.tel,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontFamily: "Comfortaa"),
+                  ),
+                  trailing: GestureDetector(
+                    child: const Icon(Icons.edit),
+                    onTap: () {
+                      editDialog('Telefone', context);
+                    },
+                  )),
               ListTile(
                 title: const Text(
                   'CPF',
@@ -189,49 +236,29 @@ class PerfilInfo extends StatelessWidget {
                       fontFamily: "Comfortaa"),
                 ),
               ),
-              ListTile(
-                  title: const Text(
-                    'Telefone: ',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontFamily: "Comfortaa"),
-                  ),
-                  subtitle: Text(
-                    userInfo.tel,
-                    style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontFamily: "Comfortaa"),
-                  ),
-                  trailing: GestureDetector(
-                    child: const Icon(Icons.edit),
-                    onTap: () {
-                      editDialog('Telefone', context);
-                    },
-                  )),
-              const ListTile(
-                title: Text(
-                  'Senha',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontFamily: "Comfortaa"),
-                ),
-                subtitle: Text(
-                  'xxxxxxxxxx',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontFamily: "Comfortaa"),
-                ),
-                // trailing: GestureDetector(
-                //   child: const Icon(Icons.edit),
-                //   onTap: () {
-                //     editDialog('Senha', context);
-                //   },
-                // )
-              ),
+
+              // const ListTile(
+              //   title: Text(
+              //     'Senha',
+              //     style: TextStyle(
+              //         fontSize: 14,
+              //         color: Colors.black,
+              //         fontFamily: "Comfortaa"),
+              //   ),
+              //   subtitle: Text(
+              //     'xxxxxxxxxx',
+              //     style: TextStyle(
+              //         fontSize: 14,
+              //         color: Colors.black,
+              //         fontFamily: "Comfortaa"),
+              //   ),
+              // trailing: GestureDetector(
+              //   child: const Icon(Icons.edit),
+              //   onTap: () {
+              //     editDialog('Senha', context);
+              //   },
+              // )
+              // ),
             ],
           ),
         ),

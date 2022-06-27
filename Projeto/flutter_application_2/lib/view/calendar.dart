@@ -23,7 +23,7 @@ class _PrincipalState extends State<Principal> {
     return Scaffold(
       body: IndexedStack(
         index: _currentScreen,
-        children:   [
+        children: [
           NewAct(),
           Calendar(),
           EditProfile(),
@@ -53,6 +53,7 @@ class _PrincipalState extends State<Principal> {
     );
   }
 }
+
 class Calendar extends StatelessWidget {
   Calendar({Key? key}) : super(key: key);
 
@@ -61,42 +62,41 @@ class Calendar extends StatelessWidget {
   //   Colors.red,
   //   Colors.yellow
   // ];
-  final List icons = [
-    Icons.ac_unit_outlined,
-    Icons.access_alarm_rounded
-  ];
+
+  final List icons = [Icons.ac_unit_outlined, Icons.access_alarm_rounded];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MonitorBloc, MonitorState>(
-      builder: (context, state) => getActListView(state.appointCollection),      
+      builder: (context, state) => getActListView(state.appointCollection),
     );
   }
-  
-  ListView getActListView(AppointCollection appointCollection) {
-    return ListView.builder(
+
+  Container getActListView(AppointCollection appointCollection) {
+//                  Card(
+//             //       color: kGreenColor,
+//             //       elevation: 5,
+//             //       child: ListTile(
+//             //         title: const Text('LAZER: CAMINHADA'),
+//             //         subtitle: const Text("Caminhada no parque Ibirapuera."),
+//             //         trailing: const Text("08:30"),
+//             //         onTap: () {},
+//             //       ),
+//             //     ),
+    return Container(
+      color: kSecondColor,
+      child: ListView.builder(
         itemCount: appointCollection.length(),
         itemBuilder: (context, position) => ListTile(
-              onTap: () {
-                // BlocProvider.of<ManageBloc>(context).add(UpdateRequest(noteId: noteCollection.getIdAtIndex(position), previousNote: noteCollection.getNodeAtIndex(position)));
-              },
-
-              // if((appointCollection.getNodeAtIndex(position).type) == "exercicio"){
-
-              // }
-
               leading: Icon(icons[position % icons.length]),
-
               trailing: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(Icons.delete)),
+                  onTap: () {}, child: const Icon(Icons.delete)),
 
               title: Text(appointCollection.getNodeAtIndex(position).title),
-              subtitle: Text(appointCollection.getNodeAtIndex(position).description)
+              subtitle:
+                  Text(appointCollection.getNodeAtIndex(position).description),
               // trailing: Text(appointCollection.getNodeAtIndex(position).date),
-              
-            ));
+            )));    
   }
-
 }
 // class Calendar extends StatelessWidget {
 //   const Calendar({Key? key}) : super(key: key);
@@ -193,7 +193,6 @@ Widget title() {
         )),
   );
 }
-
 
 class CustomListItem extends StatelessWidget {
   const CustomListItem({
@@ -293,4 +292,3 @@ class MyStatelessWidget extends StatelessWidget {
     );
   }
 }
-

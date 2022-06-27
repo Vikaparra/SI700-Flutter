@@ -89,12 +89,6 @@ class Login extends StatelessWidget {
                     if (formkey.currentState!.validate()) {
                       formkey.currentState!.save();
                       // Lançando evento
-                      print("---------------------------------------");
-                      print("---------------------------------------");
-                      print(username);
-                      print(password);
-                      print("---------------------------------------");
-                      print("---------------------------------------");
                       BlocProvider.of<AuthBloc>(context).add(
                           LoginUser(username: username, password: password));
                     }

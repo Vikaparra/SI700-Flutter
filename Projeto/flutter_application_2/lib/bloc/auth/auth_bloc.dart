@@ -17,7 +17,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event.userModel == null) {
         emit(Unauthenticated());
       } else {
-        print("-----------auth------------");
+        print("----------- Auth ------------");
 
         FirestoreServer.helper.uid = event.userModel!.uid;
 
@@ -30,13 +30,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<RegisterUser>((event, emit) async {
       try {
-        print("-----------register1------------");
+        print("----------- Register ------------");
         await _authenticationService.createUserWithEmailAndPassword(
             event.username, event.password, event.userInfo);
-        FirestoreServer.helper.insertNote(event.userInfo);
         FirestoreServer.helper.getNote();
         //salvar a nota aqui, que é certeza que a autenticação ja acabou
-        print("--------------create 2----------------");
       } catch (e) {
         emit(AuthError(message: "Impossível Registrar: ${e.toString()}"));
       }

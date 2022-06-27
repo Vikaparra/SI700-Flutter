@@ -20,7 +20,7 @@ class Appoint {
   Appoint.fromMap(map) {
     _title = map["title"];
     _description = map["description"];
-    _date = map["date"];
+    // _date = map["date"];
   }
 
   String get title => _title;

@@ -108,14 +108,14 @@ class FirestoreServer {
   AppointCollection _appointListFromSnapshot(QuerySnapshot snapshot) {
     AppointCollection appointCollection = AppointCollection();
     for (var doc in snapshot.docs) {
-      Appoint note = Appoint.fromMap(doc.data());
-      appointCollection.insertAppointOfId(doc.id, note);
+      Appoint appoint = Appoint.fromMap(doc.data());
+      appointCollection.insertAppointOfId(doc.id, appoint);
     }
     return appointCollection;
   }
 
   Future<AppointCollection> getAppointList() async {
-    QuerySnapshot snapshot = await appointCollection.doc(uid).collection("my_notes").get();
+    QuerySnapshot snapshot = await appointCollection.doc(uid).collection("appoints").get();
 
     return _appointListFromSnapshot(snapshot);
   }
@@ -129,6 +129,6 @@ class FirestoreServer {
   }
 
   Stream get stream_appoint {
-    return appointCollection.doc(uid).collection("appoints").snapshots().map(_noteListFromSnapshot);
+    return appointCollection.doc(uid).collection("appoints").snapshots().map(_appointListFromSnapshot);
   }
 }

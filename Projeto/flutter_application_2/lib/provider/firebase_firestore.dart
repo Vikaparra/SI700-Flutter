@@ -4,7 +4,6 @@ import '../model/appointments.dart';
 import '../model/userinfo.dart';
 import '../model/userinfos.dart';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreServer {
@@ -27,13 +26,12 @@ class FirestoreServer {
         .doc('user')
         .get();
     if (doc.exists) {
-      print("------------- usuario existe -------------");
       UserInfo note = UserInfo.fromMap(doc.data());
-      print("Nome do Usuario: "+note.name);
+      print("--- Pegando informacoes de: " + note.name + " ---");
       // print(query);
       return note;
     } else {
-      print("----------- usuario nao existe ------------");
+      print("----------- Usuario nao existe ------------");
       UserInfo user = UserInfo();
       return user;
     }
@@ -50,6 +48,39 @@ class FirestoreServer {
       "password": note.password,
       "cuidador": note.cuidador
     });
+    return 42;
+  }
+
+  Future<int> updateUserInfo(note, String attribute) async {
+    switch (attribute) {
+      case 'Nome':
+        await userInfo
+            .doc(uid)
+            .collection("user_information")
+            .doc('user')
+            .update({
+          "Nome": note,
+        });
+        break;
+      case 'Telefone':
+        await userInfo
+            .doc(uid)
+            .collection("user_information")
+            .doc('user')
+            .update({
+          "Telefone": note,
+        });
+        break;
+      case 'Nascimento':
+        await userInfo
+            .doc(uid)
+            .collection("user_information")
+            .doc('user')
+            .update({"Nascimento": note});
+        break;
+      default:
+    }
+
     return 42;
   }
 
@@ -86,12 +117,16 @@ class FirestoreServer {
 
     return _noteListFromSnapshot(snapshot);
   }
-  //coletando appoints
 
+  //coletando appoints
   final CollectionReference appointCollection = FirebaseFirestore.instance.collection("appoints");
   
   Future<Appoint> getAppoint(appointId) async {
-    DocumentSnapshot doc = await appointCollection.doc(uid).collection("appoints").doc(appointId).get();
+    DocumentSnapshot doc = await appointCollection
+        .doc(uid)
+        .collection("appoints")
+        .doc(appointId)
+        .get();
     Appoint appoint = Appoint.fromMap(doc.data());
     return appoint;
   }
@@ -100,8 +135,8 @@ class FirestoreServer {
     await appointCollection.doc(uid).collection("appoints").add({
       "title": appoint.title,
       "description": appoint.description,
-      "date":appoint.date,
-      "type":appoint.type,
+      "date": appoint.date,
+      "type": appoint.type,
       //"time":appoint.time
     });
     return 42;
@@ -118,6 +153,7 @@ class FirestoreServer {
 
   Future<AppointCollection> getAppointList() async {
     QuerySnapshot snapshot = await appointCollection.doc(uid).collection("appoints").get();
+
     return _appointListFromSnapshot(snapshot);
   }
 
@@ -130,7 +166,11 @@ class FirestoreServer {
   }
 
   Stream get stream_appoint {
-    return appointCollection.doc(uid).collection("appoints").snapshots().map(_appointListFromSnapshot);
+    return appointCollection
+        .doc(uid)
+        .collection("appoints")
+        .snapshots()
+        .map(_appointListFromSnapshot);
   }
 }
 

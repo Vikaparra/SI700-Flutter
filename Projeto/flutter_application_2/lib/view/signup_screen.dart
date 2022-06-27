@@ -241,24 +241,11 @@ class FormularioState extends State<FormularioCad> {
                     color: kSecondColor,
                     press: () async {
                       formKey.currentState!.save();
-                      print("USER INFO");
-                      print(profile.birthDate);
-                      print(profile.cpf);
-                      print(profile.cuidador);
-                      print(profile.email);
-                      print(profile.name);
-                      print(profile.password);
-                      print(profile.birthDate);
 
                       BlocProvider.of<AuthBloc>(context).add(RegisterUser(
                           username: profile.email,
                           password: profile.password,
                           userInfo: profile));
-
-                      var teste = FirestoreServer.helper.uid;
-                      print("uid");
-                      print(teste);
-                      print('--------------');
 
                       formKey.currentState!.reset();
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

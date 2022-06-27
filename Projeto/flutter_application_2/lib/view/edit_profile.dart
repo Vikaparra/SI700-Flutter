@@ -14,16 +14,24 @@ class EditProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: null,
-        body: FutureBuilder<prefix.UserInfo>(
-            future: FirestoreServer.helper.getNote(),
-            builder: ((context, snapshot) {
-              if (snapshot.hasData) {
-                final userInfo = snapshot.data;
-                return Profile.withData(userInfo!);
-              } else {
-                return const Text('Algo deu errado!');
-              }
-            })));
+        body: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width,
+                  minHeight: MediaQuery.of(context).size.height * 0.95,
+                ),
+                child: FutureBuilder<prefix.UserInfo>(
+                  future: FirestoreServer.helper.getNote(),
+                  builder: ((context, snapshot) {
+                    if (snapshot.hasData) {
+                      final userInfo = snapshot.data;
+                      return Profile.withData(userInfo!);
+                    } else {
+                      return const Text('Algo deu errado!');
+                    }
+                  }),
+                ))));
   }
 }
 
@@ -50,7 +58,7 @@ class Profile extends StatelessWidget {
                     top: MediaQuery.of(context).size.height * 0.01,
                     right: MediaQuery.of(context).size.height * 0.01,
                     bottom: 00),
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height * 0.65,
                 decoration: const BoxDecoration(
                     color: kWhiteColor,
                     borderRadius: BorderRadius.only(
@@ -67,7 +75,7 @@ class Profile extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 0.0),
                           child: SizedBox(
                             // sizedBox para conter a customScrollView
-                            height: MediaQuery.of(context).size.height * 0.55,
+                            height: MediaQuery.of(context).size.height * 0.60,
                             child: PerfilInfo(userInfo),
                           )),
                     ])),
@@ -96,7 +104,6 @@ Widget profileImage(context) {
 
 class PerfilInfo extends StatelessWidget {
   PerfilInfo(this.userInfo, {Key? key}) : super(key: key);
-
   prefix.UserInfo userInfo;
 
   // Future<prefix.UserInfo> buildNome() async {
@@ -118,9 +125,6 @@ class PerfilInfo extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // ElevatedButton(
-              //     onPressed: () => {FirestoreServer.helper.getNote()},
-              //     child: const Text('oi')),
               Text(
                 userInfo.name,
                 textAlign: TextAlign.center,
@@ -138,14 +142,14 @@ class PerfilInfo extends StatelessWidget {
                     top: MediaQuery.of(context).size.height * 0.02),
                 child: ListTile(
                     title: const Text(
-                      'Nascimento',
+                      'Nome',
                       style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                           fontFamily: "Comfortaa"),
                     ),
                     subtitle: Text(
-                      userInfo.birthDate,
+                      userInfo.name,
                       style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
@@ -153,19 +157,21 @@ class PerfilInfo extends StatelessWidget {
                     ),
                     trailing: GestureDetector(
                       child: const Icon(Icons.edit),
-                      onTap: () {},
+                      onTap: () {
+                        editDialog('Nome', context);
+                      },
                     )),
               ),
               ListTile(
                   title: const Text(
-                    'CPF',
+                    'Nascimento',
                     style: TextStyle(
                         fontSize: 14,
                         color: Colors.black,
                         fontFamily: "Comfortaa"),
                   ),
                   subtitle: Text(
-                    userInfo.cpf,
+                    userInfo.birthDate,
                     style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black,
@@ -173,26 +179,9 @@ class PerfilInfo extends StatelessWidget {
                   ),
                   trailing: GestureDetector(
                     child: const Icon(Icons.edit),
-                    onTap: () {},
-                  )),
-              ListTile(
-                  title: const Text(
-                    'Email',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontFamily: "Comfortaa"),
-                  ),
-                  subtitle: Text(
-                    userInfo.email,
-                    style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontFamily: "Comfortaa"),
-                  ),
-                  trailing: GestureDetector(
-                    child: const Icon(Icons.edit),
-                    onTap: () {},
+                    onTap: () {
+                      editDialog('Nascimento', context);
+                    },
                   )),
               ListTile(
                   title: const Text(
@@ -211,27 +200,65 @@ class PerfilInfo extends StatelessWidget {
                   ),
                   trailing: GestureDetector(
                     child: const Icon(Icons.edit),
-                    onTap: () {},
+                    onTap: () {
+                      editDialog('Telefone', context);
+                    },
                   )),
               ListTile(
-                  title: const Text(
-                    'Senha',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontFamily: "Comfortaa"),
-                  ),
-                  subtitle: const Text(
-                    'xxxxxxxxxx',
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontFamily: "Comfortaa"),
-                  ),
-                  trailing: GestureDetector(
-                    child: const Icon(Icons.edit),
-                    onTap: () {},
-                  )),
+                title: const Text(
+                  'CPF',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontFamily: "Comfortaa"),
+                ),
+                subtitle: Text(
+                  userInfo.cpf,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontFamily: "Comfortaa"),
+                ),
+              ),
+              ListTile(
+                title: const Text(
+                  'Email',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontFamily: "Comfortaa"),
+                ),
+                subtitle: Text(
+                  userInfo.email,
+                  style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                      fontFamily: "Comfortaa"),
+                ),
+              ),
+
+              // const ListTile(
+              //   title: Text(
+              //     'Senha',
+              //     style: TextStyle(
+              //         fontSize: 14,
+              //         color: Colors.black,
+              //         fontFamily: "Comfortaa"),
+              //   ),
+              //   subtitle: Text(
+              //     'xxxxxxxxxx',
+              //     style: TextStyle(
+              //         fontSize: 14,
+              //         color: Colors.black,
+              //         fontFamily: "Comfortaa"),
+              //   ),
+              // trailing: GestureDetector(
+              //   child: const Icon(Icons.edit),
+              //   onTap: () {
+              //     editDialog('Senha', context);
+              //   },
+              // )
+              // ),
             ],
           ),
         ),
@@ -258,9 +285,59 @@ class PerfilInfo extends StatelessWidget {
 }
 
 String getCuidador(userInfo) {
-    if (userInfo.cuidador == 0){
-      return "Familiar";
-    }else{
-      return "Profissional";
-    }
+  if (userInfo.cuidador == 0) {
+    return "Familiar";
+  } else {
+    return "Profissional";
+  }
+}
+
+editDialog(attribute, context) {
+  final GlobalKey<FormState> formKey = GlobalKey();
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actionsAlignment: MainAxisAlignment.center,
+          scrollable: true,
+          title: Text('Editar $attribute'),
+          content: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: <Widget>[
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      labelText: 'Digitar $attribute aqui',
+                    ),
+                    validator: (inValue) {
+                      if (inValue!.isEmpty) {
+                        return "Não é possivel deixar esse campo em branco";
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      FirestoreServer.helper.updateUserInfo(value, attribute);
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            RoundedButton(
+                color: kPrimaryColor,
+                text: "Confirmar",
+                textColor: kWhiteColor,
+                press: () {
+                  formKey.currentState!.save();
+                })
+          ],
+        );
+      });
 }

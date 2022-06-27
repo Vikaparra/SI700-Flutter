@@ -6,6 +6,7 @@ import 'package:flutter_application_2/view/login_screen.dart';
 import 'package:flutter_application_2/view/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/act/monitor_bloc.dart';
 import '../bloc/auth/auth_bloc.dart';
 
 import '../bloc/auth/auth_state.dart';
@@ -60,6 +61,10 @@ class Welcome extends StatelessWidget {
                                 BlocProvider<ManageBloc>.value(
                                       value:
                                           BlocProvider.of<ManageBloc>(context),
+                                      child: Signup()),
+                                BlocProvider<MonitorBloc>.value(
+                                      value:
+                                          BlocProvider.of<MonitorBloc>(context),
                                       child: Signup()),
                               ], child: const Signup())));
                 },

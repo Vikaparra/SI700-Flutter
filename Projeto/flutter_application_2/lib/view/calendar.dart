@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/act/monitor_bloc.dart';
 import '../bloc/act/monitor_state.dart';
 import '../model/appointments.dart';
+import '../provider/firebase_firestore.dart';
 
 class Principal extends StatefulWidget {
   const Principal({Key? key}) : super(key: key);
@@ -88,7 +89,10 @@ class Calendar extends StatelessWidget {
                               appointCollection.getNodeAtIndex(position)),
                           leading: Icon(useIcon(appointCollection.getNodeAtIndex(position))),
                           trailing: GestureDetector(
-                              onTap: () {}, child: const Icon(Icons.delete)
+                              onTap: () {
+                                var noteId = appointCollection.idList[position];
+                                FirestoreServer.helper.deleteNote(noteId);
+                              }, child: const Icon(Icons.delete)
                               ),
                           title: Text(
                               appointCollection.getNodeAtIndex(position).title, style: const TextStyle(fontSize: 20),),

@@ -11,6 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirestoreServer {
   // Atributo que irá afunilar todas as consultas
   static FirestoreServer helper = FirestoreServer._createInstance();
+  
   // Construtor privado
   FirestoreServer._createInstance();
 
@@ -20,6 +21,8 @@ class FirestoreServer {
   // Ponto de acesso com o servidor
   final CollectionReference userInfo =
       FirebaseFirestore.instance.collection("information");
+  final CollectionReference userAppoints =
+      FirebaseFirestore.instance.collection("appoints");
 
   Future<UserInfo> getNote() async {
     DocumentSnapshot doc = await userInfo
@@ -100,7 +103,7 @@ class FirestoreServer {
   }
 
   Future<int> deleteNote(noteId) async {
-    await userInfo.doc(uid).collection("user_information").doc(noteId).delete();
+    await userAppoints.doc(uid).collection("appoints").doc(noteId).delete();
     return 42;
   }
 

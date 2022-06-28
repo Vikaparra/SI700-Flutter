@@ -59,10 +59,11 @@ class AppointCollection {
   }
 
   insertAppointOfId(String id, Appoint appoint) {
-    idList.add(id);
     appointList.add(appoint);
-    appointList.sort((a,b) {
+    appointList.sort((a, b) {
       return a.date.compareTo(b.date);
     });
+    var index = appointList.indexOf(appoint);
+    idList.insert(index, id);
   }
 }

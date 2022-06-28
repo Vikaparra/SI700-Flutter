@@ -137,7 +137,7 @@ class FormAct extends State<FormularioCad> {
                     textColor: kWhiteColor,
                     color: kSecondColor,
                     press: () async {
-                      if (alarmDate!.day != 0001) {
+                      if (alarmDate!.year != 0001) {
                         DateTime? finalAlarm = DateTime(
                             alarmDate!.year,
                             alarmDate!.month,

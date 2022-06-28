@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/bloc/act/monitor_bloc.dart';
 import 'package:flutter_application_2/components/rounded_button.dart';
 import 'package:flutter_application_2/view/calendar.dart';
 import 'package:flutter_application_2/view/constants.dart';
@@ -91,6 +92,12 @@ class Login extends StatelessWidget {
                       // Lançando evento
                       BlocProvider.of<AuthBloc>(context).add(
                           LoginUser(username: username, password: password));
+                      BlocProvider<ManageBloc>.value(
+                          value: BlocProvider.of<ManageBloc>(context),
+                          child: Calendar());
+                      BlocProvider<MonitorBloc>.value(
+                          value: BlocProvider.of<MonitorBloc>(context),
+                          child: Calendar());
                     }
                   },
                 )

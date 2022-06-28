@@ -42,6 +42,10 @@ class Welcome extends StatelessWidget {
                                       value:
                                           BlocProvider.of<ManageBloc>(context),
                                       child: Login()),
+                                  BlocProvider<MonitorBloc>.value(
+                                      value:
+                                          BlocProvider.of<MonitorBloc>(context),
+                                      child: Login()),
                               ], child: Login())));
                 },
               ),

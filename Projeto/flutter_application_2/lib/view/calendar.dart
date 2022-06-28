@@ -71,17 +71,19 @@ class Calendar extends StatelessWidget {
             itemCount: appointCollection.length(),
             itemBuilder: (context, position) => Material(
                     child: ListTile(
+                  isThreeLine: true,
                   textColor: Colors.black,
-                  tileColor: tileColor(appointCollection.getNodeAtIndex(position)),
+                  tileColor:
+                      tileColor(appointCollection.getNodeAtIndex(position)),
                   leading: Icon(icons[position % icons.length]),
                   trailing: GestureDetector(
                       onTap: () {}, child: const Icon(Icons.delete)),
 
                   title: Text(appointCollection.getNodeAtIndex(position).title),
                   subtitle: Text(
-                      appointCollection.getNodeAtIndex(position).description),
+                      appointCollection.getNodeAtIndex(position).description+'\n'+appointCollection.getNodeAtIndex(position).date.toString(),
                   // trailing: Text(appointCollection.getNodeAtIndex(position).date),
-                ))));
+                )))));
   }
 }
 

@@ -93,12 +93,19 @@ Widget profileImage(context) {
         bottom: MediaQuery.of(context).size.height * 0.04),
     decoration: const BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(20)),
-      color: Colors.black,
+      color: Colors.white,
     ),
-    child: SizedBox(
-      width: MediaQuery.of(context).size.height * 0.17,
-      height: MediaQuery.of(context).size.height * 0.17,
-    ),
+    child: Image.asset(
+                'assets/images/3new.png', //Imagem de plano de fundo com logo
+                width: MediaQuery.of(context).size.height * 0.21,
+      height: MediaQuery.of(context).size.height * 0.21,
+              ),
+    
+    
+    // SizedBox(
+    //   width: MediaQuery.of(context).size.height * 0.17,
+    //   height: MediaQuery.of(context).size.height * 0.17,
+    // ),
   );
 }
 

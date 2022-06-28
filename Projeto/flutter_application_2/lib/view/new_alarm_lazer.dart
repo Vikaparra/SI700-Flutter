@@ -54,7 +54,7 @@ Widget title() {
               color: Colors.black,
               fontFamily: "Comfortaa"),
           child: Text(
-            'NOVA ATIVIDADE',
+            'NOVO LAZER',
             textAlign: TextAlign.start,
           ),
         )),

@@ -5,6 +5,7 @@ import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/new_alarm_consulta.dart';
 import 'package:flutter_application_2/view/new_alarm_exercicio.dart';
 import 'package:flutter_application_2/view/new_alarm_lazer.dart';
+import 'package:flutter_application_2/view/new_alarm_remedio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewAct extends StatelessWidget {
@@ -109,8 +110,8 @@ class NewActState extends StatelessWidget {
                                   BlocProvider<ManageBloc>.value(
                                       value:
                                           BlocProvider.of<ManageBloc>(context),
-                                      child: const NewConsulta()),
-                                ], child: const NewConsulta())
+                                      child: const NewRemed()),
+                                ], child: const NewRemed())
                         ),
                       );
                     },

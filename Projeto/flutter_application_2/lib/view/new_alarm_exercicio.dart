@@ -57,7 +57,7 @@ Widget title() {
                 color: Colors.black,
                 fontFamily: "Comfortaa"),
             child: Text(
-              'NOVA ATIVIDADE',
+              'NOVO EXERCÍCIO',
               textAlign: TextAlign.start,
             ),
           )),

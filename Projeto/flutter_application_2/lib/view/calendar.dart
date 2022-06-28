@@ -202,7 +202,7 @@ divisoria(appointCollection, position, context) {
     return Padding(
         child: SizedBox(
             child: const Text(
-              'COMPROMISSOS: ',
+              'ATIVIDADES',
               textAlign: TextAlign.left,
               style: TextStyle(
                   fontSize: 30,

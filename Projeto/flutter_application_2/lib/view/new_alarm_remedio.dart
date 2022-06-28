@@ -27,7 +27,7 @@ class ScreenAlarm extends StatelessWidget {
     return SingleChildScrollView(
       child: Container( //Background com color da atividade:  Verde
         decoration: const BoxDecoration(
-          color: kGreenColor,
+          color: kOrangeColor,
         ),
         child: Column(
           children: [
@@ -54,7 +54,7 @@ Widget title() {
               color: Colors.black,
               fontFamily: "Comfortaa"),
           child: Text(
-            'NOVA ATIVIDADE',
+            'NOVO REMÉDIO',
             textAlign: TextAlign.start,
           ),
         )),
@@ -134,7 +134,7 @@ class FormAct extends State<FormularioCad> {
                 RoundedButton(
                     text: "CADASTRAR",
                     textColor: kWhiteColor,
-                    color: kGreenColor,
+                    color: kOrangeColor,
                     press: () async {
                       if (alarmDate!.year != 0001) {
                         DateTime? finalAlarm = DateTime(
@@ -160,7 +160,7 @@ class FormAct extends State<FormularioCad> {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           //Adicionando snackbar ao cadastrar
-                          backgroundColor: kGreenColor,
+                          backgroundColor: kOrangeColor,
                           duration: Duration(seconds: 1),
                           content: Text("ATIVIDADE SALVA",
                               style: TextStyle(fontWeight: FontWeight.bold)),

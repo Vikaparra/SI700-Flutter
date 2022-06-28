@@ -70,20 +70,63 @@ class Calendar extends StatelessWidget {
         child: ListView.builder(
             itemCount: appointCollection.length(),
             itemBuilder: (context, position) => Material(
-                    child: ListTile(
-                  isThreeLine: true,
-                  textColor: Colors.black,
-                  tileColor:
-                      tileColor(appointCollection.getNodeAtIndex(position)),
-                  leading: Icon(icons[position % icons.length]),
-                  trailing: GestureDetector(
-                      onTap: () {}, child: const Icon(Icons.delete)),
+                  color: kSecondColor,
+                  child: Column(
+                    children: [
+                      divisoria(appointCollection, position, context),
+                      ListTile(
+                          isThreeLine: true,
+                          textColor: Colors.black,
+                          tileColor: tileColor(
+                              appointCollection.getNodeAtIndex(position)),
+                          leading: Icon(icons[position % icons.length]),
+                          trailing: GestureDetector(
+                              onTap: () {}, child: const Icon(Icons.delete)),
+                          title: Text(
+                              appointCollection.getNodeAtIndex(position).title),
+                          subtitle: Text(
+                            appointCollection
+                                    .getNodeAtIndex(position)
+                                    .description +
+                                '\n' +
+                                appointCollection
+                                    .getNodeAtIndex(position)
+                                    .date
+                                    .toString(),
+                            // trailing: Text(appointCollection.getNodeAtIndex(position).date),
+                          ))
+                    ],
+                  ),
+                )));
+  }
+}
 
-                  title: Text(appointCollection.getNodeAtIndex(position).title),
-                  subtitle: Text(
-                      appointCollection.getNodeAtIndex(position).description+'\n'+appointCollection.getNodeAtIndex(position).date.toString(),
-                  // trailing: Text(appointCollection.getNodeAtIndex(position).date),
-                )))));
+divisoria(appointCollection, position, context) {
+  if (position > 0) {
+    var tileAtual = appointCollection.getNodeAtIndex(position).date;
+    var tileAnterior = appointCollection.getNodeAtIndex(position - 1).date;
+    print('ate aqui deu bom');
+    if (!((tileAtual.day == tileAnterior.day) &&
+        (tileAtual.month == tileAnterior.month) && (tileAtual.year == tileAnterior.year)
+    )) {
+      return Padding(
+          child: SizedBox(
+              child: Text(
+                tileAtual.day.toString() +
+                    ' / ' +
+                    tileAtual.month.toString() +
+                    ' / ' +
+                    tileAtual.year.toString(),
+                textAlign: TextAlign.left,
+                style: TextStyle(color: kWhiteColor, fontSize: 20),
+              ),
+              width: MediaQuery.of(context).size.width * 0.90),
+          padding: const EdgeInsets.only(top: 40.0, bottom: 10));
+    } else {
+      return const Text(" ");
+    }
+  } else {
+    return const Text("--");
   }
 }
 
@@ -93,7 +136,7 @@ tileColor(tile) {
       return kPinkColor;
 
     case 'exercicio':
-      return kSecondColor;
+      return const Color.fromARGB(255, 197, 237, 255);
 
     case 'lazer':
       return kGreenColor;

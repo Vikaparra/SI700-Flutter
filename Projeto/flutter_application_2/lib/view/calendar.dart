@@ -23,9 +23,9 @@ class _PrincipalState extends State<Principal> {
       body: IndexedStack(
         index: _currentScreen,
         children: [
-          NewAct(),
+          const NewAct(),
           Calendar(),
-          EditProfile(),
+          const EditProfile(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -66,6 +66,7 @@ class Calendar extends StatelessWidget {
 
   Container getActListView(AppointCollection appointCollection) {
     return Container(
+        padding: EdgeInsets.only(right: 15, left: 15),
         color: kSecondColor,
         child: ListView.builder(
             itemCount: appointCollection.length(),
@@ -83,7 +84,7 @@ class Calendar extends StatelessWidget {
                           trailing: GestureDetector(
                               onTap: () {}, child: const Icon(Icons.delete)),
                           title: Text(
-                              appointCollection.getNodeAtIndex(position).title),
+                              appointCollection.getNodeAtIndex(position).title, style: TextStyle(fontSize: 20),),
                           subtitle: Text(
                             appointCollection
                                     .getNodeAtIndex(position)
@@ -91,7 +92,11 @@ class Calendar extends StatelessWidget {
                                 '\n' +
                                 appointCollection
                                     .getNodeAtIndex(position)
-                                    .date
+                                    .date.hour
+                                    .toString()+':'+
+                                appointCollection
+                                    .getNodeAtIndex(position)
+                                    .date.minute
                                     .toString(),
                             // trailing: Text(appointCollection.getNodeAtIndex(position).date),
                           ))
@@ -107,8 +112,8 @@ divisoria(appointCollection, position, context) {
     var tileAnterior = appointCollection.getNodeAtIndex(position - 1).date;
     print('ate aqui deu bom');
     if (!((tileAtual.day == tileAnterior.day) &&
-        (tileAtual.month == tileAnterior.month) && (tileAtual.year == tileAnterior.year)
-    )) {
+        (tileAtual.month == tileAnterior.month) &&
+        (tileAtual.year == tileAnterior.year))) {
       return Padding(
           child: SizedBox(
               child: Text(
@@ -126,7 +131,19 @@ divisoria(appointCollection, position, context) {
       return const Text(" ");
     }
   } else {
-    return const Text("--");
+    return Padding(
+        child: SizedBox(
+            child: const Text(
+              'COMPROMISSOS: ',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.normal,
+                  color: kWhiteColor,
+                  fontFamily: "Comfortaa"),
+            ),
+            width: MediaQuery.of(context).size.width * 0.90),
+        padding: const EdgeInsets.only(top: 40.0, bottom: 20));
   }
 }
 
@@ -134,135 +151,12 @@ tileColor(tile) {
   switch (tile.type) {
     case 'consulta':
       return kPinkColor;
-
     case 'exercicio':
       return const Color.fromARGB(255, 197, 237, 255);
-
     case 'lazer':
       return kGreenColor;
-
     case 'remedio':
       return kOrangeColor;
-
     default:
   }
 }
-
-Widget title() {
-  //Formatação visual do titulo da tela
-  return Container(
-    margin: const EdgeInsets.only(left: 60.0, top: 50, bottom: 10),
-    child: const SizedBox(
-        width: double.infinity,
-        child: DefaultTextStyle(
-          style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-              fontFamily: "Comfortaa"),
-          child: Text(
-            'ATIVIDADES DIÁRIAS',
-            textAlign: TextAlign.start,
-          ),
-        )),
-  );
-}
-
-// class CustomListItem extends StatelessWidget {
-//   const CustomListItem({
-//     Key? key,
-//     required this.title,
-//     required this.user,
-//     required this.viewCount,
-//   }) : super(key: key);
-
-//   final String title;
-//   final String user;
-//   final int viewCount;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 5.0),
-//       child: Row(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: <Widget>[
-//           Expanded(
-//             flex: 3,
-//             child: _VideoDescription(
-//               title: title,
-//               user: user,
-//               viewCount: viewCount,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class _VideoDescription extends StatelessWidget {
-//   const _VideoDescription({
-//     Key? key,
-//     required this.title,
-//     required this.user,
-//     required this.viewCount,
-//   }) : super(key: key);
-
-//   final String title;
-//   final String user;
-//   final int viewCount;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: <Widget>[
-//           Text(
-//             title,
-//             style: const TextStyle(
-//               fontWeight: FontWeight.w500,
-//               fontSize: 14.0,
-//             ),
-//           ),
-//           const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-//           Text(
-//             user,
-//             style: const TextStyle(fontSize: 10.0),
-//           ),
-//           const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
-//           Text(
-//             '$viewCount views',
-//             style: const TextStyle(fontSize: 10.0),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class MyStatelessWidget extends StatelessWidget {
-//   const MyStatelessWidget({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView(
-//       padding: const EdgeInsets.all(8.0),
-//       itemExtent: 106.0,
-//       children: const <CustomListItem>[
-//         CustomListItem(
-//           user: 'Flutter',
-//           viewCount: 999000,
-//           title: 'The Flutter YouTube Channel',
-//         ),
-//         CustomListItem(
-//           user: 'Dash',
-//           viewCount: 884000,
-//           title: 'Announcing Flutter 1.0',
-//         ),
-//       ],
-//     );
-//   }
-// }

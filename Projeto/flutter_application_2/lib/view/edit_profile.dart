@@ -309,8 +309,6 @@ editDialog(attribute, context) {
                 children: <Widget>[
                   TextFormField(
                     keyboardType: TextInputType.text,
-                    obscureText: true,
-                    enableSuggestions: false,
                     autocorrect: false,
                     decoration: InputDecoration(
                       labelText: 'Digitar $attribute aqui',

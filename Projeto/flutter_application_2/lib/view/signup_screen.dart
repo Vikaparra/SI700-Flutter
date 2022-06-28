@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/act/act_bloc.dart';
 import '../bloc/act/monitor_bloc.dart';
 import '../bloc/auth/auth_event.dart';
+import '../bloc/medicine/medicine_bloc.dart';
+import '../bloc/medicine/medmonitor_bloc.dart';
 import '../model/userinfo.dart';
 import '../provider/firebase_firestore.dart';
 import 'calendar.dart';
@@ -268,6 +270,14 @@ class FormularioState extends State<FormularioCad> {
                                         child: const Principal()),
                                     BlocProvider<ManageBloc>.value(
                                         value: BlocProvider.of<ManageBloc>(
+                                            context),
+                                        child: const Principal()),
+                                    BlocProvider<MedMonitorBloc>.value(
+                                        value: BlocProvider.of<MedMonitorBloc>(
+                                            context),
+                                        child: const Principal()),
+                                    BlocProvider<MedManageBloc>.value(
+                                        value: BlocProvider.of<MedManageBloc>(
                                             context),
                                         child: const Principal()),
                                   ], child: const Principal())));

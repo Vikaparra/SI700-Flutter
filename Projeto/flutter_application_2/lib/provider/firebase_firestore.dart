@@ -1,6 +1,8 @@
 import 'package:flutter_application_2/model/appointment.dart';
+import 'package:flutter_application_2/model/medicine.dart';
 
 import '../model/appointments.dart';
+import '../model/medicines.dart';
 import '../model/userinfo.dart';
 import '../model/userinfos.dart';
 
@@ -159,6 +161,46 @@ class FirestoreServer {
     return _appointListFromSnapshot(snapshot);
   }
 
+  //coletando medicine
+  final CollectionReference medicCollection =
+      FirebaseFirestore.instance.collection("medicines");
+
+  Future<Medic> getMedic(medicId) async {
+    DocumentSnapshot doc = await medicCollection
+        .doc(uid)
+        .collection("medicines")
+        .doc(medicId)
+        .get();
+    Medic medic = Medic.fromMap(doc.data());
+    return medic;
+  }
+
+  Future<int> insertMedic(Medic medic) async {
+    await medicCollection.doc(uid).collection("medicines").add({
+      "title": medic.title,
+      "description": medic.description,
+      "time": medic.time,
+      "type": medic.type,
+    });
+    return 42;
+  }
+
+  MedicineCollection _medicListFromSnapshot(QuerySnapshot snapshot) {
+    MedicineCollection medicCollection = MedicineCollection();
+    for (var doc in snapshot.docs) {
+      Medic medic = Medic.fromMap(doc.data());
+      medicCollection.insertMedicOfId(doc.id, medic);
+    }
+    return medicCollection;
+  }
+
+  Future<MedicineCollection> getMedicList() async {
+    QuerySnapshot snapshot =
+        await medicCollection.doc(uid).collection("medicines").get();
+
+    return _medicListFromSnapshot(snapshot);
+  }
+
   Stream get stream {
     return userInfo
         .doc(uid)
@@ -174,6 +216,12 @@ class FirestoreServer {
         .snapshots()
         .map(_appointListFromSnapshot);
   }
-}
 
-// Stream<List<Users>> readUsers()=> FirebaseFirestore.instance.collection('appoints'.snapshots().map((snapahot)=>snapshot.docs.map))
+  Stream get stream_medic {
+    return medicCollection
+        .doc(uid)
+        .collection("medicines")
+        .snapshots()
+        .map(_medicListFromSnapshot);
+  }
+}

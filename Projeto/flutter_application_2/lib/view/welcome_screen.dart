@@ -10,6 +10,8 @@ import '../bloc/act/monitor_bloc.dart';
 import '../bloc/auth/auth_bloc.dart';
 
 import '../bloc/auth/auth_state.dart';
+import '../bloc/medicine/medicine_bloc.dart';
+import '../bloc/medicine/medmonitor_bloc.dart';
 import 'calendar.dart';
 
 class Welcome extends StatelessWidget {
@@ -59,12 +61,16 @@ class Welcome extends StatelessWidget {
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: const Signup()),
                                 BlocProvider<ManageBloc>.value(
-                                      value:
-                                          BlocProvider.of<ManageBloc>(context),
+                                      value:BlocProvider.of<ManageBloc>(context),
                                       child: Signup()),
                                 BlocProvider<MonitorBloc>.value(
-                                      value:
-                                          BlocProvider.of<MonitorBloc>(context),
+                                      value:BlocProvider.of<MonitorBloc>(context),
+                                      child: Signup()),
+                                BlocProvider<MedManageBloc>.value(
+                                      value:BlocProvider.of<MedManageBloc>(context),
+                                      child: Signup()),
+                                BlocProvider<MedMonitorBloc>.value(
+                                      value:BlocProvider.of<MedMonitorBloc>(context),
                                       child: Signup()),
                               ], child: const Signup())));
                 },

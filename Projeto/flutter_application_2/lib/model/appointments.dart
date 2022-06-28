@@ -4,11 +4,7 @@ class AppointCollection {
   List<String> idList = [];
   List<Appoint> appointList = [];
 
-  AppointCollection() {
-    // Appoint information = Appoint();
-    // information.date.toString();
-    // information.title.compareTo((a, b) => a.date.compareTo(b.date));
-    
+  AppointCollection() {    
     idList = [];
     appointList = [];
   }

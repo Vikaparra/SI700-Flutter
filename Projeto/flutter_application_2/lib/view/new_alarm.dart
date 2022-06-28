@@ -8,6 +8,8 @@ import 'package:flutter_application_2/view/new_alarm_lazer.dart';
 import 'package:flutter_application_2/view/new_alarm_remedio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/medicine/medicine_bloc.dart';
+
 class NewAct extends StatelessWidget {
   const NewAct({Key? key}) : super(key: key);
 
@@ -107,9 +109,9 @@ class NewActState extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (_) => MultiBlocProvider(providers: [
-                                  BlocProvider<ManageBloc>.value(
+                                  BlocProvider<MedManageBloc>.value(
                                       value:
-                                          BlocProvider.of<ManageBloc>(context),
+                                          BlocProvider.of<MedManageBloc>(context),
                                       child: const NewRemed()),
                                 ], child: const NewRemed())
                         ),

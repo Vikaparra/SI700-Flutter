@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/view/calendarmedic.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/edit_profile.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
@@ -22,9 +23,9 @@ class _PrincipalState extends State<Principal> {
     return Scaffold(
       body: IndexedStack(
         index: _currentScreen,
-        children: const [
+        children:  [
           NewAct(),
-          Calendar(),
+          CalendarMedic(),
           EditProfile(),
         ],
       ),
@@ -73,7 +74,7 @@ class Calendar extends StatelessWidget {
         padding:
             const EdgeInsets.only(right: 10.0, left: 10, top: 10, bottom: 10),
         color: kSecondColor,
-        child: ListView.builder(
+        child: ListView.builder(            
             itemCount: appointCollection.length(),
             itemBuilder: (context, position) => Material(
                   color: kSecondColor,

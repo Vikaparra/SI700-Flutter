@@ -5,7 +5,12 @@ class AppointCollection {
   List<Appoint> appointList = [];
 
   AppointCollection() {
+    // Appoint information = Appoint();
+    // information.date.toString();
+    // information.title.compareTo((a, b) => a.date.compareTo(b.date));
+    
     idList = [];
+    appointList.sort();
     appointList = [];
   }
 
@@ -32,6 +37,7 @@ class AppointCollection {
 
   updateOrInsertAppointOfId(String id, Appoint appoint) {
     int index = getIndexOfId(id);
+
     if (index != -1) {
       appointList[index] = appoint;
     } else {

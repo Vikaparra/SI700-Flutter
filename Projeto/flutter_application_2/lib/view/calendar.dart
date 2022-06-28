@@ -56,7 +56,11 @@ class _PrincipalState extends State<Principal> {
 class Calendar extends StatelessWidget {
   Calendar({Key? key}) : super(key: key);
 
-  final List icons = [Icons.ac_unit_outlined, Icons.access_alarm_rounded];
+  // final List icons = [
+  //   Icons.beach_access,
+  //   Icons.medical_services_outlined,
+  //   Icons.medication_liquid_rounded
+  // ];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MonitorBloc, MonitorState>(
@@ -65,8 +69,9 @@ class Calendar extends StatelessWidget {
   }
 
   Container getActListView(AppointCollection appointCollection) {
-    
     return Container(
+        padding:
+            const EdgeInsets.only(right: 10.0, left: 10, top: 10, bottom: 10),
         color: kSecondColor,
         child: ListView.builder(
             itemCount: appointCollection.length(),
@@ -80,9 +85,10 @@ class Calendar extends StatelessWidget {
                           textColor: Colors.black,
                           tileColor: tileColor(
                               appointCollection.getNodeAtIndex(position)),
-                          leading: Icon(icons[position % icons.length]),
+                          leading: Icon(useIcon(appointCollection.getNodeAtIndex(position))),
                           trailing: GestureDetector(
-                              onTap: () {}, child: const Icon(Icons.delete)),
+                              onTap: () {}, child: const Icon(Icons.delete)
+                              ),
                           title: Text(
                               appointCollection.getNodeAtIndex(position).title),
                           subtitle: Text(
@@ -94,7 +100,6 @@ class Calendar extends StatelessWidget {
                                     .getNodeAtIndex(position)
                                     .date
                                     .toString(),
-                            // trailing: Text(appointCollection.getNodeAtIndex(position).date),
                           ))
                     ],
                   ),
@@ -106,23 +111,88 @@ divisoria(appointCollection, position, context) {
   if (position > 0) {
     var tileAtual = appointCollection.getNodeAtIndex(position).date;
     var tileAnterior = appointCollection.getNodeAtIndex(position - 1).date;
-    print('ate aqui deu bom');
+
     if (!((tileAtual.day == tileAnterior.day) &&
-        (tileAtual.month == tileAnterior.month) && (tileAtual.year == tileAnterior.year)
-    )) {
+        (tileAtual.month == tileAnterior.month) &&
+        (tileAtual.year == tileAnterior.year))) {
+      var mes = "";
+
+      switch (tileAtual.month.toString()) {
+        case "6":
+          {
+            (mes = "JUNHO");
+          }
+          break;
+        case "7":
+          {
+            (mes = "JULHO");
+          }
+          break;
+        case "8":
+          {
+            (mes = "AGOSTO");
+          }
+          break;
+        case "9":
+          {
+            (mes = "SETEMBRO");
+          }
+          break;
+        case "10":
+          {
+            (mes = "OUTUBRO");
+          }
+          break;
+        case "11":
+          {
+            (mes = "NOVEMBRO");
+          }
+          break;
+        case "12":
+          {
+            (mes = "DEZEMBRO");
+          }
+          break;
+        case "1":
+          {
+            (mes = "JANEIRO");
+          }
+          break;
+        case "2":
+          {
+            (mes = "FEVEREIRO");
+          }
+          break;
+        case "3":
+          {
+            (mes = "MARÇO");
+          }
+          break;
+        case "4":
+          {
+            (mes = "ABRIL");
+          }
+          break;
+        case "5":
+          {
+            (mes = "MAIO");
+          }
+          break;
+      }
+
       return Padding(
           child: SizedBox(
               child: Text(
                 tileAtual.day.toString() +
-                    ' / ' +
-                    tileAtual.month.toString() +
-                    ' / ' +
+                    ' DE ' +
+                    mes +
+                    ' DE ' +
                     tileAtual.year.toString(),
                 textAlign: TextAlign.left,
                 style: TextStyle(color: kWhiteColor, fontSize: 20),
               ),
               width: MediaQuery.of(context).size.width * 0.90),
-          padding: const EdgeInsets.only(top: 40.0, bottom: 10));
+          padding: const EdgeInsets.only(top: 10.0, bottom: 10));
     } else {
       return const Text(" ");
     }
@@ -146,6 +216,22 @@ tileColor(tile) {
       return kOrangeColor;
 
     default:
+  }
+}
+
+useIcon(tile) {
+  switch (tile.type) {
+    case 'consulta':
+      return Icons.medical_services_outlined;
+
+    case 'exercicio':
+      return Icons.beach_access;
+
+    case 'lazer':
+      return Icons.beach_access;
+
+    case 'remedio':
+      return Icons.medication_liquid_rounded;
   }
 }
 

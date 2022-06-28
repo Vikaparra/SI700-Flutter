@@ -23,7 +23,7 @@ class _PrincipalState extends State<Principal> {
     return Scaffold(
       body: IndexedStack(
         index: _currentScreen,
-        children:  [
+        children: [
           NewAct(),
           Calendar(),
           EditProfile(),
@@ -68,7 +68,7 @@ class Calendar extends StatelessWidget {
         padding:
             const EdgeInsets.only(right: 10.0, left: 10, top: 10, bottom: 10),
         color: kSecondColor,
-        child: ListView.builder(            
+        child: ListView.builder(
             itemCount: appointCollection.length(),
             itemBuilder: (context, position) => Material(
                   color: kSecondColor,
@@ -80,15 +80,18 @@ class Calendar extends StatelessWidget {
                           textColor: Colors.black,
                           tileColor: tileColor(
                               appointCollection.getNodeAtIndex(position)),
-                          leading: Icon(useIcon(appointCollection.getNodeAtIndex(position))),
+                          leading: Icon(useIcon(
+                              appointCollection.getNodeAtIndex(position))),
                           trailing: GestureDetector(
                               onTap: () {
                                 var noteId = appointCollection.idList[position];
                                 FirestoreServer.helper.deleteNote(noteId);
-                              }, child: const Icon(Icons.delete)
-                              ),
+                              },
+                              child: const Icon(Icons.delete)),
                           title: Text(
-                              appointCollection.getNodeAtIndex(position).title, style: const TextStyle(fontSize: 20),),
+                            appointCollection.getNodeAtIndex(position).title,
+                            style: const TextStyle(fontSize: 20),
+                          ),
                           subtitle: Text(
                             appointCollection
                                     .getNodeAtIndex(position)
@@ -96,11 +99,14 @@ class Calendar extends StatelessWidget {
                                 '\n' +
                                 appointCollection
                                     .getNodeAtIndex(position)
-                                    .date.hour
-                                    .toString()+':'+
+                                    .date
+                                    .hour
+                                    .toString() +
+                                ':' +
                                 appointCollection
                                     .getNodeAtIndex(position)
-                                    .date.minute
+                                    .date
+                                    .minute
                                     .toString(),
                           ))
                     ],
@@ -110,78 +116,78 @@ class Calendar extends StatelessWidget {
 }
 
 divisoria(appointCollection, position, context) {
+  var mes = "";
+  var tileAtual = appointCollection.getNodeAtIndex(position).date;
+
+  switch (tileAtual.month.toString()) {
+    case "6":
+      {
+        (mes = "JUNHO");
+      }
+      break;
+    case "7":
+      {
+        (mes = "JULHO");
+      }
+      break;
+    case "8":
+      {
+        (mes = "AGOSTO");
+      }
+      break;
+    case "9":
+      {
+        (mes = "SETEMBRO");
+      }
+      break;
+    case "10":
+      {
+        (mes = "OUTUBRO");
+      }
+      break;
+    case "11":
+      {
+        (mes = "NOVEMBRO");
+      }
+      break;
+    case "12":
+      {
+        (mes = "DEZEMBRO");
+      }
+      break;
+    case "1":
+      {
+        (mes = "JANEIRO");
+      }
+      break;
+    case "2":
+      {
+        (mes = "FEVEREIRO");
+      }
+      break;
+    case "3":
+      {
+        (mes = "MARÇO");
+      }
+      break;
+    case "4":
+      {
+        (mes = "ABRIL");
+      }
+      break;
+    case "5":
+      {
+        (mes = "MAIO");
+      }
+      break;
+  }
+
   if (position > 0) {
-    var tileAtual = appointCollection.getNodeAtIndex(position).date;
     var tileAnterior = appointCollection.getNodeAtIndex(position - 1).date;
 
     if (!((tileAtual.day == tileAnterior.day) &&
         (tileAtual.month == tileAnterior.month) &&
         (tileAtual.year == tileAnterior.year))) {
-      var mes = "";
-
-      switch (tileAtual.month.toString()) {
-        case "6":
-          {
-            (mes = "JUNHO");
-          }
-          break;
-        case "7":
-          {
-            (mes = "JULHO");
-          }
-          break;
-        case "8":
-          {
-            (mes = "AGOSTO");
-          }
-          break;
-        case "9":
-          {
-            (mes = "SETEMBRO");
-          }
-          break;
-        case "10":
-          {
-            (mes = "OUTUBRO");
-          }
-          break;
-        case "11":
-          {
-            (mes = "NOVEMBRO");
-          }
-          break;
-        case "12":
-          {
-            (mes = "DEZEMBRO");
-          }
-          break;
-        case "1":
-          {
-            (mes = "JANEIRO");
-          }
-          break;
-        case "2":
-          {
-            (mes = "FEVEREIRO");
-          }
-          break;
-        case "3":
-          {
-            (mes = "MARÇO");
-          }
-          break;
-        case "4":
-          {
-            (mes = "ABRIL");
-          }
-          break;
-        case "5":
-          {
-            (mes = "MAIO");
-          }
-          break;
-      }
-
       return Padding(
           child: SizedBox(
               child: Text(
@@ -199,19 +205,36 @@ divisoria(appointCollection, position, context) {
       return const Text(" ");
     }
   } else {
-    return Padding(
-        child: SizedBox(
-            child: const Text(
-              'ATIVIDADES',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.normal,
-                  color: kWhiteColor,
-                  fontFamily: "Comfortaa"),
-            ),
-            width: MediaQuery.of(context).size.width * 0.90),
-        padding: const EdgeInsets.only(top: 40.0, bottom: 20));
+    return Column(
+      children: [
+        Padding(
+            child: SizedBox(
+                child: const Text(
+                  'ATIVIDADES',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.normal,
+                      color: kWhiteColor,
+                      fontFamily: "Comfortaa"),
+                ),
+                width: MediaQuery.of(context).size.width * 0.90),
+            padding: const EdgeInsets.only(top: 40.0, bottom: 20)),
+        Padding(
+            child: SizedBox(
+                child: Text(
+                  tileAtual.day.toString() +
+                      ' DE ' +
+                      mes +
+                      ' DE ' +
+                      tileAtual.year.toString(),
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(color: kWhiteColor, fontSize: 20),
+                ),
+                width: MediaQuery.of(context).size.width * 0.90),
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10))
+      ],
+    );
   }
 }
 

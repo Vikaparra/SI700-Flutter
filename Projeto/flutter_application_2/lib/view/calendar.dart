@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/view/calendarmedic.dart';
 import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/edit_profile.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
@@ -26,7 +25,7 @@ class _PrincipalState extends State<Principal> {
         index: _currentScreen,
         children:  [
           NewAct(),
-          CalendarMedic(),
+          Calendar(),
           EditProfile(),
         ],
       ),
@@ -57,12 +56,6 @@ class _PrincipalState extends State<Principal> {
 
 class Calendar extends StatelessWidget {
   const Calendar({Key? key}) : super(key: key);
-
-  // final List icons = [
-  //   Icons.beach_access,
-  //   Icons.medical_services_outlined,
-  //   Icons.medication_liquid_rounded
-  // ];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MonitorBloc, MonitorState>(

@@ -6,8 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/act/act_bloc.dart';
 import 'bloc/act/monitor_bloc.dart';
 import 'bloc/auth/auth_bloc.dart';
-import 'bloc/medicine/medicine_bloc.dart';
-import 'bloc/medicine/medmonitor_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,8 +30,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => AuthBloc()),
           BlocProvider(create: (_)=> ManageBloc()),
           BlocProvider(create: (_) => MonitorBloc()),
-          BlocProvider(create: (_)=> MedManageBloc()),
-          BlocProvider(create: (_) => MedMonitorBloc()),
         ], 
         child: const Wrapper()));
   }

@@ -5,10 +5,7 @@ import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/new_alarm_consulta.dart';
 import 'package:flutter_application_2/view/new_alarm_exercicio.dart';
 import 'package:flutter_application_2/view/new_alarm_lazer.dart';
-import 'package:flutter_application_2/view/new_alarm_remedio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/medicine/medicine_bloc.dart';
 
 class NewAct extends StatelessWidget {
   const NewAct({Key? key}) : super(key: key);
@@ -109,11 +106,11 @@ class NewActState extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (_) => MultiBlocProvider(providers: [
-                                  BlocProvider<MedManageBloc>.value(
+                                  BlocProvider<ManageBloc>.value(
                                       value:
-                                          BlocProvider.of<MedManageBloc>(context),
-                                      child: const NewRemed()),
-                                ], child: const NewRemed())
+                                          BlocProvider.of<ManageBloc>(context),
+                                      child: const NewConsulta()),
+                                ], child: const NewConsulta())
                         ),
                       );
                     },

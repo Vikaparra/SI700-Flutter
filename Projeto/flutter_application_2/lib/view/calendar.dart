@@ -22,10 +22,10 @@ class _PrincipalState extends State<Principal> {
     return Scaffold(
       body: IndexedStack(
         index: _currentScreen,
-        children: [
-          const NewAct(),
+        children: const [
+          NewAct(),
           Calendar(),
-          const EditProfile(),
+          EditProfile(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -54,7 +54,7 @@ class _PrincipalState extends State<Principal> {
 }
 
 class Calendar extends StatelessWidget {
-  Calendar({Key? key}) : super(key: key);
+  const Calendar({Key? key}) : super(key: key);
 
   // final List icons = [
   //   Icons.beach_access,
@@ -90,7 +90,7 @@ class Calendar extends StatelessWidget {
                               onTap: () {}, child: const Icon(Icons.delete)
                               ),
                           title: Text(
-                              appointCollection.getNodeAtIndex(position).title, style: TextStyle(fontSize: 20),),
+                              appointCollection.getNodeAtIndex(position).title, style: const TextStyle(fontSize: 20),),
                           subtitle: Text(
                             appointCollection
                                     .getNodeAtIndex(position)
@@ -193,7 +193,7 @@ divisoria(appointCollection, position, context) {
                     ' DE ' +
                     tileAtual.year.toString(),
                 textAlign: TextAlign.left,
-                style: TextStyle(color: kWhiteColor, fontSize: 20),
+                style: const TextStyle(color: kWhiteColor, fontSize: 20),
               ),
               width: MediaQuery.of(context).size.width * 0.90),
           padding: const EdgeInsets.only(top: 10.0, bottom: 10));

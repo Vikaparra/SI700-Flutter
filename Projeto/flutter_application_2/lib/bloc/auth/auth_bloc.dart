@@ -33,6 +33,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         print("----------- Register ------------");
         await _authenticationService.createUserWithEmailAndPassword(
             event.username, event.password, event.userInfo);
+            FirestoreServer.helper.insertNote(event.userInfo);
         //salvar a nota aqui, que é certeza que a autenticação ja acabou
       } catch (e) {
         emit(AuthError(message: "Impossível Registrar: ${e.toString()}"));

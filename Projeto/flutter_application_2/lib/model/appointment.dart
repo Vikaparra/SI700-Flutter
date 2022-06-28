@@ -11,7 +11,7 @@ class Appoint {
     String _title = "";
     String _description = "";
     String _type = "";
-    DateTime _date = DateTime(0, 0, 0, 0, 0);
+    DateTime _date = DateTime(0, 0, 0, 25, 0);
     
   }
 

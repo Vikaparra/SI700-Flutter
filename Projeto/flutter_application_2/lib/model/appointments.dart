@@ -10,9 +10,10 @@ class AppointCollection {
     // information.title.compareTo((a, b) => a.date.compareTo(b.date));
     
     idList = [];
-    appointList.sort();
     appointList = [];
   }
+
+
 
   int length() {
     return idList.length;
@@ -64,5 +65,8 @@ class AppointCollection {
   insertAppointOfId(String id, Appoint appoint) {
     idList.add(id);
     appointList.add(appoint);
+    appointList.sort((a,b) {
+      return a.date.compareTo(b.date);
+    });
   }
 }

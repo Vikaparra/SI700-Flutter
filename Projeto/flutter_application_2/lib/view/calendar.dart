@@ -4,7 +4,6 @@ import 'package:flutter_application_2/view/edit_profile.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/act/act_bloc.dart';
 import '../bloc/act/monitor_bloc.dart';
 import '../bloc/act/monitor_state.dart';
 import '../model/appointments.dart';
@@ -57,12 +56,6 @@ class _PrincipalState extends State<Principal> {
 class Calendar extends StatelessWidget {
   Calendar({Key? key}) : super(key: key);
 
-  // final List colors = [
-  //   Colors.orange,
-  //   Colors.red,
-  //   Colors.yellow
-  // ];
-
   final List icons = [Icons.ac_unit_outlined, Icons.access_alarm_rounded];
   @override
   Widget build(BuildContext context) {
@@ -72,107 +65,43 @@ class Calendar extends StatelessWidget {
   }
 
   Container getActListView(AppointCollection appointCollection) {
-//                  Card(
-//             //       color: kGreenColor,
-//             //       elevation: 5,
-//             //       child: ListTile(
-//             //         title: const Text('LAZER: CAMINHADA'),
-//             //         subtitle: const Text("Caminhada no parque Ibirapuera."),
-//             //         trailing: const Text("08:30"),
-//             //         onTap: () {},
-//             //       ),
-//             //     ),
     return Container(
-      color: kSecondColor,
-      child: ListView.builder(
-        itemCount: appointCollection.length(),
-        itemBuilder: (context, position) => ListTile(
-              leading: Icon(icons[position % icons.length]),
-              trailing: GestureDetector(
-                  onTap: () {}, child: const Icon(Icons.delete)),
+        color: kSecondColor,
+        child: ListView.builder(
+            itemCount: appointCollection.length(),
+            itemBuilder: (context, position) => Material(
+                    child: ListTile(
+                  textColor: Colors.black,
+                  tileColor: tileColor(appointCollection.getNodeAtIndex(position)),
+                  leading: Icon(icons[position % icons.length]),
+                  trailing: GestureDetector(
+                      onTap: () {}, child: const Icon(Icons.delete)),
 
-              title: Text(appointCollection.getNodeAtIndex(position).title),
-              subtitle:
-                  Text(appointCollection.getNodeAtIndex(position).description),
-              // trailing: Text(appointCollection.getNodeAtIndex(position).date),
-            )));    
+                  title: Text(appointCollection.getNodeAtIndex(position).title),
+                  subtitle: Text(
+                      appointCollection.getNodeAtIndex(position).description),
+                  // trailing: Text(appointCollection.getNodeAtIndex(position).date),
+                ))));
   }
 }
-// class Calendar extends StatelessWidget {
-//   const Calendar({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//         height: MediaQuery.of(context).size.height * 1,
-//         decoration: const BoxDecoration(
-//           color: kSecondColor,
-//         ),
-//         child: Column(children: [
-//           title(),
-//           const DefaultTextStyle(
-//             style: TextStyle(
-//                 fontSize: 19,
-//                 fontWeight: FontWeight.normal,
-//                 color: Colors.black,
-//                 fontFamily: "Comfortaa"),
-//             child: Text(
-//               '21 de maio, 2022',
-//               textAlign: TextAlign.left,
-//             ),
-//           ),
-//           const SizedBox(
-//             height: 400,
-//             // child: (ListView(
-//             //   //List para apresentação dos dados de atividades cadastradas
-//             //   children: [
-//             //     Card(
-//             //       color: kGreenColor,
-//             //       elevation: 5,
-//             //       child: ListTile(
-//             //         title: const Text('LAZER: CAMINHADA'),
-//             //         subtitle: const Text("Caminhada no parque Ibirapuera."),
-//             //         trailing: const Text("08:30"),
-//             //         onTap: () {},
-//             //       ),
-//             //     ),
-//             //     Card(
-//             //       color: kPinkColor,
-//             //       elevation: 5,
-//             //       child: ListTile(
-//             //         title: const Text('CONSULTA: CARDIOLOGISTA'),
-//             //         subtitle: const Text(
-//             //             "Cardiologista Dr. Marcio Hospital Sirio Libanês."),
-//             //         trailing: const Text("10:30"),
-//             //         onTap: () {},
-//             //       ),
-//             //     ),
-//             //     Card(
-//             //       color: kOrangeColor,
-//             //       elevation: 5,
-//             //       child: ListTile(
-//             //         title: const Text('REMÉDIO: CENTRUM'),
-//             //         subtitle: const Text("Vitaminas."),
-//             //         trailing: const Text("15:00"),
-//             //         onTap: () {},
-//             //       ),
-//             //     ),
-//             //     Card(
-//             //       color: kOrangeColor,
-//             //       elevation: 5,
-//             //       child: ListTile(
-//             //         title: const Text('REMÉDIO: ROSUVASTATINA'),
-//             //         subtitle: const Text("Tomar em jejum."),
-//             //         trailing: const Text("15:30"),
-//             //         onTap: () {},
-//             //       ),
-//             //     ),
-//             //   ],
-//             // )),
-//           )
-//         ]));
-//   }
-// }
+tileColor(tile) {
+  switch (tile.type) {
+    case 'consulta':
+      return kPinkColor;
+
+    case 'exercicio':
+      return kSecondColor;
+
+    case 'lazer':
+      return kGreenColor;
+
+    case 'remedio':
+      return kOrangeColor;
+
+    default:
+  }
+}
 
 Widget title() {
   //Formatação visual do titulo da tela
@@ -194,101 +123,101 @@ Widget title() {
   );
 }
 
-class CustomListItem extends StatelessWidget {
-  const CustomListItem({
-    Key? key,
-    required this.title,
-    required this.user,
-    required this.viewCount,
-  }) : super(key: key);
+// class CustomListItem extends StatelessWidget {
+//   const CustomListItem({
+//     Key? key,
+//     required this.title,
+//     required this.user,
+//     required this.viewCount,
+//   }) : super(key: key);
 
-  final String title;
-  final String user;
-  final int viewCount;
+//   final String title;
+//   final String user;
+//   final int viewCount;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: _VideoDescription(
-              title: title,
-              user: user,
-              viewCount: viewCount,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(vertical: 5.0),
+//       child: Row(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: <Widget>[
+//           Expanded(
+//             flex: 3,
+//             child: _VideoDescription(
+//               title: title,
+//               user: user,
+//               viewCount: viewCount,
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class _VideoDescription extends StatelessWidget {
-  const _VideoDescription({
-    Key? key,
-    required this.title,
-    required this.user,
-    required this.viewCount,
-  }) : super(key: key);
+// class _VideoDescription extends StatelessWidget {
+//   const _VideoDescription({
+//     Key? key,
+//     required this.title,
+//     required this.user,
+//     required this.viewCount,
+//   }) : super(key: key);
 
-  final String title;
-  final String user;
-  final int viewCount;
+//   final String title;
+//   final String user;
+//   final int viewCount;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 14.0,
-            ),
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
-          Text(
-            user,
-            style: const TextStyle(fontSize: 10.0),
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
-          Text(
-            '$viewCount views',
-            style: const TextStyle(fontSize: 10.0),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: <Widget>[
+//           Text(
+//             title,
+//             style: const TextStyle(
+//               fontWeight: FontWeight.w500,
+//               fontSize: 14.0,
+//             ),
+//           ),
+//           const Padding(padding: EdgeInsets.symmetric(vertical: 2.0)),
+//           Text(
+//             user,
+//             style: const TextStyle(fontSize: 10.0),
+//           ),
+//           const Padding(padding: EdgeInsets.symmetric(vertical: 1.0)),
+//           Text(
+//             '$viewCount views',
+//             style: const TextStyle(fontSize: 10.0),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class MyStatelessWidget extends StatelessWidget {
-  const MyStatelessWidget({Key? key}) : super(key: key);
+// class MyStatelessWidget extends StatelessWidget {
+//   const MyStatelessWidget({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(8.0),
-      itemExtent: 106.0,
-      children: const <CustomListItem>[
-        CustomListItem(
-          user: 'Flutter',
-          viewCount: 999000,
-          title: 'The Flutter YouTube Channel',
-        ),
-        CustomListItem(
-          user: 'Dash',
-          viewCount: 884000,
-          title: 'Announcing Flutter 1.0',
-        ),
-      ],
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListView(
+//       padding: const EdgeInsets.all(8.0),
+//       itemExtent: 106.0,
+//       children: const <CustomListItem>[
+//         CustomListItem(
+//           user: 'Flutter',
+//           viewCount: 999000,
+//           title: 'The Flutter YouTube Channel',
+//         ),
+//         CustomListItem(
+//           user: 'Dash',
+//           viewCount: 884000,
+//           title: 'Announcing Flutter 1.0',
+//         ),
+//       ],
+//     );
+//   }
+// }

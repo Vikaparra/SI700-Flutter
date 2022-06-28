@@ -7,7 +7,8 @@ class RegisterUser extends AuthEvent {
   String username;
   String password;
   UserInfo userInfo;
-  RegisterUser({required this.username, required this.password, required this.userInfo});  
+  RegisterUser(
+      {required this.username, required this.password, required this.userInfo});
 }
 
 class LoginUser extends AuthEvent {
@@ -16,8 +17,6 @@ class LoginUser extends AuthEvent {
 
   LoginUser({required this.username, required this.password});
 }
-
-// class LoginAnonymousUser extends AuthEvent {}
 
 class Logout extends AuthEvent {}
 

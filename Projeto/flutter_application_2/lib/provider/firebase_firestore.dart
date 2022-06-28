@@ -119,8 +119,9 @@ class FirestoreServer {
   }
 
   //coletando appoints
-  final CollectionReference appointCollection = FirebaseFirestore.instance.collection("appoints");
-  
+  final CollectionReference appointCollection =
+      FirebaseFirestore.instance.collection("appoints");
+
   Future<Appoint> getAppoint(appointId) async {
     DocumentSnapshot doc = await appointCollection
         .doc(uid)
@@ -152,7 +153,8 @@ class FirestoreServer {
   }
 
   Future<AppointCollection> getAppointList() async {
-    QuerySnapshot snapshot = await appointCollection.doc(uid).collection("appoints").get();
+    QuerySnapshot snapshot =
+        await appointCollection.doc(uid).collection("appoints").get();
 
     return _appointListFromSnapshot(snapshot);
   }

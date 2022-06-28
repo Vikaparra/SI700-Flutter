@@ -32,15 +32,16 @@ class Welcome extends StatelessWidget {
                   Navigator.push(
                       //Navegação do buttom, seguir para página de Login
                       context,
-                      MaterialPageRoute(
+                       MaterialPageRoute(
                           builder: (_) => MultiBlocProvider(providers: [
                                 BlocProvider<AuthBloc>.value(
                                     value: BlocProvider.of<AuthBloc>(context),
                                     child: Login()),
-                                
-                                  BlocProvider<ManageBloc>.value(
-                                      value:
-                                          BlocProvider.of<ManageBloc>(context),
+                                BlocProvider<ManageBloc>.value(
+                                      value:BlocProvider.of<ManageBloc>(context),
+                                      child: Login()),
+                                BlocProvider<MonitorBloc>.value(
+                                      value:BlocProvider.of<MonitorBloc>(context),
                                       child: Login()),
                                   BlocProvider<MonitorBloc>.value(
                                       value:
@@ -104,8 +105,6 @@ class WrapperState extends State<Wrapper> {
       },
       builder: (context, state) {
         if (state is Authenticated) {
-          MaterialPageRoute(
-              builder: (_) => MultiBlocProvider(providers: [], child: const Principal()));
           return const Principal();
         } else {
           return Welcome(); //LoginScreen()

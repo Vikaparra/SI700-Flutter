@@ -3,6 +3,7 @@ import 'package:flutter_application_2/view/constants.dart';
 import 'package:flutter_application_2/view/edit_profile.dart';
 import 'package:flutter_application_2/view/new_alarm.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../bloc/act/monitor_bloc.dart';
 import '../bloc/act/monitor_state.dart';
@@ -97,16 +98,10 @@ class Calendar extends StatelessWidget {
                                     .getNodeAtIndex(position)
                                     .description +
                                 '\n' +
-                                appointCollection
-                                    .getNodeAtIndex(position)
-                                    .date
-                                    .hour
-                                    .toString() +
-                                ':' +
-                                appointCollection
-                                    .getNodeAtIndex(position)
-                                    .date
-                                    .minute
+                                DateFormat.Hms()
+                                    .format(appointCollection
+                                        .getNodeAtIndex(position)
+                                        .date)
                                     .toString(),
                           ))
                     ],

@@ -23,9 +23,9 @@ class _PrincipalState extends State<Principal> {
       body: IndexedStack(
         index: _currentScreen,
         children: [
-          NewAct(),
+          const NewAct(),
           Calendar(),
-          EditProfile(),
+          const EditProfile(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -90,7 +90,7 @@ class Calendar extends StatelessWidget {
                               onTap: () {}, child: const Icon(Icons.delete)
                               ),
                           title: Text(
-                              appointCollection.getNodeAtIndex(position).title),
+                              appointCollection.getNodeAtIndex(position).title, style: TextStyle(fontSize: 20),),
                           subtitle: Text(
                             appointCollection
                                     .getNodeAtIndex(position)
@@ -98,7 +98,11 @@ class Calendar extends StatelessWidget {
                                 '\n' +
                                 appointCollection
                                     .getNodeAtIndex(position)
-                                    .date
+                                    .date.hour
+                                    .toString()+':'+
+                                appointCollection
+                                    .getNodeAtIndex(position)
+                                    .date.minute
                                     .toString(),
                           ))
                     ],
@@ -197,7 +201,19 @@ divisoria(appointCollection, position, context) {
       return const Text(" ");
     }
   } else {
-    return const Text("--");
+    return Padding(
+        child: SizedBox(
+            child: const Text(
+              'COMPROMISSOS: ',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.normal,
+                  color: kWhiteColor,
+                  fontFamily: "Comfortaa"),
+            ),
+            width: MediaQuery.of(context).size.width * 0.90),
+        padding: const EdgeInsets.only(top: 40.0, bottom: 20));
   }
 }
 
@@ -205,16 +221,12 @@ tileColor(tile) {
   switch (tile.type) {
     case 'consulta':
       return kPinkColor;
-
     case 'exercicio':
       return const Color.fromARGB(255, 197, 237, 255);
-
     case 'lazer':
       return kGreenColor;
-
     case 'remedio':
       return kOrangeColor;
-
     default:
   }
 }
